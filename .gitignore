@@ -1,5 +1,6 @@
 # VSCode
 .vscode/
+.sesskey
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
