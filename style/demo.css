@@ -1,12 +1,14 @@
 :root {
     --pico-font-size: 100%; 
 }
-
-code[class*=language-] {
+code[class*="language-"] {
     padding:0em; 
-}
+    /* padding-left: 1em; */
+    background: #13171f !important;
     
+}
 :not(pre) > code[class*="language-"], 
 pre[class*="language-"] {
-    background: #80808028 !important;
+    background: #13171f !important;
+    font-size: 0.9em;
 }
