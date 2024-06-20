@@ -1,14 +1,11 @@
+from curses import meta
 from fasthtml.common import *
 from fasthtml.js import MarkdownJS, SortableJS
+website = "FastHTML 💙 Pico CSS"
 
 pico_css = Link(
     rel="stylesheet", 
     href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.pumpkin.min.css", 
-    type="text/css"
-    )
-prism_css_theme = Link(
-    rel="stylesheet", 
-    href="style/prism-one-dark.css",
     type="text/css"
     )
 prism_css = Link(
@@ -16,24 +13,30 @@ prism_css = Link(
     href="style/prism.css",
     type="text/css"
     )
+prism_css_theme = Link(
+    rel="stylesheet", 
+    href="style/prism-one-dark.css",
+    type="text/css"
+    )
+demo_css = Link(           # Override some Prism styles
+    rel="stylesheet", 
+    href="style/demo.css",
+    type="text/css"
+    )
 prism_js = Script(src="style/prism.js")
 
-# Override some Prism styles
-css_overrides = [
-    """:root {--pico-font-size: 100%; }""",
-    """code[class*=language-]{padding:0em; }""",
-    """:not(pre) > code[class*="language-"], pre[class*="language-"] {background: #80808028;}""",
-    ]
-css = Style(
-    " ".join(o for o in css_overrides)
-    )
+# css_overrides = []
+# css = Style(" ".join(o for o in css_overrides))
+head = Meta(charset="utf-8"), Meta(name="viewport", content="width=device-width, initial-scale=1"), Meta(name="color-scheme", content="light dark"), Title(website)
 
 app = FastHTML(hdrs=(
+    head,
     pico_css,
     prism_css,
     prism_css_theme,
-    css, 
-    prism_js, 
+    demo_css, 
+    # css,         # use for in-file custom CSS; otherwise in demo.css
+    # prism_js,    # linked at the bottom of the HTML file
     ))
 rt = app.route
 
@@ -42,15 +45,31 @@ rt = app.route
 @rt("/{fname:path}.{ext:static}")
 async def get(fname:str, ext:str): return FileResponse(f'{fname}.{ext}')
 
-
-
-hd = Header(H1("FastHTML 💙 Pico CSS"), cls='hd')
-menu = Div(P(A("Notes", href="/log")), P(A("Demos", href="/llm")), cls='grid')
-body = Body(P("Starter HTML template"), Code("some code"), )
-ft = Footer(P("Made by kit using FastHTML & Pico CSS, June 2024."), cls='ft')
+# TODO: functionalize all this shit below
 
 # Canonical HTML structure
+menu = Div(P(A("Notes", href="/log")), P(A("Demos", href="/llm")), cls='grid')
 
+
+# Our data
+starter_html_template = NotStr("""&lt;!doctype html>
+&lt;html lang="en">
+  &lt;head>
+    &lt;meta charset="utf-8">
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1">
+    &lt;meta name="color-scheme" content="light dark" />
+    &lt;link rel="stylesheet" href="css/pico.min.css">
+    &lt;title>Hello world!&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;main class="container">
+      &lt;h1>Hello world!&lt;/h1>
+    &lt;/main>
+  &lt;/body>
+&lt;/html>""")
+# ↓
+block_code = Pre(Code(starter_html_template, cls='language-html'), cls='prismjs')
+# block_code = Pre(Code(starter_html_template, cls='line-numbers language-html'), cls='prismjs')
 
 
 
@@ -62,52 +81,28 @@ ft = Footer(P("Made by kit using FastHTML & Pico CSS, June 2024."), cls='ft')
 
 
 
+# css = Style(" ".join(o for o in css_overrides))
+section_1 = Section(
+    H2("Getting started"), 
+    H3("Quick start"), 
+    H4("Starter HTML template"),
+    block_code,
+    )
+section_2 = Section(
+    H2("Customization"), 
+    H3("CSS variables"),
+    )
+
 # ↓
 
-
-section = Section()
-# sections = 
-# ↓
-header = Header()
-main   = Main(section, cls='line-numbers')
-footer = Footer()
-# ↓
-body   = Body(header, main, footer)
-
-
-
-python_code = NotStr("""def median(pool):
-    '''Statistical median to demonstrate doctest.
-    >>> median([2, 9, 9, 7, 9, 2, 4, 5, 8])
-    7
-    '''
-    copy = sorted(pool)
-    size = len(copy)
-    if size % 2 == 1:
-        return copy[(size - 1) / 2]
-    else:
-        return (copy[size/2 - 1] + copy[size/2]) / 2
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()""")
-
+header = Header(H1(website), menu, cls='container')
+main   = Main(section_1, section_2, cls='container line-numbers')
+footer = Footer(P("Made by kit using FastHTML & Pico CSS, June 2024."), cls='container')
+scripts = Script(src="style/prism.js")
 
 
 # Home page (Cover page)
 @rt("/")
 def get():
-    return Title(
-        "FastHTML 💙 Pico CSS"
-        ), Body(
-        hd, 
-        Main(
-          menu, 
-          Pre(
-            Code(python_code, 
-            ), 
-          cls='prismjs line-numbers language-python'), 
-        ), 
-        ft, 
-        
-    cls='container')
-
+    return header, main, footer, scripts
+# , header, main, footer, bottom_html
