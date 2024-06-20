@@ -17,20 +17,23 @@ prism_css = Link(
     type="text/css"
     )
 prism_js = Script(src="style/prism.js")
+
 # Override some Prism styles
-root_pico_font_size = """:root {--pico-font-size: 100%; } """
-code_prism_padding  = """code[class*=language-]{padding:0em; } """
-code_prism_bg       = """:not(pre) > code[class*=language-], pre[class*=language-] {background: #80808028;} """
-css = Style(root_pico_font_size + code_prism_padding + code_prism_bg)
+css_overrides = [
+    """:root {--pico-font-size: 100%; }""",
+    """code[class*=language-]{padding:0em; }""",
+    """:not(pre) > code[class*="language-"], pre[class*="language-"] {background: #80808028;}""",
+    ]
+css = Style(
+    " ".join(o for o in css_overrides)
+    )
 
 app = FastHTML(hdrs=(
     pico_css,
     prism_css,
     prism_css_theme,
-    prism_js, 
     css, 
-    # SortableJS('.sortable', 'todo-list'),
-    # MarkdownJS('.markdown')
+    prism_js, 
     ))
 rt = app.route
 
