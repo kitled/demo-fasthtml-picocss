@@ -1,2 +1,2 @@
-# demo-fasthtml-picocss
+# FastHTML ♥ Pico CSS
 Demonstrating Pico CSS in FastHTML.
