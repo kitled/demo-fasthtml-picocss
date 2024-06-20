@@ -13,6 +13,8 @@ Official documentation. <!-- and other useful resources. -->
 
 ### 🧬 Repo
 
-- FastHTML: ([Apache 2](https://github.com/AnswerDotAI/fasthtml/blob/main/LICENSE)) [https://github.com/AnswerDotAI/fasthtml](https://github.com/AnswerDotAI/fasthtml)
-- Pico CSS: ([MIT](https://github.com/picocss/pico/blob/main/LICENSE.md)) [https://github.com/picocss/pico](https://github.com/picocss/pico)
+- FastHTML: [https://github.com/AnswerDotAI/fasthtml](https://github.com/AnswerDotAI/fasthtml)  
+(⚖️ [Apache 2](https://github.com/AnswerDotAI/fasthtml/blob/main/LICENSE) )
+- Pico CSS: [https://github.com/picocss/pico](https://github.com/picocss/pico)  
+(⚖️ [MIT](https://github.com/picocss/pico/blob/main/LICENSE.md) )
 
