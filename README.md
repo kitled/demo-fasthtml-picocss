@@ -1,4 +1,4 @@
-# FastHTML ♥ Pico CSS
+# FastHTML 💙 Pico CSS
 *Demonstrating Pico CSS in FastHTML.*
 
 View it live at: <!-- kit + GHP links -->
