@@ -172,9 +172,10 @@ section_7 = {
 
 # NEW PLAN! 🔥😼🔥
 # [ ] all code snippets are files in ./code/
-# [ ] named by section number (4_2 becomes demo_4_2.html)
-# [ ] function here to read file and return code block
-# [ ] independently, PrismJS will source that file too
+# [ ] named by section number (4_2 becomes demo_4_2.py)
+# [ ] Python imported as modules → actually run here (fastHTML funcs)
+# [ ] independently, PrismJS will source .py, .html, .css for display/highlight
+
 
 
 

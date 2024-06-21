@@ -1,6 +1,12 @@
 # VSCode
 .vscode/
+
+# Ad hoc
 .sesskey
+NOTES.md
+NOTES.py
+NOTES.css
+NOTES.html
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
