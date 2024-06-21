@@ -1,6 +1,7 @@
 :root {
     --pico-font-size: 100%; 
     --pico-background-color: #000;
+    --pico-transition: .2s ease-in-out;
 }
 code[class*="language-"] {
     padding:0em; 
@@ -24,3 +25,24 @@ article > header > div {
 /* * {
     --pico-color: #F85B1A;
 } */
+/* @media (min-width: 1024px) {
+    :is(h1,h2,h3,h4,h5,h6)>a[id] {
+        position: absolute;
+        left: 0;
+        padding-right: calc(var(--pico-spacing)* .5);
+        transform: translate(-100%);
+    }
+} */
+:is(h1,h2,h3,h4,h5,h6)>a[id] {
+    padding-left: calc(var(--pico-spacing)* .5);
+    font-weight: 400;
+    text-decoration: none;
+    opacity: 0;
+    transition: color var(--pico-transition) opacity var(--pico-transition);
+}
+
+
+:hover:is(h1,h2,h3,h4,h5,h6)>a[id] {
+    opacity: 1;
+}
+
