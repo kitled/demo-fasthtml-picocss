@@ -107,75 +107,87 @@ color_palette = Article(Header(
 # - key:str = name of the title
 # - value:int = n in <hn> (n:int=1|2|3|4|5|6)
 section_1 = {
-    "Getting started": 2,
-    "Quick start": 3,
-    "Starter HTML template": 4,
-    "Version picker": 3,
-    "Color schemes": 3,
-    "Class-less version": 3,
-    "Conditional styling": 3,
-    "RTL": 3,
+    "Getting started": 2,       # 1_0
+    "Quick start": 3,           # 1_1        
+    "Starter HTML template": 4, # 1_1_5
+    "Version picker": 3,        # 1_2
+    "Color schemes": 3,         # 1_3
+    "Class-less version": 3,    # 1_4
+    "Conditional styling": 3,   # 1_5
+    "RTL": 3,                   # 1_6
 }
 
 section_2 = {
-    "Customization": 2,
-    "CSS Variables": 3,
-    "Sass": 3,
-    "Colors": 3,
+    "Customization": 2,         # 2_0
+    "CSS Variables": 3,         # 2_1
+    "Sass": 3,                  # 2_2
+    "Colors": 3,                # 2_3
 }
 section_3 = {
-    "Layout": 2,
-    "Container": 3,
-    "Landmarks & section": 3,
-    "Grid": 3,
-    "Overflow auto": 3,
+    "Layout": 2,                # 3_0
+    "Container": 3,             # 3_1
+    "Landmarks & section": 3,   # 3_2
+    "Grid": 3,                  # 3_3
+    "Overflow auto": 3,         # 3_4
 }
 section_4 = {
-    "Content": 2,
-    "Typography": 3,
-    "Link": 3,
-    "Button": 3,
-    "Table": 3,
+    "Content": 2,               # 4_0
+    "Typography": 3,            # 4_1
+    "Link": 3,                  # 4_2
+    "Button": 3,                # 4_3
+    "Table": 3,                 # 4_4
 }
 section_5 = {
-    "Forms": 2,
-    "Overview": 3,
-    "Input": 3,
-    "Textarea": 3,
-    "Select": 3,
-    "Checkboxes": 3,
-    "Radios": 3,
-    "Switch": 3,
-    "Range": 3,
+    "Forms": 2,                 # 5_0
+    "Overview": 3,              # 5_1
+    "Input": 3,                 # 5_2
+    "Textarea": 3,              # 5_3
+    "Select": 3,                # 5_4
+    "Checkboxes": 3,            # 5_5
+    "Radios": 3,                # 5_6
+    "Switch": 3,                # 5_7
+    "Range": 3,                 # 5_8
 }
 section_6 = {
-    "Components": 2,
-    "Accordion": 3,
-    "Card": 3,
-    "Dropdown": 3,
-    "Group NEW": 3,
-    "Loading": 3,
-    "Modal": 3,
-    "Nav": 3,
-    "Progress": 3,
-    "Tooltip": 3,
+    "Components": 2,            # 6_0
+    "Accordion": 3,             # 6_1
+    "Card": 3,                  # 6_2
+    "Dropdown": 3,              # 6_3
+    "Group NEW": 3,             # 6_4
+    "Loading": 3,               # 6_5
+    "Modal": 3,                 # 6_6
+    "Nav": 3,                   # 6_7
+    "Progress": 3,              # 6_8
+    "Tooltip": 3,               # 6_9
 }
 section_7 = {
-    "About": 2,
-    "What’s new in v2?": 3,
-    "Mission": 3,
-    "Usage scenarios": 3,
-    "Brand": 3,
-    "Built With": 3,
+    "About": 2,                 # 7_0
+    "What’s new in v2?": 3,     # 7_1
+    "Mission": 3,               # 7_2
+    "Usage scenarios": 3,       # 7_3
+    "Brand": 3,                 # 7_4
+    "Built With": 3,            # 7_5
 }
 
 
+# NEW PLAN! 🔥😼🔥
+# [ ] all code snippets are files in ./code/
+# [ ] named by section number (4_2 becomes demo_4_2.html)
+# [ ] function here to read file and return code block
+# [ ] independently, PrismJS will source that file too
 
 
 
 
 
+# All demos are indexed by section number
+d1_1_5 = Div(block_code, cls='code', id='demo-1-1-5')
 
+
+
+
+
+d1 = (d1_1_5, )
 
 
 
@@ -210,11 +222,11 @@ section_7 = {
 
 
 # These functions assemble the page using all data above.
-def make_h(title:str='title', lv:int=3):
+def make_h(title:str, lv:int, *demos):
     h = [H1, H2, H3, H4, H5, H6]
     hn = h[lv-1]
     formatted_title = title.lower().replace(' ', '-')
-    return hn(title, A('🔗', href='#'+formatted_title, id=formatted_title, cls='secondary', tabindex="-1"))
+    return hn(title, A('🔗', href='#'+formatted_title, id=formatted_title, cls='secondary', tabindex="-1")), *demos
 
 def make_section(section:dict):
     items = []
@@ -231,7 +243,7 @@ def make_sections(*sections):
 sections = Div(make_sections(section_1, section_2, section_3, section_4, section_5, section_6, section_7), id="content", role="document",)
 
 header = Header(H1(website), menu, Hr(), cls='container')
-main   = Main(sections, cls='container line-numbers')
+main   = Main(color_palette, d1_1_5, sections, cls='container line-numbers')
 footer = Footer(Hr(),P("Made by kit using FastHTML & Pico CSS, June 2024."), cls='container')
 scripts = Script(src="style/prism.js")
 
