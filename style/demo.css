@@ -1,14 +1,26 @@
 :root {
     --pico-font-size: 100%; 
+    --pico-background-color: #000;
 }
 code[class*="language-"] {
     padding:0em; 
-    /* padding-left: 1em; */
-    background: #13171f !important;
-    
+    padding-left: 1em;
+    background: #000000 !important;
 }
 :not(pre) > code[class*="language-"], 
 pre[class*="language-"] {
     background: #13171f !important;
     font-size: 0.9em;
 }
+article {
+    /* --pico-block-spacing-vertical: calc(var(--pico-spacing) * 2.25);
+    --pico-block-spacing-horizontal: calc(var(--pico-spacing) * 2.25); */
+    text-align: center;
+    color: #000;
+}
+article > header > div {
+    border-radius: 0.3em;
+}
+/* * {
+    --pico-color: #F85B1A;
+} */
