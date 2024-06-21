@@ -30,8 +30,8 @@ prism_js = Script(src="style/prism.js")
 
 # css_overrides = []
 # css = Style(" ".join(o for o in css_overrides))
-head = Meta(charset="utf-8"), Meta(name="viewport", content="width=device-width, initial-scale=1"), Meta(name="color-scheme", content="light dark")
-
+head = Meta(charset="utf-8"), Meta(name="viewport", content="width=device-width, initial-scale=1"), Meta(name="color-scheme", content="light dark") # PLAY WITH THIS color-scheme thing 🔥☯️ 🡅🡅🡅 ☯️🔥
+#                                                             BUTTONS!
 app = FastHTML(hdrs=(
     head,
     pico_css,
@@ -173,11 +173,8 @@ section_7 = {
 # NEW PLAN! 🔥😼🔥
 # [ ] all code snippets are files in ./code/
 # [ ] named by section number (4_2 becomes demo_4_2.py)
-# [ ] Python imported as modules → actually run here (fastHTML funcs)
+# [ ] Python imported as modules → feed to make_ fns (fastHTML funcs)
 # [ ] independently, PrismJS will source .py, .html, .css for display/highlight
-
-
-
 
 
 
@@ -185,42 +182,10 @@ section_7 = {
 d1_1_5 = Div(block_code, cls='code', id='demo-1-1-5')
 
 
-
-
-
 d1 = (d1_1_5, )
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 🡇🡇 USE demos VARIABLE BELOW TO ADD NEW DEMOS 🡇🡇
 
 # These functions assemble the page using all data above.
 def make_h(title:str, lv:int, *demos):
@@ -241,12 +206,27 @@ def make_sections(*sections):
         all_sections += (make_section(section),)
     return all_sections
 
-sections = Div(make_sections(section_1, section_2, section_3, section_4, section_5, section_6, section_7), id="content", role="document",)
+sections = Div(make_sections(
+    section_1, section_2, section_3, section_4, section_5, 
+    section_6, section_7), id="content", role="document",)
+
+test = make_h("Test", 2, color_palette, d1_1_5)
 
 header = Header(H1(website), menu, Hr(), cls='container')
-main   = Main(color_palette, d1_1_5, sections, cls='container line-numbers')
-footer = Footer(Hr(),P("Made by kit using FastHTML & Pico CSS, June 2024."), cls='container')
+main   = Main(test, sections, cls='container line-numbers')
+footer = Footer(Hr(),P("Made by kit using FastHTML & Pico CSS + PrismJS, June 2024."), cls='container')
 scripts = Script(src="style/prism.js")
+
+
+
+
+
+
+
+
+
+
+
 
 # Home page (Cover page)
 @rt("/")
