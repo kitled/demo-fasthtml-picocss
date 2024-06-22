@@ -4,6 +4,11 @@ import json
 html    = Html(lang='en', 
     # data_theme='dark',   # also helps bg color hack in demo.css
     )
+head = Meta(charset="utf-8"), Meta(name="viewport", 
+    content="width=device-width, initial-scale=1"), Meta(
+    name="color-scheme", content="light dark") 
+#                PLAY WITH THIS 🔥☯️ 🡅🡅🡅 ☯️🔥
+#                                   BUTTONS!
 title = "FastHTML 🧡 Pico CSS"
 footer_text = P("Made by kit using FastHTML & Pico CSS + PrismJS, June 2024.")
 
@@ -31,11 +36,6 @@ prism_js = Script(src="style/prism.js")
 
 # css_overrides = []
 # css = Style(" ".join(o for o in css_overrides))
-head = Meta(charset="utf-8"), Meta(name="viewport", 
-    content="width=device-width, initial-scale=1"), Meta(
-    name="color-scheme", content="light dark") 
-#                PLAY WITH THIS 🔥☯️ 🡅🡅🡅 ☯️🔥
-#                                   BUTTONS!
 app = FastHTML(hdrs=(
     head,
     pico_css,
@@ -120,19 +120,23 @@ d1_2_0 = (color_palette, ) # should have an example card below, and divs buttons
 # sections dictionaries
 # - key:str = name of the title
 # - value:int = n in <hn> (n:int=1|2|3|4|5|6)
-# - comment: numbering
+# - comment: numbering + HTML structure for a few examples
+
+
+
+
 section_1 = {
-    "Getting started": 2,       # 1_0_0
-    "Quick start": 3,           # 1_1_0      
-    "Starter HTML template": 4, # 1_1_5
-    "Version picker": 3,        # 1_2_0
+    "Getting started": 2,       # 1_0_0 <section><header><h2>Getting started</h2></header><p>…</p>
+    "Quick start": 3,           # 1_1_0 <section><header><h3>Quick start</h3></header><p>Details about Quick start</p>
+    "Starter HTML template": 4, # 1_1_5 <article><header><h4>Starter HTML template</h4></header><p>…</p><footer><pre><code>…</code></pre><pre><code>…</code></pre></footer>
+    "Version picker": 3,        # 1_2_0 <section><header><h3>Version picker</h3></header><p>…</p>
     "Color schemes": 3,         # 1_3_0
     "Usage": 4,                 # 1_3_1
     "Card example": 4,          # 1_3_2
     "Class-less version": 3,    # 1_4_0
     "Conditional styling": 3,   # 1_5_0
     "RTL": 3,                   # 1_6_0
-}
+}                               #       </section>
 
 section_2 = {
     "Customization": 2,         # 2_0_0
@@ -208,9 +212,6 @@ d1_3_2_1 = Article("…", data_theme="light"), Article("…", data_theme="dark")
 
 
 
-
-
-
 # These functions assemble the page using all data above.
 # Page is made of Sections
 # Sections are made of blocks
@@ -218,22 +219,26 @@ d1_3_2_1 = Article("…", data_theme="light"), Article("…", data_theme="dark")
 # Contents are made of HTML Tags i.e. FastHTML functions: tuple(Div(), P(), A()…)
 # We implement the above in reverse order: contents → h block → section → page
 
-def make_contents():
+def make_contents(*tags):
+
     return
 
-def make_h(title:str, lv:int, *contents):
+def heading(title:str, lv:int, *contents):
     '''Returns a headed block with title and anchor link.
     TODO: Implement *contents to add block contents.
     '''
     h = [H1, H2, H3, H4, H5, H6]
     hn = h[lv-1]
-    formatted_title = title.lower().replace(' ', '-')
-    return hn(title, A('🔗', href='#'+formatted_title, id=formatted_title, cls='secondary', tabindex="-1")), *contents
+    anchor = title.lower().replace(' ', '-')
+    return hn(
+        title, 
+        A('🔗', href='#'+anchor, id=anchor, cls='secondary', tabindex="-1")
+    ), *contents
 
 def make_section(section:dict):
     items = []
     for title, level in section.items():
-        items.append(make_h(title, level))
+        items.append(heading(title, level))
     return Section(*items)
 
 def make_page(*sections):
@@ -249,58 +254,36 @@ sections = Div(make_page(
 
 
 # 🡇🡇🡇 BEGIN TEST 🡇🡇🡇
-test = make_h("Test", 2, color_palette, d1_1_5, d1_3_2_1)
+test = heading("Test", 2, color_palette, d1_1_5, d1_3_2_1)
 # 🡅🡅🡅  END TEST  🡅🡅🡅
 
 
-# transparency header
-# we'll use cls="top_header"
 
-# CSS
-# body>header.is-fixed-above-lg {
-#     z-index: 2;
-#     position: sticky;
-#     top: 0;
-#     -webkit-backdrop-filter: blur(1rem);
-#     backdrop-filter: blur(1rem);
-#     background-color: var(--pico-header-background);
 
-# HTML
-# header cls="is-fixed-above-lg is-fixed" (we don't do the toggle thing)
-#   div cls="container"
-#     a home/logo
-#     nav
-#       ul's
-#         li's
-#
-
+# Global top header, fixed & translucent
 top_header = Header(
   Div(
     A(H1(title), href="/"), 
     Nav(
       Ul(
-          Li(A("Light", href="/")),
-          Li(A("Dark", href="/components")),
-          Li(A("Code", href="/about")),
+          Li(A("Light", href="/", cls="contrast")),
+          Li(A("Dark",  href="/", cls="contrast")),
+          Li(A("Code",  href="/", cls="contrast")),
       ),
       Ul(
-          Li(A("FastHTML", href="/")),
-          Li(A("Pico CSS", href="/components")),
-          Li(A("About", href="/about")),
+          Li(A("FastHTML", href="/", cls="contrast")),
+          Li(A("Pico CSS", href="/", cls="contrast")),
+          Li(A("About",    href="/about", cls="contrast")),
       ), 
     ), 
-    cls="container",  
+    cls="container",  # use this class to add left-right margins + centering of blocks
   ), 
-  cls="top_header",
+  cls="top_header",   # specific class → fixed above + translucent
 )
 
-
-
-scripts = Script(src="style/prism.js")
-
-# header = Header(H1(title), menu, Hr(), cls='container') # TODO: make proper header with nav etc.
 main   = Main(test, sections, cls='container line-numbers')
 footer = Footer(Hr(), footer_text, cls='container')
+scripts = Script(src="style/prism.js")
 
 website = (html, Title(title), top_header, main, footer, scripts)
 
