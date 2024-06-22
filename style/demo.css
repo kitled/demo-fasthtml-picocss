@@ -1,27 +1,72 @@
 :root {
     --pico-font-size: 100%; 
-    --pico-background-color: #000;
+    /* --pico-background-color: #000; */
     --pico-transition: .2s ease-in-out;
+}
+pre {
+    margin-bottom: 16px !important;
+    margin-top: 16px !important;
+}
+.line-numbers .line-numbers-rows {
+    border-right: 0;
+    /* left: -3.5em; */
+    /*TODO: remove background differences; 
+    make numbering and menus 'seamless' w. bg, 
+    only code stands out between thin low-contrast borders */ 
 }
 code[class*="language-"] {
     padding:0em; 
     padding-left: 1em;
-    background: #000000 !important;
+    background: #13171f !important;
 }
 :not(pre) > code[class*="language-"], 
-pre[class*="language-"] {
-    background: #13171f !important;
+pre[class*="prismjs"] {
+    background: #181c25 !important;
+    /* background: #000000 !important; */
     font-size: 0.9em;
 }
-article {
-    /* --pico-block-spacing-vertical: calc(var(--pico-spacing) * 2.25);
-    --pico-block-spacing-horizontal: calc(var(--pico-spacing) * 2.25); */
+
+/* Version picker colors style */
+article.color-picker > header {
+    grid-gap:0.1rem;
+    grid-template-columns: repeat(20,1fr);
+    padding: 0;
+}
+/* article.color-picker > header > div {
+    border-radius: 0.24em;
+} */
+div.color-pick {
     text-align: center;
-    color: #000;
+    color: #13171f;
+    border-radius: 0.24em;
 }
-article > header > div {
-    border-radius: 0.3em;
+
+/* Titles anchor - taken from Pico CSS own website */
+:is(h1,h2,h3,h4,h5,h6) > a[id] {
+    padding-left: calc(var(--pico-spacing)* .5);
+    font-weight: 400;
+    text-decoration: none;
+    opacity: 0;
 }
+:hover:is(h1,h2,h3,h4,h5,h6) > a[id] {
+    transition: color var(--pico-transition) opacity var(--pico-transition);
+    opacity: 1;
+}
+
+
+
+
+
+
+/* ↓ Archives ↓ */
+
+/* article {
+    margin-bottom: var(--pico-block-spacing-vertical);
+    padding: var(--pico-block-spacing-vertical) var(--pico-block-spacing-horizontal);
+    border-radius: var(--pico-border-radius);
+    background: var(--pico-card-background-color);
+    box-shadow: var(--pico-card-box-shadow)
+} */
 /* * {
     --pico-color: #F85B1A;
 } */
@@ -33,16 +78,3 @@ article > header > div {
         transform: translate(-100%);
     }
 } */
-:is(h1,h2,h3,h4,h5,h6)>a[id] {
-    padding-left: calc(var(--pico-spacing)* .5);
-    font-weight: 400;
-    text-decoration: none;
-    opacity: 0;
-    transition: color var(--pico-transition) opacity var(--pico-transition);
-}
-
-
-:hover:is(h1,h2,h3,h4,h5,h6)>a[id] {
-    opacity: 1;
-}
-

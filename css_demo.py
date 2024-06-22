@@ -1,10 +1,11 @@
 from fasthtml.common import *
 import json
 
-website = "FastHTML 🧡 Pico CSS"
 html    = Html(lang='en', 
-    data_theme='dark',   # also helps bg color hack in demo.css
+    # data_theme='dark',   # also helps bg color hack in demo.css
     )
+title = "FastHTML 🧡 Pico CSS"
+footer_text = P("Made by kit using FastHTML & Pico CSS + PrismJS, June 2024.")
 
 pico_css = Link(
     rel="stylesheet", 
@@ -30,8 +31,11 @@ prism_js = Script(src="style/prism.js")
 
 # css_overrides = []
 # css = Style(" ".join(o for o in css_overrides))
-head = Meta(charset="utf-8"), Meta(name="viewport", content="width=device-width, initial-scale=1"), Meta(name="color-scheme", content="light dark") # PLAY WITH THIS color-scheme thing 🔥☯️ 🡅🡅🡅 ☯️🔥
-#                                                             BUTTONS!
+head = Meta(charset="utf-8"), Meta(name="viewport", 
+    content="width=device-width, initial-scale=1"), Meta(
+    name="color-scheme", content="light dark") 
+#                PLAY WITH THIS 🔥☯️ 🡅🡅🡅 ☯️🔥
+#                                   BUTTONS!
 app = FastHTML(hdrs=(
     head,
     pico_css,
@@ -83,15 +87,21 @@ shades = [
     '550', '500', '550', '600', '600', '600', '550', '550', '550', '550', 
     '500', '200', '100', '200', '300', '500', '200', '300', '550', '600']
 # ↓
-def to_rgb(color_name, shade):
+def to_rgb(color, shade) -> str:
+    '''Returns color shade from the Pico color palette as RGB string.
+    '''
     with open('style/pico-color-palette.json', 'r') as file:
         color_data = json.load(file)
-    return str(color_data[color_name][shade])
+    return str(color_data[color][shade])
 
 def make_div(color, shade):
-    return Div(Strong("●"), style='background:'+ to_rgb(color, shade)+';',)
+    '''Returns a div with a color dot.
+    '''
+    return Div(Strong("●"), style='background: '+ to_rgb(color, shade), cls='color-pick')
 
 def make_divs(colors=colors, shades=shades):
+    '''Returns a tuple of divs with color dots.
+    '''
     divs = tuple()
     for i in range(len(colors)):
         divs += (make_div(colors[i], shades[i]),)
@@ -99,74 +109,79 @@ def make_divs(colors=colors, shades=shades):
 
 color_palette = Article(Header(
     make_divs(),
-    cls='grid', style='background: #000;',
-), style='background: #000;',
+    cls='grid', 
+    # style='background: #000;',
+), cls='color-picker',
+# style='background: #000;',
 )
 
 # sections dictionaries
 # - key:str = name of the title
 # - value:int = n in <hn> (n:int=1|2|3|4|5|6)
+# - comment: numbering
 section_1 = {
-    "Getting started": 2,       # 1_0
-    "Quick start": 3,           # 1_1        
+    "Getting started": 2,       # 1_0_0
+    "Quick start": 3,           # 1_1_0      
     "Starter HTML template": 4, # 1_1_5
-    "Version picker": 3,        # 1_2
-    "Color schemes": 3,         # 1_3
-    "Class-less version": 3,    # 1_4
-    "Conditional styling": 3,   # 1_5
-    "RTL": 3,                   # 1_6
+    "Version picker": 3,        # 1_2_0
+    "Color schemes": 3,         # 1_3_0
+    "Usage": 4,                 # 1_3_1
+    "Card example": 4,          # 1_3_2
+    "Class-less version": 3,    # 1_4_0
+    "Conditional styling": 3,   # 1_5_0
+    "RTL": 3,                   # 1_6_0
 }
 
 section_2 = {
-    "Customization": 2,         # 2_0
-    "CSS Variables": 3,         # 2_1
-    "Sass": 3,                  # 2_2
-    "Colors": 3,                # 2_3
+    "Customization": 2,         # 2_0_0
+    "CSS Variables": 3,         # 2_1_0
+    "Sass": 3,                  # 2_2_0
+    "Colors": 3,                # 2_3_0
 }
 section_3 = {
-    "Layout": 2,                # 3_0
-    "Container": 3,             # 3_1
-    "Landmarks & section": 3,   # 3_2
-    "Grid": 3,                  # 3_3
-    "Overflow auto": 3,         # 3_4
+    "Layout": 2,                # 3_0_0
+    "Container": 3,             # 3_1_0
+    "Landmarks & section": 3,   # 3_2_0
+    "Grid": 3,                  # 3_3_0
+    "Overflow auto": 3,         # 3_4_0
 }
 section_4 = {
-    "Content": 2,               # 4_0
-    "Typography": 3,            # 4_1
-    "Link": 3,                  # 4_2
-    "Button": 3,                # 4_3
-    "Table": 3,                 # 4_4
+    "Content": 2,               # 4_0_0
+    "Typography": 3,            # 4_1_0
+    "Link": 3,                  # 4_2_0
+    "Button": 3,                # 4_3_0
+    "Table": 3,                 # 4_4_0
 }
 section_5 = {
-    "Forms": 2,                 # 5_0
-    "Overview": 3,              # 5_1
-    "Input": 3,                 # 5_2
-    "Textarea": 3,              # 5_3
-    "Select": 3,                # 5_4
-    "Checkboxes": 3,            # 5_5
-    "Radios": 3,                # 5_6
-    "Switch": 3,                # 5_7
-    "Range": 3,                 # 5_8
+    "Forms": 2,                 # 5_0_0
+    "Overview": 3,              # 5_1_0
+    "Input": 3,                 # 5_2_0
+    "Textarea": 3,              # 5_3_0
+    "Select": 3,                # 5_4_0
+    "Checkboxes": 3,            # 5_5_0
+    "Radios": 3,                # 5_6_0
+    "Switch": 3,                # 5_7_0
+    "Range": 3,                 # 5_8_0
 }
 section_6 = {
-    "Components": 2,            # 6_0
-    "Accordion": 3,             # 6_1
-    "Card": 3,                  # 6_2
-    "Dropdown": 3,              # 6_3
-    "Group NEW": 3,             # 6_4
-    "Loading": 3,               # 6_5
-    "Modal": 3,                 # 6_6
-    "Nav": 3,                   # 6_7
-    "Progress": 3,              # 6_8
-    "Tooltip": 3,               # 6_9
+    "Components": 2,            # 6_0_0
+    "Accordion": 3,             # 6_1_0
+    "Card": 3,                  # 6_2_0
+    "Dropdown": 3,              # 6_3_0
+    "Group NEW": 3,             # 6_4_0
+    "Loading": 3,               # 6_5_0
+    "Modal": 3,                 # 6_6_0
+    "Nav": 3,                   # 6_7_0
+    "Progress": 3,              # 6_8_0
+    "Tooltip": 3,               # 6_9_0
 }
 section_7 = {
-    "About": 2,                 # 7_0
-    "What’s new in v2?": 3,     # 7_1
-    "Mission": 3,               # 7_2
-    "Usage scenarios": 3,       # 7_3
-    "Brand": 3,                 # 7_4
-    "Built With": 3,            # 7_5
+    "About": 2,                 # 7_0_0
+    "What’s new in v2?": 3,     # 7_1_0
+    "Mission": 3,               # 7_2_0
+    "Usage scenarios": 3,       # 7_3_0
+    "Brand": 3,                 # 7_4_0
+    "Built With": 3,            # 7_5_0
 }
 
 
@@ -182,17 +197,36 @@ section_7 = {
 d1_1_5 = Div(block_code, cls='code', id='demo-1-1-5')
 
 
-d1 = (d1_1_5, )
+
+d1_3_2_1 = Article("…", data_theme="light"), Article("…", data_theme="dark")
 
 
-# 🡇🡇 USE demos VARIABLE BELOW TO ADD NEW DEMOS 🡇🡇
+
+
+
+
+
+
+
 
 # These functions assemble the page using all data above.
-def make_h(title:str, lv:int, *demos):
+# Page is made of Sections
+# Sections are made of blocks
+# Blocks have a title, anchor link, and contents 🡄TODO
+# Contents are made of HTML Tags i.e. FastHTML functions: tuple(Div(), P(), A()…)
+# We implement the above in reverse order: contents → h block → section → page
+
+def make_contents():
+    return
+
+def make_h(title:str, lv:int, *contents):
+    '''Returns a headed block with title and anchor link.
+    TODO: Implement *contents to add block contents.
+    '''
     h = [H1, H2, H3, H4, H5, H6]
     hn = h[lv-1]
     formatted_title = title.lower().replace(' ', '-')
-    return hn(title, A('🔗', href='#'+formatted_title, id=formatted_title, cls='secondary', tabindex="-1")), *demos
+    return hn(title, A('🔗', href='#'+formatted_title, id=formatted_title, cls='secondary', tabindex="-1")), *contents
 
 def make_section(section:dict):
     items = []
@@ -200,35 +234,33 @@ def make_section(section:dict):
         items.append(make_h(title, level))
     return Section(*items)
 
-def make_sections(*sections):
+def make_page(*sections):
     all_sections = ()
     for section in sections:
         all_sections += (make_section(section),)
     return all_sections
 
-sections = Div(make_sections(
+sections = Div(make_page(
     section_1, section_2, section_3, section_4, section_5, 
     section_6, section_7), id="content", role="document",)
 
-test = make_h("Test", 2, color_palette, d1_1_5)
 
-header = Header(H1(website), menu, Hr(), cls='container')
-main   = Main(test, sections, cls='container line-numbers')
-footer = Footer(Hr(),P("Made by kit using FastHTML & Pico CSS + PrismJS, June 2024."), cls='container')
+
+# 🡇🡇🡇 BEGIN TEST 🡇🡇🡇
+test = make_h("Test", 2, color_palette, d1_1_5, d1_3_2_1)
+# 🡅🡅🡅  END TEST  🡅🡅🡅
+
+
+
 scripts = Script(src="style/prism.js")
 
+header = Header(H1(title), menu, Hr(), cls='container') # TODO: make proper header with nav etc.
+main   = Main(test, sections, cls='container line-numbers')
+footer = Footer(Hr(), footer_text, cls='container')
 
+demo = (html, Title(title), header, main, footer, scripts)
 
-
-
-
-
-
-
-
-
-
-# Home page (Cover page)
+# Home page
 @rt("/")
 def get():
-    return html, Title(website), header, main, footer, scripts
+    return demo
