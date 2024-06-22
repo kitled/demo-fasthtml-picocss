@@ -115,6 +115,8 @@ color_palette = Article(Header(
 # style='background: #000;',
 )
 
+d1_2_0 = (color_palette, ) # should have an example card below, and divs buttons to switch color (whole page btw)
+
 # sections dictionaries
 # - key:str = name of the title
 # - value:int = n in <hn> (n:int=1|2|3|4|5|6)
@@ -249,6 +251,8 @@ sections = Div(make_page(
 # 🡇🡇🡇 BEGIN TEST 🡇🡇🡇
 test = make_h("Test", 2, color_palette, d1_1_5, d1_3_2_1)
 # 🡅🡅🡅  END TEST  🡅🡅🡅
+
+
 
 
 
