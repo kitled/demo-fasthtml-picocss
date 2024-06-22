@@ -1,7 +1,52 @@
+@charset "UTF-8";:root {
+    --pico-line-height: 1.5;
+}
 :root {
-    --pico-font-size: 100%; 
+    /* --pico-font-size: 100%;  */
     /* --pico-background-color: #000; */
     --pico-transition: .2s ease-in-out;
+    --pico-header-background: rgba(19, 23, 31, .8);
+    line-height: var(--pico-line-height);
+    --pico-line-height: 1.5;
+}
+:where(:root) {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    background-color: var(--pico-background-color);
+    color: var(--pico-color);
+    font-weight: var(--pico-font-weight);
+    font-size: var(--pico-font-size);
+    line-height: var(--pico-line-height);
+    font-family: var(--pico-font-family);
+    text-underline-offset: var(--pico-text-underline-offset);
+    text-rendering: optimizeLegibility;
+    overflow-wrap: break-word;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4
+}
+body>header .container {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    justify-content: space-between;
+}
+body>header.top_header {
+    z-index: 2;
+    position: sticky;
+    top: 0;
+    padding: 0.65rem 0;
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+    background-color: var(--pico-header-background);
+}
+body>header.top_header > div > a {
+    text-decoration: none;
+}
+body > header > div > a > h1 {
+    margin: 0;
 }
 pre {
     margin-bottom: 16px !important;

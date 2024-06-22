@@ -253,18 +253,58 @@ test = make_h("Test", 2, color_palette, d1_1_5, d1_3_2_1)
 # 🡅🡅🡅  END TEST  🡅🡅🡅
 
 
+# transparency header
+# we'll use cls="top_header"
+
+# CSS
+# body>header.is-fixed-above-lg {
+#     z-index: 2;
+#     position: sticky;
+#     top: 0;
+#     -webkit-backdrop-filter: blur(1rem);
+#     backdrop-filter: blur(1rem);
+#     background-color: var(--pico-header-background);
+
+# HTML
+# header cls="is-fixed-above-lg is-fixed" (we don't do the toggle thing)
+#   div cls="container"
+#     a home/logo
+#     nav
+#       ul's
+#         li's
+#
+
+top_header = Header(
+  Div(
+    A(H1(title), href="/"), 
+    Nav(
+      Ul(
+          Li(A("Light", href="/")),
+          Li(A("Dark", href="/components")),
+          Li(A("Code", href="/about")),
+      ),
+      Ul(
+          Li(A("FastHTML", href="/")),
+          Li(A("Pico CSS", href="/components")),
+          Li(A("About", href="/about")),
+      ), 
+    ), 
+    cls="container",  
+  ), 
+  cls="top_header",
+)
 
 
 
 scripts = Script(src="style/prism.js")
 
-header = Header(H1(title), menu, Hr(), cls='container') # TODO: make proper header with nav etc.
+# header = Header(H1(title), menu, Hr(), cls='container') # TODO: make proper header with nav etc.
 main   = Main(test, sections, cls='container line-numbers')
 footer = Footer(Hr(), footer_text, cls='container')
 
-demo = (html, Title(title), header, main, footer, scripts)
+website = (html, Title(title), top_header, main, footer, scripts)
 
 # Home page
 @rt("/")
 def get():
-    return demo
+    return website
