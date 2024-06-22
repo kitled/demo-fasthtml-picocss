@@ -1,4 +1,4 @@
-from fasthtml.common import *
+from fasthtml.common import * # type: ignore
 import json
 
 html    = Html(lang='en', 
@@ -49,7 +49,7 @@ rt = app.route
 # This line ensures that the static files are served from the static folder.
 # (req. for favicon, CSS etc.)
 @rt("/{fname:path}.{ext:static}")
-async def get(fname:str, ext:str): return FileResponse(f'{fname}.{ext}')
+async def get(fname:str, ext:str): return FileResponse(f'{fname}.{ext}') # type: ignore
 
 # TODO: functionalize all of it
 #       [x] Colors
