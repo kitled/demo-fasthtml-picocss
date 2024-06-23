@@ -144,7 +144,7 @@ def main(*lv2_s, aside_tags=None, **kwargs):
 # #_#_# → section number
 # lv#_sec → <h#> (h2, h3, h4) section
 
-#————————————————————————————————————————————————————————————————————————————1
+#——————————————————————————————————————————————————————————————————————————— 1
 # 1. Getting started
 # 1.1. Quick start
 # 1.2. Version picker
@@ -153,6 +153,13 @@ def main(*lv2_s, aside_tags=None, **kwargs):
 # 1.5. Conditional styling
 # 1.6. RTL
 
+#—————————————————————————————————— 1.1
+# 1.1 Quick start
+# 1.1.1 Install manually
+# 1.1.2 Usage from CDN
+# 1.1.3 Usage with NPM
+# 1.1.4 Install with Composer
+# 1.1.5 Starter HTML template
 
 pico_1_1_1 = div_code(
     """<link rel="stylesheet" href="css/pico.min.css" />""",
@@ -273,9 +280,13 @@ sec_1_1_0 = section(
 )
 
 
+#—————————————————————————————————— 1.2
+
+
 
 sec_1_2_0 = section(
     lv=3, title="Version picker",
+    desc="Easily select the ideal Pico CSS version variant to match your project's needs."
 )
 
 
@@ -286,7 +297,7 @@ sec_1_2_0 = section(
 
 
 
-
+#—————————————————————————————————— 1.3
 
 
 body_1_3_1 = (
@@ -401,13 +412,19 @@ sec_1_3_0 = section(
     )
 )
 
+#—————————————————————————————————— 1.4
+
 sec_1_4_0 = section(
     lv=3, title="Class-less version",
 )
 
+#—————————————————————————————————— 1.5
+
 sec_1_5_0 = section(
     lv=3, title="Conditional styling",
 )
+
+#—————————————————————————————————— 1.6
 
 sec_1_6_0 = section(
     lv=3, title="RTL",
@@ -424,19 +441,26 @@ sec_1_0_0 = section(
     sec_1_6_0,
     lv=2, title="Getting started",
 )
-#————————————————————————————————————————————————————————————————————————————2
+#——————————————————————————————————————————————————————————————————————————— 2
 # Customization
 # - CSS Variables
 # - Sass
 # - Colors
 
+#—————————————————————————————————— 2.1
+
 sec_2_1_0 = section(
     lv=3, title="CSS Variables",
 )
 
+#—————————————————————————————————— 2.2
+
 sec_2_2_0 = section(
     lv=3, title="Sass",
 )
+
+#—————————————————————————————————— 2.3
+
 sec_2_3_0 = section(
     lv=3, title="Colors",
 )
@@ -449,7 +473,7 @@ sec_2_0_0 = section(
     lv=2, title="Customization",
 )
 
-#————————————————————————————————————————————————————————————————————————————3
+#——————————————————————————————————————————————————————————————————————————— 3
 # 3.Layout
 # 3.1 Container
 # 3.2 Landmarks & section
@@ -640,7 +664,9 @@ sec_3_3_0 = section(
 sec_3_4_0 = section(
 
     lv=3, title="Overflow auto",
-
+    desc=(
+        Code(".overflow-auto"),
+        " enables automatic scrollbars to an element if its content extends beyond its limits."),
 )
 
 
@@ -662,18 +688,43 @@ sec_3_0_0 = section(
 # 4.3 Button
 # 4.4 Table
 
+#—————————————————————————————————— 4.1
+
 sec_4_1_0 = section(
     lv=3, title="Typography",
+    desc="All typographic elements are responsive and scale gracefully across devices and viewports.",
 )
+
+#—————————————————————————————————— 4.2
 
 sec_4_2_0 = section(
     lv=3, title="Link",
+    desc=(
+        "Links come with ",
+        Code(".secondary"),
+        " and ",
+        Code(".contrast"),
+        " styles."
+    ),
 )
+
+#—————————————————————————————————— 4.3
+
 sec_4_3_0 = section(
     lv=3, title="Button",
+    desc=(
+        "Buttons are using the native ",
+        Code("<button>", cls="highlight"),
+        " tag, without ",
+        Code(".classes"),
+        ". for the default style."),
 )
 sec_4_4_0 = section(
     lv=3, title="Table",
+    desc=(
+        "Clean and minimal styles for ",
+        Code("<table>", cls="highlight"),
+        ", providing consistent spacings and a minimal unbordered look."),
 )
 
 sec_4_0_0 = section(
@@ -694,36 +745,82 @@ sec_4_0_0 = section(
 # 5.7 Switch
 # 5.8 Range
 
+#—————————————————————————————————— 5.1
+
 sec_5_1_0 = section(
     lv=3, title="Overview",
+    desc="All form elements are fully responsive with pure semantic HTML, enabling forms to scale gracefully across devices and viewports."
 )
+
+#—————————————————————————————————— 5.2
 
 sec_5_2_0 = section(
     lv=3, title="Input",
+    desc="All input types are consistently styled and come with validation states."
 )
+
+#—————————————————————————————————— 5.3
 
 sec_5_3_0 = section(
     lv=3, title="Textarea",
+    desc=(
+        "The native ",
+        Code("<textarea>", cls="highlight"),
+        " is styled like the input for consistency."
+    ),
 )
+
+#—————————————————————————————————— 5.4
 
 sec_5_4_0 = section(
     lv=3, title="Select",
+    desc=(
+        "The native ",
+        Code("<select>", cls="highlight"),
+        " is styled like the input for consistency."
+    ),
 )
+
+#—————————————————————————————————— 5.5
 
 sec_5_5_0 = section(
     lv=3, title="Checkboxes",
+    desc=(
+        "The native ",
+        Code("<input type='checkbox'>", cls="highlight"),
+        " with a custom and responsive style."
+    ),
 )
+
+#—————————————————————————————————— 5.6
 
 sec_5_6_0 = section(
     lv=3, title="Radios",
+    desc=(
+        "The native ",
+        Code("<input type='radio'>", cls="highlight"),
+        " with a custom and responsive style."
+    ),
 )
+
+#—————————————————————————————————— 5.7
 
 sec_5_7_0 = section(
     lv=3, title="Switch",
+    desc=(
+        "A switch component in pure CSS, using the checkbox syntax."
+    ),
 )
+
+#—————————————————————————————————— 5.8
 
 sec_5_8_0 = section(
     lv=3, title="Range",
+    desc=(
+        "Create a slider control with ",
+        Code("<input type='range'>", cls="highlight"),
+        "."
+    ),
 )
 
 sec_5_0_0 = section(
@@ -749,40 +846,85 @@ sec_5_0_0 = section(
 # 6.8 Progress
 # 6.9 Tooltip
 
+#—————————————————————————————————— 6.1
+
 sec_6_1_0 = section(
     lv=3, title="Accordion",
+    desc=(
+        "Toggle sections of content in pure HTML, without JavaScript, using minimal and semantic markup."
+    ),
 )
+
+#—————————————————————————————————— 6.2
 
 sec_6_2_0 = section(
     lv=3, title="Card",
+    desc=(
+        "Create flexible cards with a semantic markup that provides graceful spacings across various devices and viewports."
+    ),
 )
+
+#—————————————————————————————————— 6.3
 
 sec_6_3_0 = section(
     lv=3, title="Dropdown",
+    desc="Create dropdown menus and custom selects with minimal and semantic HTML, without JavaScript."
 )
+
+#—————————————————————————————————— 6.4
 
 sec_6_4_0 = section(
     lv=3, title="Group",
+    desc=(
+        "Stack forms elements and buttons horizontally with ",
+        Code("role='group'"),
+        " and ",
+        Code("role='search'"),
+        "."
+    ),
 )
+
+#—————————————————————————————————— 6.5
 
 sec_6_5_0 = section(
     lv=3, title="Loading",
+    desc=(
+        "Add a loading indicator with ",
+        Code("aria-busy='true'"),
+        "."
+    ),
 )
+
+#—————————————————————————————————— 6.6
 
 sec_6_6_0 = section(
     lv=3, title="Modal",
+    desc=(
+        "The classic modal component with graceful spacings across devices and viewports, using the semantic HTML tag ",
+        Code("<dialog>", cls="highlight"),
+        "."
+    ),
 )
+
+#—————————————————————————————————— 6.7
 
 sec_6_7_0 = section(
     lv=3, title="Nav",
+    desc="The essential navbar component in pure semantic HTML."
 )
+
+#—————————————————————————————————— 6.8
 
 sec_6_8_0 = section(
     lv=3, title="Progress",
+    desc="The progress bar element in pure HTML, without JavaScript."
 )
+
+#—————————————————————————————————— 6.9
 
 sec_6_9_0 = section(
     lv=3, title="Tooltip",
+    desc="Enable tooltips everywhere, without JavaScript."
 )
 
 
@@ -807,24 +949,39 @@ sec_6_0_0 = section(
 # 7.4 Brand
 # 7.5 Built With
 
+#—————————————————————————————————— 7.1
+
 sec_7_1_0 = section(
     lv=3, title="What’s new in v2?",
+    desc="Pico v2.0 features better accessibility, easier customization with SASS, a complete color palette, a new group component, and 20 precompiled color themes totaling over 100 combinations accessible via CDN."
 )
+
+#—————————————————————————————————— 7.2
 
 sec_7_2_0 = section(
     lv=3, title="Mission",
+    desc="Pico CSS is a minimalist and lightweight starter kit that prioritizes semantic syntax, making every HTML element responsive and elegant by default."
 )
+
+#—————————————————————————————————— 7.3
 
 sec_7_3_0 = section(
     lv=3, title="Usage scenarios",
+    desc="How does Pico fit into your project?"
 )
+
+#—————————————————————————————————— 7.4
 
 sec_7_4_0 = section(
     lv=3, title="Brand",
+    desc="Pico CSS brand assets and usage guidelines."
 )
+
+#—————————————————————————————————— 7.5
 
 sec_7_5_0 = section(
     lv=3, title="Built With",
+    desc="Relevant packages, tools, and resources we depend on."
 )
 
 
