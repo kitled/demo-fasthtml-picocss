@@ -782,23 +782,17 @@ table_3_4_1 = (Div(
         Thead(
             Tr(Th("Heading"),Th("Heading"),Th("Heading"),Th("Heading"),
                Th("Heading"),Th("Heading"),Th("Heading"),Th("Heading"),
-               Th("Heading"),Th("Heading"),Th("Heading"),Th("Heading"))
-        ),
+               Th("Heading"),Th("Heading"),Th("Heading"),Th("Heading"))),
         Tbody(
-            Tr(
-                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
-                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),
-            Tr(
-                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
-                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),
-            Tr(
-                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
-                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),
-        )
+            Tr(Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
+               Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),
+            Tr(Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
+               Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),
+            Tr(Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
+               Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),)
     ), 
     cls="overflow-auto",
-)
-)
+))
 
 pico_3_4_1 = div_code(
 """<div class="overflow-auto">
@@ -839,6 +833,13 @@ sec_3_0_0 = section(
 # 4.4 Table
 
 #—————————————————————————————————— 4.1
+# 4.1 Typography
+# 4.1.1 Font sizes
+# 4.1.2 Headings
+# 4.1.3 Heading group
+# 4.1.4 Inline text elements
+# 4.1.5 Blockquote
+# 4.1.6 Horizontal rule
 
 sec_4_1_0 = section(
     lv=3, title="Typography",
@@ -846,6 +847,13 @@ sec_4_1_0 = section(
 )
 
 #—————————————————————————————————— 4.2
+# 4.2 Link
+
+
+
+
+
+
 
 sec_4_2_0 = section(
     lv=3, title="Link",
@@ -859,6 +867,22 @@ sec_4_2_0 = section(
 )
 
 #—————————————————————————————————— 4.3
+# 4.3 Button
+# 4.3.1 Syntax
+# 4.3.2 Variants
+# 4.3.3 Form buttons
+# 4.3.4 Disabled
+# 4.3.5 Role button
+# 4.3.6 Usage with group
+
+
+
+
+
+
+
+
+
 
 sec_4_3_0 = section(
     lv=3, title="Button",
@@ -869,6 +893,17 @@ sec_4_3_0 = section(
         Code(".classes"),
         ". for the default style."),
 )
+
+#—————————————————————————————————— 4.4
+# 4.4 Table
+# 4.4.1 Syntax
+# 4.4.2 Color schemes
+# 4.4.3 Striped
+
+
+
+
+
 sec_4_4_0 = section(
     lv=3, title="Table",
     desc=(
