@@ -332,21 +332,68 @@ sec_1_3_1 = section(body_1_3_1, css_1_3_1,
     lv=4, title="Usage",
 )
 
-# def 
+def article(dark:bool=False) -> Article:
+    if dark:
+        title = H2("Dark card")
+        theme = "dark"
+    else:
+        title = H2("Light card")
+        theme = "light"
+    
+    form = Form(
+        Fieldset(
+            Input(
+                type="text",
+                name="login",
+                placeholder="Login",
+                aria_label="Login",
+                autocomplete="username",
+            ),
+            Input(
+                type="password",
+                name="password",
+                placeholder="Password",
+                aria_label="Password",
+                autocomplete="current-password",
+            ),
+            Button("Login", type="submit"),
+            cls='grid',
+        ),
+        Fieldset(
+            Label(
+                Input(type="checkbox", role="switch", name="switch", checked="",),
+                "Remember me",
+            ),
+        ),
+    )
 
+    footer = Footer(
+        Pre(
+            Code(
+"""<article data-theme={theme}>
+  ...
+</article>""",
+            cls='highlight language-html'
+            ),
+        ),
+        cls="code",
+    )
 
-art_1_3_2 = Article(
-    H2("Hello world!"),
-    P("This is a simple example of a card."),
-    Button("Click me"),
+    return Article(
+    title,
+    form,
+    footer,
     cls="card",
-)
+    data_theme=theme,
+    aria_label=f"Forced {theme} theme example"
+    )
 
-
-
-
+art_1_3_2a = article(dark=False)
+art_1_3_2b = article(dark=True)
 
 sec_1_3_2 = section(
+    art_1_3_2a, 
+    art_1_3_2b,
     lv=4, title="Card example",
 )
 
@@ -359,6 +406,7 @@ sec_1_3_0 = section(
       Code("prefers-color-scheme: dark;", cls="highlight"), '.'),
     theme_switch(),
     sec_1_3_1,
+    sec_1_3_2,
     lv=3, title="Color Schemes",
     desc=(
         """Pico CSS comes with both Light and Dark color schemes, automatically enabled based on user preferences."""
