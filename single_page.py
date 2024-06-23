@@ -1,7 +1,10 @@
 from fasthtml.common import * # type: ignore
 from fasthtml.js import MarkdownJS, SortableJS, HighlightJS
+from fastapi import Request
 
-html = Html(lang='en')
+html = Html(lang='en', 
+            # data_theme="light"
+        )
 head = (
     Meta(charset="utf-8"),
     Meta(name="viewport", content="width=device-width, initial-scale=1"),
@@ -131,15 +134,17 @@ def div_code(code, lang):
             ),
         ),
         cls="pre-code",
-    ),
+    )
 
 
 
-# s for section
-# c for content
-# d for div
+# code_N_N_N
+# body_N_N_N
+# sec_N_N_N for section
 
-c_1_1_1 = (
+code_1_1_1 = div_code("""<link rel="stylesheet" href="css/pico.min.css" />""", lang="html")
+
+body_1_1_1 = (
     P(
         A(
             "Download Pico",
@@ -153,17 +158,24 @@ c_1_1_1 = (
         Code("""<head>""", cls="highlight language-html", ),
         """ of your website.""",
     ),
-    div_code("""<link rel="stylesheet" href="css/pico.min.css" />""", lang="html"),
+    code_1_1_1,
 )
-#  🡇
-s_1_1_1 = section(
-    c_1_1_1,
+# 🡇🡇🡇
+sec_1_1_1 = section(body_1_1_1,
     lv=4, title="Install manually",
 )
 
 #  ＋
 
-c_1_1_2 = P(
+code_1_1_2 = div_code(
+"""<link 
+  rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+/>""",
+  lang="html",
+)
+
+body_1_1_2 = P(
     """Alternatively, you can use """,
     A(
         "jsDelivr CDN",
@@ -173,30 +185,46 @@ c_1_1_2 = P(
     ),
     """ to link """,
     Code("pico.min.css"),
-    '.'
+    '.',
+    code_1_1_2,
 )
-#  🡇
-s_1_1_2 = section(
-    c_1_1_2,
+# 🡇🡇🡇
+sec_1_1_2 = section(body_1_1_2,
     lv=4, title="Usage from CDN",
 )
 
 #  ＋
 
-
-
-
-
-
-
-
+code_1_1_5 = div_code(
+"""<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="css/pico.min.css">
+    <title>Hello world!</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Hello world!</h1>
+    </main>
+  </body>
+</html>""",
+    lang="html",
+)
+# 🡇🡇🡇
+sec_1_1_5 = section(code_1_1_5,
+    lv=4, title="Starter HTML template",
+)
 
 #  🡇
 # this must nest all lv4_s
-s_1_1_0 = section(
+sec_1_1_0 = section(
     P("There are 4 ways to get started with pico.css:"),
-    s_1_1_1,
-    s_1_1_2,
+    sec_1_1_1,
+    sec_1_1_2,
+    sec_1_1_5,
     lv=3, title="Quick start",
     desc=(
         """Link """,
@@ -209,31 +237,67 @@ s_1_1_0 = section(
 
 
 
+def theme_switch():
+    return Article(
+        Button(
+        f"Toggle theme",
+        cls="contrast",
+        hx_post="/toggle_theme",
+        hx_swap="outerHTML",
+        hx_target="#theme-switcher"
+        ),
+        id="theme-switcher",
+        aria_label="Theme switcher"
+    )
 
 
 
-
-#  🡇
-# lv2_s must nest all lv3_s
-s_1_0_0 = section(
-    s_1_1_0,
-    lv=2, title="Getting started",
+sec_1_3_0 = section(
+    P("""The default…"""),
+    theme_switch(),
+    lv=2, title="Color Schemes",
+    desc=(
+        """Pico CSS comes with both Light and Dark color schemes, automatically enabled based on user preferences."""
+    )
 )
 
 
 
 
 
-# # Create H2 headings
-# headings = []
-# for h in H2:
-#     headings.append(heading(h, 2))
+#  🡇
+# lv2_s must nest all lv3_s
+sec_1_0_0 = section(
+    sec_1_1_0,
+    sec_1_3_0,
+    lv=2, title="Getting started",
+)
 
 
 
-site = (main(s_1_0_0))
+site = (main(sec_1_0_0))
 
 # Home page
 @rt("/")
 def get():
-    return site
+    return html, site
+
+# Dark/Light theme switch
+@rt("/toggle_theme")
+async def post(request: Request):
+    # Get the current theme from the button's name attribute
+    current_theme = request.headers.get("HX-Trigger-Name", "").split("(")[-1].strip(")")
+    new_theme = "light" if current_theme == "dark" else "dark"
+
+    response_content = f"""
+    <article id="theme-switcher" aria-label="Theme switcher">
+        <button class="contrast" hx-post="/toggle_theme" hx-swap="outerHTML" hx-target="#theme-switcher" name="theme-toggle({new_theme})">
+            Make {new_theme}!
+        </button>
+    </article>
+    <script>
+        document.documentElement.setAttribute('data-theme', '{current_theme}');
+    </script>
+    """
+    
+    return HTMLResponse(content=response_content)
