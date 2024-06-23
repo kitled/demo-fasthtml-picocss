@@ -133,11 +133,24 @@ def main(*lv2_s, aside_tags=None, **kwargs):
         )
     )
 
-
+#—————————————————————————————————————————————————————————————————————————————
+# PAGE CONTENTS
 
 # code_N_N_N
 # body_N_N_N
 # sec_N_N_N for section
+
+#—————————————————————————————————————————————————————————————————————————————
+# Examples
+# - Docs
+# - Getting started
+# - Quick start
+# - Version picker
+# - Color schemes
+# - Class-less version
+# - Conditional styling
+# - RTL
+
 
 code_1_1_1 = div_code(
     """<link rel="stylesheet" href="css/pico.min.css" />""",
@@ -233,22 +246,17 @@ sec_1_1_0 = section(
     ),
 )
 
-
-
-
+# TODO: sec_1_2_0
 
 sec_1_3_0 = section(
-    P("""The default…"""),
+    P("""The default color scheme is Light. The Dark scheme is automatically enabled if the user has dark mode enabled """, 
+      Code("prefers-color-scheme: dark;", cls="highlight"), '.'),
     theme_switch(),
-    lv=2, title="Color Schemes",
+    lv=3, title="Color Schemes",
     desc=(
         """Pico CSS comes with both Light and Dark color schemes, automatically enabled based on user preferences."""
     )
 )
-
-
-
-
 
 #  🡇
 # lv2_s must nest all lv3_s
@@ -257,50 +265,251 @@ sec_1_0_0 = section(
     sec_1_3_0,
     lv=2, title="Getting started",
 )
+#————————————————————————————————————————————————————————————————————————————2
+# Customization
+# - CSS Variables
+# - Sass
+# - Colors
 
+sec_2_1_0 = section(
+    lv=3, title="CSS Variables",
+)
 
-
+sec_2_2_0 = section(
+    lv=3, title="Sass",
+)
+sec_2_3_0 = section(
+    lv=3, title="Colors",
+)
 
 
 sec_2_0_0 = section(
-
+    sec_2_1_0,
+    sec_2_2_0,
+    sec_2_3_0,
     lv=2, title="Customization",
 )
+#————————————————————————————————————————————————————————————————————————————3
+# Layout
+# - Container
+# - Landmarks & section
+# - Grid
+# - Overflow auto NEW
+
+
+sec_3_1_0 = section(
+
+    lv=3, title="Container",
+)
+
+sec_3_2_0 = section(
+
+    lv=3, title="Landmarks & section",
+)
+sec_3_3_0 = section(
+
+    lv=3, title="Grid",
+)
+
+sec_3_4_0 = section(
+
+    lv=3, title="Overflow auto",
+)
+
+
+
 
 
 
 sec_3_0_0 = section(
-
+    sec_3_1_0,
+    sec_3_2_0,
+    sec_3_3_0,
+    sec_3_4_0,
     lv=2, title="Layout",
 )
+#————————————————————————————————————————————————————————————————————————————4
+# Content
+# - Typography
+# - Link
+# - Button
+# - Table
 
+sec_4_1_0 = section(
+    lv=3, title="Typography",
+)
 
+sec_4_2_0 = section(
+    lv=3, title="Link",
+)
+sec_4_3_0 = section(
+    lv=3, title="Button",
+)
+sec_4_4_0 = section(
+    lv=3, title="Table",
+)
 
 sec_4_0_0 = section(
-
+    sec_4_1_0,
+    sec_4_2_0,
+    sec_4_3_0,
+    sec_4_4_0,
     lv=2, title="Content",
 )
+#————————————————————————————————————————————————————————————————————————————5
+# Forms
+# - Overview
+# - Input
+# - Textarea
+# - Select
+# - Checkboxes
+# - Radios
+# - Switch
+# - Range
 
+sec_5_1_0 = section(
+    lv=3, title="Overview",
+)
 
+sec_5_2_0 = section(
+    lv=3, title="Input",
+)
+
+sec_5_3_0 = section(
+    lv=3, title="Textarea",
+)
+
+sec_5_4_0 = section(
+    lv=3, title="Select",
+)
+
+sec_5_5_0 = section(
+    lv=3, title="Checkboxes",
+)
+
+sec_5_6_0 = section(
+    lv=3, title="Radios",
+)
+
+sec_5_7_0 = section(
+    lv=3, title="Switch",
+)
+
+sec_5_8_0 = section(
+    lv=3, title="Range",
+)
 
 sec_5_0_0 = section(
-
+    sec_5_1_0,
+    sec_5_2_0,
+    sec_5_3_0,
+    sec_5_4_0,
+    sec_5_5_0,
+    sec_5_6_0,
+    sec_5_7_0,
+    sec_5_8_0,
     lv=2, title="Forms",
 )
+#————————————————————————————————————————————————————————————————————————————6
+# Components
+# - Accordion
+# - Card
+# - Dropdown
+# - Group NEW
+# - Loading
+# - Modal
+# - Nav
+# - Progress
+# - Tooltip
+
+sec_6_1_0 = section(
+    lv=3, title="Accordion",
+)
+
+sec_6_2_0 = section(
+    lv=3, title="Card",
+)
+
+sec_6_3_0 = section(
+    lv=3, title="Dropdown",
+)
+
+sec_6_4_0 = section(
+    lv=3, title="Group",
+)
+
+sec_6_5_0 = section(
+    lv=3, title="Loading",
+)
+
+sec_6_6_0 = section(
+    lv=3, title="Modal",
+)
+
+sec_6_7_0 = section(
+    lv=3, title="Nav",
+)
+
+sec_6_8_0 = section(
+    lv=3, title="Progress",
+)
+
+sec_6_9_0 = section(
+    lv=3, title="Tooltip",
+)
+
 
 
 sec_6_0_0 = section(
-
+    sec_6_1_0,
+    sec_6_2_0,
+    sec_6_3_0,
+    sec_6_4_0,
+    sec_6_5_0,
+    sec_6_6_0,
+    sec_6_7_0,
+    sec_6_8_0,
+    sec_6_9_0,
     lv=2, title="Components",
 )
+#————————————————————————————————————————————————————————————————————————————7
+# About
+# - What’s new in v2?
+# - Mission
+# - Usage scenarios
+# - Brand
+# - Built With
 
+sec_7_1_0 = section(
+    lv=3, title="What’s new in v2?",
+)
+
+sec_7_2_0 = section(
+    lv=3, title="Mission",
+)
+
+sec_7_3_0 = section(
+    lv=3, title="Usage scenarios",
+)
+
+sec_7_4_0 = section(
+    lv=3, title="Brand",
+)
+
+sec_7_5_0 = section(
+    lv=3, title="Built With",
+)
 
 
 sec_7_0_0 = section(
-    
+    sec_7_1_0,
+    sec_7_2_0,
+    sec_7_3_0,
+    sec_7_4_0,
+    sec_7_5_0,
     lv=2, title="About",
 )
-
+#—————————————————————————————————————————————————————————————————————————————
 sections = (
     sec_1_0_0,
     sec_2_0_0,
@@ -312,12 +521,12 @@ sections = (
 )
 
 
-site = (main(sections))
+site = (html, main(sections))
 
 # Home page
 @rt("/")
 def get():
-    return html, site
+    return site
 
 # Dark/Light theme switch
 @rt("/toggle_theme")
