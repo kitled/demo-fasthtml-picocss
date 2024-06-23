@@ -416,18 +416,29 @@ sec_1_3_0 = section(
 
 sec_1_4_0 = section(
     lv=3, title="Class-less version",
+    desc=(
+        "Embrace minimalism with Pico’s ",
+        Code(".classless"),
+        " version, a semantic option for wild HTML purists who prefer a stripped-down approach.",
+    ),
 )
 
 #—————————————————————————————————— 1.5
 
 sec_1_5_0 = section(
     lv=3, title="Conditional styling",
+    desc=(
+        "Apply Pico CSS styles selectively by wrapping elements in a ",
+        Code(".pico"),
+        " container, ideal for mixed-style environments.",
+    ),
 )
 
 #—————————————————————————————————— 1.6
 
 sec_1_6_0 = section(
     lv=3, title="RTL",
+    desc="Support for Right-To-Left text."
 )
 
 #  🡇
@@ -442,27 +453,33 @@ sec_1_0_0 = section(
     lv=2, title="Getting started",
 )
 #——————————————————————————————————————————————————————————————————————————— 2
-# Customization
-# - CSS Variables
-# - Sass
-# - Colors
+# 2. Customization
+# 2.1 CSS Variables
+# 2.2 Sass
+# 2.3 Colors
 
 #—————————————————————————————————— 2.1
 
 sec_2_1_0 = section(
     lv=3, title="CSS Variables",
+    desc="Customize Pico's design system with over 130 CSS variables to create a unique look and feel."
 )
 
 #—————————————————————————————————— 2.2
 
 sec_2_2_0 = section(
     lv=3, title="Sass",
+    desc=(
+        "Build your own minimal design system by compiling a custom version of Pico CSS framework with ",
+        A("SASS"),
+        "."),
 )
 
 #—————————————————————————————————— 2.3
 
 sec_2_3_0 = section(
     lv=3, title="Colors",
+    desc="Pico comes with 380 manually crafted colors to help you personalize your brand design system."
 )
 
 
@@ -587,41 +604,99 @@ sec_3_1_0 = section(
 # 3.2.3 Section
 
 
+body_3_2_1 = (
+    P(
+        Code("<header>", cls="highlight"), ", ",
+        Code("<main>", cls="highlight"), ", and ",
+        Code("<footer>", cls="highlight"),
+        " as direct children of ",
+        Code("<body>", cls="highlight"),
+        " provide a responsive vertical padding.",
+    ),
+)
 
-
+pico_3_2_1 = div_code(
+"""<body>
+  <header>...</header>
+  <main>...</main>
+  <footer>...</footer>
+</body>
+""", lang="html"),
 
 
 sec_3_2_1 = section(
+    body_3_2_1,
+    pico_3_2_1,
     lv=4, title="Landmarks",
 )
 
+body_3_2_2a = (
+    P(
+        "If you need to customize the default root container for ",
+        Code("<header>", cls="highlight"), ", ",
+        Code("<main>", cls="highlight"), ", and ",
+        Code("<footer>", cls="highlight"),
+        ", you can recompile Pico with another CSS selector.",
+    ),
+    P("Useful for ", A("React", href="https://reactjs.org/"), ", ", A("Gatsby", href="https://www.gatsbyjs.com/"), " or ", A("Next.js", href="https://nextjs.org/"), "."),
+)
 
+pico_3_2_2a = div_code(
+"""/* Custom Class-less version for React */
+@use "pico" with (
+  
+  // Define the root element used to target <header>, <main>, <footer>
+  // with $enable-semantic-container and $enable-responsive-spacings
+  $semantic-root-element: "#root";
+  
+  // Enable <header>, <main>, <footer> inside $semantic-root-element as containers
+  $enable-semantic-container: true;
 
+  // Enable .classes
+  $enable-classes: false;
+)
+""", lang="jsx"),
+
+body_3_2_2b = (
+    P("The code above will compile Pico with the containers defined like this:"),
+)
+
+pico_3_2_2b = div_code(
+"""/* Containers */
+#root > header,
+#root > main,
+#root > footer {
+  ...
+}
+""", lang="css"),
+
+body_3_2_2c = (
+    P(
+        "Learn more about ", 
+        A("compiling a custom version of Pico with SASS", 
+          href="https://picocss.com/docs/sass"), "."),
+)
 
 sec_3_2_2 = section(
+    body_3_2_2a,
+    pico_3_2_2a,
+    body_3_2_2b,
+    pico_3_2_2b,
+    body_3_2_2c,
     lv=4, title="Custom root container",
 )
 
 
-
-
-
-sec_3_2_3 = section(
-    lv=4, title="Section",
+body_3_2_3 = (
+    P(
+        Code("<section>", cls="highlight"), 
+        " provides a responsive margin-bottom to separate your sections."),
 )
 
-
-
-
-
-
-
-
-
-
-
-
-
+sec_3_2_3 = section(
+    body_3_2_3,
+    lv=4, title="Section",
+)
 
 sec_3_2_0 = section(
     sec_3_2_1,
@@ -636,13 +711,49 @@ sec_3_2_0 = section(
 # 3.3.1 Syntax
 # 3.3.2 About CSS Grids
 
+art_3_3_1 = Article(
+    Div(
+        Div(1),
+        Div(2),
+        Div(3),
+        Div(4),
+        cls="grid"
+    ),
+    Footer(
+        div_code(
+"""<div class="grid">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</div>""", 
+        lang="html"),
+        cls="code",
+    ),
+    cls="component"
+)
+
+body_3_3_1 = (
+    P("Columns intentionally collapse on small devices (", Code("<768px"), ")."),
+    P(Code(".grid"), "is not available in the ", A("class‑less", href="https://picocss.com/docs/classless"), " version."),
+)
+
 sec_3_3_1 = section(
+    art_3_3_1,
+    body_3_3_1,
     lv=4, title="Syntax",
 )
 
-
+body_3_3_2 = (
+    P("As Pico focuses on native HTML elements, we kept this grid system minimalist."),
+    P("A complete grid system in flexbox, with all the ordering, offsetting, and breakpoints utilities, can be heavier than the total size of the Pico library. Not really in the Pico spirit."),
+    P("If you need a quick way to prototype or build a complex layout, you can look at ", Strong("Flexbox grid layouts"), "—for example, ", A("Bootstrap Grid System", href="https://getbootstrap.com/docs/4.2/getting-started/contents/"), " or ", A("Flexbox Grid", href="http://flexboxgrid.com/"), "."),
+    P("If you need a light and custom grid, you can look at CSS Grid Generators—for example, ", A("CSS Grid Generator", href="https://cssgrid-generator.netlify.com/"), ", ", A("Layoutit!", href="http://grid.layoutit.com/"), " or ", A("Griddy", href="https://griddy.io/"), "."),
+    P("Alternatively, you can ", A("learn about CSS Grid", href="https://learncssgrid.com/"), "."),
+)
 
 sec_3_3_2 = section(
+    body_3_3_2,
     lv=4, title="About CSS Grids",
 )
 
@@ -661,8 +772,47 @@ sec_3_3_0 = section(
 #—————————————————————————————————— 3.4
 # 3.4 Overflow auto
 
-sec_3_4_0 = section(
 
+body_3_4_1 = (
+    P("Useful to have responsive ", Code("<table>", cls="highlight"), "."),
+)
+
+table_3_4_1 = (Div(
+    Table(
+        Thead(
+            Tr(Th("Heading"),Th("Heading"),Th("Heading"),Th("Heading"),
+               Th("Heading"),Th("Heading"),Th("Heading"),Th("Heading"),
+               Th("Heading"),Th("Heading"),Th("Heading"),Th("Heading"))
+        ),
+        Tbody(
+            Tr(
+                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
+                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),
+            Tr(
+                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
+                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),
+            Tr(
+                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),
+                Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell"),Td("Cell")),
+        )
+    ), 
+    cls="overflow-auto",
+)
+)
+
+pico_3_4_1 = div_code(
+"""<div class="overflow-auto">
+  <table>
+    …
+  </table>
+</div>""", 
+        lang="html"
+)
+
+sec_3_4_0 = section(
+    body_3_4_1,
+    table_3_4_1,
+    pico_3_4_1,
     lv=3, title="Overflow auto",
     desc=(
         Code(".overflow-auto"),

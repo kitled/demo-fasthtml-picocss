@@ -1,3 +1,8 @@
+:root {
+    --pico-card-component-outline-color: var(--pico-card-background-color);
+    --pico-card-component-outline-width: 2px;
+}
+
 main>[role=document] section {
     margin-top: calc(var(--pico-spacing)* 3);
 }
@@ -54,4 +59,27 @@ pre > code {
 }
 p.fh-cue {
     --pico-color: var(--pico-muted-color) !important;
+}
+
+
+/* 3_3_1 */
+article {
+    background: var(--pico-background-color) !important;
+}
+article.component {
+    outline-color: var(--pico-card-component-outline-color);
+    outline-style: solid;
+    outline-width: var(--pico-card-component-outline-width);
+    /* background-color: transparent; */
+}
+article > div.grid > div {
+    padding: calc(var(--pico-spacing) / 2) 0;
+    border-radius: var(--pico-border-radius);
+    background-color: var(--pico-code-background-color);
+    color: var(--pico-muted-color);
+    font-size: .875rem;
+    text-align: center;
+}
+article > footer > div.pre-code {
+    background: var(--pico-background-color) !important;
 }
