@@ -111,8 +111,8 @@ def art_footer(html, python):
     return Footer(Pre(Code(html)), Pre(Code(python)))
 
 #   🡇
-def article(c, hd=None, ft=None, **kwargs):
-    return Card(*c, header=hd, footer=ft, **kwargs)
+# def article(c, hd=None, ft=None, **kwargs):
+#     return Card(*c, header=hd, footer=ft, **kwargs)
 
 
 # c: lv2_s & lv3_s contain other sections (lv3_s & lv4_s respectively);
@@ -232,7 +232,7 @@ pico_1_1_5 = div_code(
 )
 
 fh_1_1_5 = div_code(
-"""from fasthtml.common import Html, Meta, Title
+"""from fasthtml.common import *
 
 html = Html(lang='en')
 head = (
@@ -242,7 +242,7 @@ head = (
     Link(rel="stylesheet", 
         href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.pumpkin.min.css"
         )
-)
+    )
 
 app = FastHTML(hdrs=head)
 rt = app.route
@@ -334,23 +334,21 @@ sec_1_3_1 = section(body_1_3_1, css_1_3_1,
 
 def article(dark:bool=False) -> Article:
     if dark:
-        title = H2("Dark card")
-        theme = "dark"
+        theme, title = "dark", H2("Dark card")
     else:
-        title = H2("Light card")
-        theme = "light"
-    
+        theme, title = "light", H2("Light card")
+    aria = f"Forced {theme} theme example"
+    code = f"<article data-theme={theme}>\n  …\n</article>"
+    footer = Footer(Pre(Code(code, cls='highlight language-html'),),cls="code",)
     form = Form(
         Fieldset(
-            Input(
-                type="text",
+            Input(type="text",
                 name="login",
                 placeholder="Login",
                 aria_label="Login",
                 autocomplete="username",
             ),
-            Input(
-                type="password",
+            Input(type="password",
                 name="password",
                 placeholder="Password",
                 aria_label="Password",
@@ -361,35 +359,29 @@ def article(dark:bool=False) -> Article:
         ),
         Fieldset(
             Label(
-                Input(type="checkbox", role="switch", name="switch", checked="",),
+                Input(type="checkbox", 
+                    role="switch", 
+                    name="switch", 
+                    checked="",
+                ),
                 "Remember me",
             ),
         ),
     )
-
-    footer = Footer(
-        Pre(
-            Code(
-"""<article data-theme={theme}>
-  ...
-</article>""",
-            cls='highlight language-html'
-            ),
-        ),
-        cls="code",
-    )
-
     return Article(
     title,
     form,
     footer,
     cls="card",
     data_theme=theme,
-    aria_label=f"Forced {theme} theme example"
+    aria_label=aria,
     )
 
-art_1_3_2a = article(dark=False)
-art_1_3_2b = article(dark=True)
+art_1_3_2a = article()
+art_1_3_2b = article(dark=True), P("FastHTML 🡇", cls="fh-cue"), div_code(
+"""Article(…, data_theme="dark")""", 
+    lang="python",
+    )
 
 sec_1_3_2 = section(
     art_1_3_2a, 
