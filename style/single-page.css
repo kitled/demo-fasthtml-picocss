@@ -1,0 +1,16 @@
+
+#content > section > section > h3 + p {
+    --pico-color: var(--pico-muted-color);
+  }
+
+/* Titles anchor - taken from Pico CSS own website */
+:is(h1,h2,h3,h4,h5,h6) > a[id] {
+    padding-left: calc(var(--pico-spacing)* .5);
+    font-weight: 400;
+    text-decoration: none;
+    opacity: 0;
+}
+:hover:is(h1,h2,h3,h4,h5,h6) > a[id] {
+    transition: color var(--pico-transition) opacity var(--pico-transition);
+    opacity: 1;
+}
