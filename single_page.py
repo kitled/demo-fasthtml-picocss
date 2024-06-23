@@ -14,7 +14,7 @@ head = (
     )
 #—————————————————————————————————————————————————————————————————————————————
 # Page-specific
-title = "FastHTML 🧡 Pico CSS"
+title = Title('FastHTML 🧡 Pico CSS')
 footer_text = P("Made by kit using FastHTML & Pico CSS + PrismJS, June 2024.")
 #—————————————————————————————————————————————————————————————————————————————
 # <head> scripts & css
@@ -37,6 +37,7 @@ app = FastHTML(hdrs=(
     MarkdownJS('.markdown'),
     SortableJS('.sortable'),
     HighlightJS('.highlight'),
+    # title,
     ))
 rt = app.route
 
@@ -136,11 +137,14 @@ def main(*lv2_s, aside_tags=None, **kwargs):
 #—————————————————————————————————————————————————————————————————————————————
 # PAGE CONTENTS
 
-# code_N_N_N
-# body_N_N_N
-# sec_N_N_N for section
+# pico_ → HTML/CSS code
+# fh_   → FastHTML (Python) code
+# body_ → Tags
+# sec_  → section
+# #_#_# → section number
+# lv#_sec → <h#> (h2, h3, h4) section
 
-#—————————————————————————————————————————————————————————————————————————————
+#————————————————————————————————————————————————————————————————————————————1
 # Examples
 # - Docs
 # - Getting started
@@ -152,7 +156,7 @@ def main(*lv2_s, aside_tags=None, **kwargs):
 # - RTL
 
 
-code_1_1_1 = div_code(
+pico_1_1_1 = div_code(
     """<link rel="stylesheet" href="css/pico.min.css" />""",
     lang="html",
     )
@@ -171,7 +175,7 @@ body_1_1_1 = (
         Code("""<head>""", cls="highlight language-html", ),
         """ of your website.""",
     ),
-    code_1_1_1,
+    pico_1_1_1,
 )
 #   🡇🡇🡇
 sec_1_1_1 = section(body_1_1_1,
@@ -180,7 +184,7 @@ sec_1_1_1 = section(body_1_1_1,
 
 #  ＋
 
-code_1_1_2 = div_code(
+pico_1_1_2 = div_code(
 """<link 
   rel="stylesheet" 
   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
@@ -199,7 +203,7 @@ body_1_1_2 = P(
     """ to link """,
     Code("pico.min.css"),
     '.',
-    code_1_1_2,
+    pico_1_1_2,
 )
 # 🡇🡇🡇
 sec_1_1_2 = section(body_1_1_2,
@@ -208,7 +212,7 @@ sec_1_1_2 = section(body_1_1_2,
 
 #  ＋
 
-code_1_1_5 = div_code(
+pico_1_1_5 = div_code(
 """<!doctype html>
 <html lang="en">
   <head>
@@ -226,8 +230,32 @@ code_1_1_5 = div_code(
 </html>""",
     lang="html",
 )
+
+fh_1_1_5 = div_code(
+"""from fasthtml.common import Html, Meta, Title
+
+html = Html(lang='en')
+head = (
+    Meta(charset="utf-8"),
+    Meta(name="viewport", content="width=device-width, initial-scale=1"),
+    Meta(name="color-scheme", content="light dark"),
+    Link(rel="stylesheet", 
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.pumpkin.min.css"
+        )
+)
+
+app = FastHTML(hdrs=head)
+rt = app.route
+
+@rt("/")
+def get():
+    return html, Main(H1('Hello world!'), cls="container")""",
+    lang="python",
+)
+
+
 # 🡇🡇🡇
-sec_1_1_5 = section(code_1_1_5,
+sec_1_1_5 = section(pico_1_1_5, fh_1_1_5,
     lv=4, title="Starter HTML template",
 )
 
@@ -246,12 +274,91 @@ sec_1_1_0 = section(
     ),
 )
 
-# TODO: sec_1_2_0
+
+
+sec_1_2_0 = section(
+    lv=3, title="Version picker",
+)
+
+
+
+
+
+
+
+
+
+
+
+
+body_1_3_1 = (
+    P(  "Color schemes can be defined for the entire document using ",
+        Code('<html data-theme="light">', cls='highlight language-html'),
+        " or for specific HTML elements, such as ",
+        Code('<article data-theme="dark">', cls='highlight language-html'),
+        ".",
+    ),
+    P(  "Color schemes at the HTML tag level work great for elements such as ",
+        Code('<a>', cls='highlight language-html'), ', ',
+        Code('<button>', cls='highlight language-html'), ', ',
+        Code('<table>', cls='highlight language-html'), ', ',
+        Code('<input>', cls='highlight language-html'), ', ',
+        Code('<textarea>', cls='highlight language-html'), ', ',
+        Code('<select>', cls='highlight language-html'), ', ',
+        Code('<article>', cls='highlight language-html'), ', ',
+        Code('<dialog>', cls='highlight language-html'), ', ',
+        Code('<progress>', cls='highlight language-html'), '.',
+    ),
+    P(  "CSS variables specific to the color scheme are assigned to every HTML tag. However, we have not enforced specific background and color settings across all HTML tags to maintain transparent backgrounds and ensure colors are inherited from the parent tag."
+    ),
+    P(  "For some other HTML tags, you might need to explicitly set ",
+    Code('background-color', cls='highlight'),
+    " and ",
+    Code('color', cls='highlight'),
+    "."
+    ),
+),
+
+css_1_3_1 = div_code(
+"""section {
+  background-color: var(--pico-background-color);
+  color: var(--pico-color);
+}""",
+    lang="css",
+)
+
+
+sec_1_3_1 = section(body_1_3_1, css_1_3_1, 
+    lv=4, title="Usage",
+)
+
+# def 
+
+
+art_1_3_2 = Article(
+    H2("Hello world!"),
+    P("This is a simple example of a card."),
+    Button("Click me"),
+    cls="card",
+)
+
+
+
+
+
+sec_1_3_2 = section(
+    lv=4, title="Card example",
+)
+
+
+
+
 
 sec_1_3_0 = section(
     P("""The default color scheme is Light. The Dark scheme is automatically enabled if the user has dark mode enabled """, 
       Code("prefers-color-scheme: dark;", cls="highlight"), '.'),
     theme_switch(),
+    sec_1_3_1,
     lv=3, title="Color Schemes",
     desc=(
         """Pico CSS comes with both Light and Dark color schemes, automatically enabled based on user preferences."""
@@ -521,12 +628,12 @@ sections = (
 )
 
 
-site = (html, main(sections))
+page = (title, html, main(sections))
 
 # Home page
 @rt("/")
 def get():
-    return site
+    return page
 
 # Dark/Light theme switch
 @rt("/toggle_theme")
