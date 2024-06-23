@@ -145,15 +145,13 @@ def main(*lv2_s, aside_tags=None, **kwargs):
 # lv#_sec → <h#> (h2, h3, h4) section
 
 #————————————————————————————————————————————————————————————————————————————1
-# Examples
-# - Docs
-# - Getting started
-# - Quick start
-# - Version picker
-# - Color schemes
-# - Class-less version
-# - Conditional styling
-# - RTL
+# 1. Getting started
+# 1.1. Quick start
+# 1.2. Version picker
+# 1.3. Color schemes
+# 1.4. Class-less version
+# 1.5. Conditional styling
+# 1.6. RTL
 
 
 pico_1_1_1 = div_code(
@@ -332,14 +330,14 @@ sec_1_3_1 = section(body_1_3_1, css_1_3_1,
     lv=4, title="Usage",
 )
 
-def article(dark:bool=False) -> Article:
+def art_1_3_2(dark:bool=False) -> Article:
     if dark:
         theme, title = "dark", H2("Dark card")
     else:
         theme, title = "light", H2("Light card")
     aria = f"Forced {theme} theme example"
-    code = f"<article data-theme={theme}>\n  …\n</article>"
-    footer = Footer(Pre(Code(code, cls='highlight language-html'),),cls="code",)
+    pico = f"<article data-theme={theme}>\n  …\n</article>"
+    footer = Footer(Pre(Code(pico, cls='highlight language-html'),),cls="code",)
     form = Form(
         Fieldset(
             Input(type="text",
@@ -377,21 +375,19 @@ def article(dark:bool=False) -> Article:
     aria_label=aria,
     )
 
-art_1_3_2a = article()
-art_1_3_2b = article(dark=True), P("FastHTML 🡇", cls="fh-cue"), div_code(
-"""Article(…, data_theme="dark")""", 
+art_1_3_2a = art_1_3_2()
+art_1_3_2b = art_1_3_2(dark=True), 
+fh_1_3_2 = P("FastHTML 🡇", cls="fh-cue"), div_code(
+"""Article(…, data_theme="light")\nArticle(…, data_theme="dark")""", 
     lang="python",
     )
 
 sec_1_3_2 = section(
     art_1_3_2a, 
     art_1_3_2b,
+    fh_1_3_2,
     lv=4, title="Card example",
 )
-
-
-
-
 
 sec_1_3_0 = section(
     P("""The default color scheme is Light. The Dark scheme is automatically enabled if the user has dark mode enabled """, 
@@ -405,11 +401,27 @@ sec_1_3_0 = section(
     )
 )
 
+sec_1_4_0 = section(
+    lv=3, title="Class-less version",
+)
+
+sec_1_5_0 = section(
+    lv=3, title="Conditional styling",
+)
+
+sec_1_6_0 = section(
+    lv=3, title="RTL",
+)
+
 #  🡇
 # lv2_s must nest all lv3_s
 sec_1_0_0 = section(
     sec_1_1_0,
+    sec_1_2_0,
     sec_1_3_0,
+    sec_1_4_0,
+    sec_1_5_0,
+    sec_1_6_0,
     lv=2, title="Getting started",
 )
 #————————————————————————————————————————————————————————————————————————————2
@@ -436,31 +448,199 @@ sec_2_0_0 = section(
     sec_2_3_0,
     lv=2, title="Customization",
 )
-#————————————————————————————————————————————————————————————————————————————3
-# Layout
-# - Container
-# - Landmarks & section
-# - Grid
-# - Overflow auto NEW
 
+#————————————————————————————————————————————————————————————————————————————3
+# 3.Layout
+# 3.1 Container
+# 3.2 Landmarks & section
+# 3.3 Grid
+# 3.4 Overflow auto NEW
+
+#—————————————————————————————————— 3.1
+# 3.1 Container
+# 3.1.1 Breakpoints
+# 3.1.2 Fixed width
+# 3.1.3 Fluid width
+# 3.1.4 Semantic containers
+
+body_3_1_1a = (
+    P("Pico includes six default breakpoints. These breakpoints can be customized with ",
+      A("Sass", href="https://picocss.com/docs/sass"), "."),
+)
+
+table_3_1_1 = Table(
+    Thead(Tr(Th("Device"), Th("Breakpoint"), Th("Viewport"))),
+    Tbody(
+        Tr(Td("Extra small"), Td("<576px"), Td("100%")),
+        Tr(Td("Small"), Td("≥576px"), Td("510px")),
+        Tr(Td("Medium"), Td("≥768px"), Td("700px")),
+        Tr(Td("Large"), Td("≥1024px"), Td("950px")),
+        Tr(Td("Extra large"), Td("≥1280px"), Td("1200px")),
+        Tr(Td("Extra extra large"), Td("≥1536px"), Td("1450px")),
+    ),
+)
+
+body_3_1_1b = (
+    P(Code(".container"),
+    " and ",
+    Code(".container-fluid"),
+    " are not available in the ",
+    A("class‑less version", href="https://picocss.com/docs/classless"),
+    " (see ",
+    A("Semantic containers", href="https://picocss.com/docs/container#semantic-containers"),
+    " for an alternative)."),
+)
+
+sec_3_1_1 = section(
+    body_3_1_1a,
+    table_3_1_1,
+    body_3_1_1b,
+    lv=4, title="Breakpoints",
+)
+
+body_3_1_2 = (
+    P(Code(".container"), " provides a centered container with a fixed width."),
+    div_code(
+"""<body>
+  <main class="container">
+    ...
+  </main>
+</body>
+""", lang="html"),
+)
+
+sec_3_1_2 = section(
+    body_3_1_2,
+    lv=4, title="Fixed width",
+)
+
+body_3_1_3 = (
+    P(Code(".container-fluid"), " provides a full-width container."),
+    div_code(
+"""<body>
+  <main class="container-fluid">
+    ...
+  </main>
+</body>
+""", lang="html"),
+)
+
+sec_3_1_3 = section(
+    body_3_1_3,
+    lv=4, title="Fluid width",
+)
+
+body_3_1_4 = (
+    P(
+        "In the classless version, ",
+        Code("<header>", cls="highlight"), ", ",
+        Code("<main>", cls="highlight"), ", and ",
+        Code("<footer>", cls="highlight"),
+        " inside ",
+        Code("<body>", cls="highlight"),
+        " act as containers to define a centered or a fluid viewport."),
+    P("See ", A("Class-less version", href="https://picocss.com/docs/classless"), "."),
+)
+
+sec_3_1_4 = section(
+    body_3_1_4,
+    lv=4, title="Semantic containers",
+)
 
 sec_3_1_0 = section(
-
+    sec_3_1_1,
+    sec_3_1_2,
+    sec_3_1_3,
+    sec_3_1_4,
     lv=3, title="Container",
+    desc=("Use ", Code('.container'), "for a centered viewport or ", Code('.container-fluid'), " for a full-width layout.")
 )
+
+#—————————————————————————————————— 3.2
+# 3.2 Landmarks & section
+# 3.2.1 Landmarks
+# 3.2.2 Custom root container
+# 3.2.3 Section
+
+
+
+
+
+
+sec_3_2_1 = section(
+    lv=4, title="Landmarks",
+)
+
+
+
+
+sec_3_2_2 = section(
+    lv=4, title="Custom root container",
+)
+
+
+
+
+
+sec_3_2_3 = section(
+    lv=4, title="Section",
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 sec_3_2_0 = section(
-
+    sec_3_2_1,
+    sec_3_2_2,
+    sec_3_2_3,
     lv=3, title="Landmarks & section",
+    desc="Structure your pages with semantic landmarks and sections for better accessibility and graceful spacings.",
 )
-sec_3_3_0 = section(
 
-    lv=3, title="Grid",
+#—————————————————————————————————— 3.3
+# 3.3 Grid
+# 3.3.1 Syntax
+# 3.3.2 About CSS Grids
+
+sec_3_3_1 = section(
+    lv=4, title="Syntax",
 )
+
+
+
+sec_3_3_2 = section(
+    lv=4, title="About CSS Grids",
+)
+
+
+
+sec_3_3_0 = section(
+    sec_3_3_1,
+    sec_3_3_2,
+    lv=3, title="Grid",
+    desc=(
+        "Create minimal responsive layouts with ", 
+        Code(".grid"), 
+        " to enable auto-layout columns."),
+)
+
+#—————————————————————————————————— 3.4
+# 3.4 Overflow auto
 
 sec_3_4_0 = section(
 
     lv=3, title="Overflow auto",
+
 )
 
 
@@ -476,11 +656,11 @@ sec_3_0_0 = section(
     lv=2, title="Layout",
 )
 #————————————————————————————————————————————————————————————————————————————4
-# Content
-# - Typography
-# - Link
-# - Button
-# - Table
+# 4. Content
+# 4.1 Typography
+# 4.2 Link
+# 4.3 Button
+# 4.4 Table
 
 sec_4_1_0 = section(
     lv=3, title="Typography",
@@ -504,15 +684,15 @@ sec_4_0_0 = section(
     lv=2, title="Content",
 )
 #————————————————————————————————————————————————————————————————————————————5
-# Forms
-# - Overview
-# - Input
-# - Textarea
-# - Select
-# - Checkboxes
-# - Radios
-# - Switch
-# - Range
+# 5. Forms
+# 5.1 Overview
+# 5.2 Input
+# 5.3 Textarea
+# 5.4 Select
+# 5.5 Checkboxes
+# 5.6 Radios
+# 5.7 Switch
+# 5.8 Range
 
 sec_5_1_0 = section(
     lv=3, title="Overview",
@@ -558,16 +738,16 @@ sec_5_0_0 = section(
     lv=2, title="Forms",
 )
 #————————————————————————————————————————————————————————————————————————————6
-# Components
-# - Accordion
-# - Card
-# - Dropdown
-# - Group NEW
-# - Loading
-# - Modal
-# - Nav
-# - Progress
-# - Tooltip
+# 6. Components
+# 6.1 Accordion
+# 6.2 Card
+# 6.3 Dropdown
+# 6.4 Group NEW
+# 6.5 Loading
+# 6.6 Modal
+# 6.7 Nav
+# 6.8 Progress
+# 6.9 Tooltip
 
 sec_6_1_0 = section(
     lv=3, title="Accordion",
@@ -620,12 +800,12 @@ sec_6_0_0 = section(
     lv=2, title="Components",
 )
 #————————————————————————————————————————————————————————————————————————————7
-# About
-# - What’s new in v2?
-# - Mission
-# - Usage scenarios
-# - Brand
-# - Built With
+# 7. About
+# 7.1 What’s new in v2?
+# 7.2 Mission
+# 7.3 Usage scenarios
+# 7.4 Brand
+# 7.5 Built With
 
 sec_7_1_0 = section(
     lv=3, title="What’s new in v2?",
@@ -666,8 +846,6 @@ sections = (
     sec_6_0_0,
     sec_7_0_0,
 )
-
-
 page = (title, html, main(sections))
 
 # Home page
