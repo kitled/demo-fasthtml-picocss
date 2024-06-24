@@ -1167,9 +1167,7 @@ body_4_3_4 = (
     )
 
 art_4_3_4 = article(
-    Button("Button"),
-    Button("Button", cls="secondary"),
-    Button("Button", cls="contrast"),
+    Button("Button", disabled=True),
 )
 
 pico_4_3_4 = div_code(
@@ -1905,15 +1903,115 @@ sec_5_2_5 = section(
     lv=3, title="File",
 )
 #——————————————————
+art_5_2_6 = article(
+    Input(type="text", 
+          name="text",
+          placeholder="Disabled",
+          aria_label="Disabled input", 
+          disabled=True,),
+)
+
+pico_5_2_6 = div_code(
+    code="""<input
+  type="text"
+  name="text"
+  placeholder="Disabled"
+  aria-label="Disabled input"
+  disabled
+/>""",
+    lang="html",
+)
+
 sec_5_2_6 = section(
+    art_5_2_6,
+    pico_5_2_6,
     lv=3, title="Disabled",
 )
 #——————————————————
+art_5_2_7 = article(
+    Input(type="text", name="text", value="Read-only", aria_label="Read-only input", readonly=True),
+)
+
+pico_5_2_7 = div_code(
+    code="""<input
+  type="text"
+  name="text"
+  value="Read-only"
+  aria-label="Read-only input"
+  readonly
+/>""",
+    lang="html",
+)
+
 sec_5_2_7 = section(
+    art_5_2_7,
+    pico_5_2_7,
     lv=3, title="Readonly",
 )
 #——————————————————
+body_5_2_8a = P("Validation states are provided with ",Code("aria-invalid"), ".")
+
+art_5_2_8a = article(
+    Input(type="text", name="valid", value="Valid", aria_invalid="false"),
+    Input(type="text", name="invalid", value="Invalid", aria_invalid="true"),
+)
+
+pico_5_2_8a = div_code(
+    code="""<input
+  type="text"
+  name="valid"
+  value="Valid"
+  aria-invalid="false"
+/>
+
+<input
+  type="text"
+  name="invalid"
+  value="Invalid"
+  aria-invalid="true"
+/>""",
+    lang="html",
+)
+
+body_5_2_8b = P("Helper texts, defined with ", Code("<small>"), ", below the form element, inherit the validation state color.")
+
+art_5_2_8b = article(
+    Input(type="text", name="valid", value="Valid", aria_invalid="false", aria_describedby="valid-helper"),
+    Small("Looks good!"),
+    Input(type="text", name="invalid", value="Invalid", aria_invalid="true", aria_describedby="invalid-helper"),
+    Small("Please provide a valid value!"),
+)
+
+pico_5_2_8b = div_code(
+    code="""<input
+  type="text"
+  name="valid"
+  value="Valid"
+  aria-invalid="false"
+  aria-describedby="valid-helper"
+/>
+<small id="valid-helper">Looks good!</small>
+
+<input
+  type="text"
+  name="invalid"
+  value="Invalid"
+  aria-invalid="true"
+  aria-describedby="invalid-helper"
+/>
+<small id="invalid-helper">
+  Please provide a valid value!
+</small>""",
+    lang="html",
+)
+
 sec_5_2_8 = section(
+    body_5_2_8a,
+    art_5_2_8a,
+    pico_5_2_8a,
+    body_5_2_8b,
+    art_5_2_8b,
+    pico_5_2_8b,
     lv=3, title="Validation states",
 )
 #——————————————————
@@ -1936,8 +2034,130 @@ sec_5_2_0 = section(
 # 5.3.2 Disabled
 # 5.3.3 Readonly
 # 5.3.4 Validation states
+#——————————————————
 
+art_5_3_1 = article(
+    Textarea(name="bio", placeholder="Write a professional short bio...", aria_label="Professional short bio"),
+)
+
+pico_5_3_1 = div_code(
+    code="""<textarea
+  name="bio"
+  placeholder="Write a professional short bio..."
+  aria-label="Professional short bio"
+>
+</textarea>""",
+    lang="html",
+)
+
+sec_5_3_1 = section(
+    art_5_3_1,
+    pico_5_3_1,
+    lv=3, title="Syntax",
+)
+#——————————————————
+
+art_5_3_2 = article(
+    Textarea("Disabled", name="disabled", disabled=True),
+)
+
+pico_5_3_2 = div_code(
+    code="""<textarea name="disabled" disabled>
+  Disabled
+</textarea>""",
+    lang="html",
+)
+
+sec_5_3_2 = section(
+    art_5_3_2,
+    pico_5_3_2,
+    lv=3, title="Disabled",
+)
+#——————————————————
+
+art_5_3_3 = article(
+    Textarea("Read-only", name="readonly", readonly=True),
+)
+
+pico_5_3_3 = div_code(
+    code="""<textarea name="readonly" readonly>
+  Read-only
+</textarea>""",
+    lang="html",
+)
+
+sec_5_3_3 = section(
+    art_5_3_3,
+    pico_5_3_3,
+    lv=3, title="Readonly",
+)
+#——————————————————
+
+body_5_3_4a = P("Validation states are provided with ", Code("aria-invalid"), ".")
+
+art_5_3_4a = article(
+    Textarea("Valid", name="valid", aria_invalid="false", aria_describedby="valid-helper"),
+    Small("Looks good!"),
+)
+
+pico_5_3_4a = div_code(
+    code="""<textarea name="valid" aria-invalid="false">
+  Valid
+</textarea>
+
+<textarea name="invalid" aria-invalid="true">
+  Invalid
+</textarea> """,
+    lang="html",
+)
+
+body_5_3_4b = P("Helper texts, defined with ", Code("<small>"), ", below the form element, inherit the validation state color.")
+
+art_5_3_4b = article(
+    Textarea("Valid", name="valid", aria_invalid="false", aria_describedby="valid-helper"),
+    Small("Looks good!"),
+    Textarea("Invalid", name="invalid", aria_invalid="true", aria_describedby="invalid-helper"),
+    Small("Please provide a valid value!"),
+)
+
+pico_5_3_4b = div_code(
+    code="""<textarea
+  name="valid"
+  aria-invalid="false"
+  aria-describedby="valid-helper"
+>
+  Valid
+</textarea>
+<small id="valid-helper">Looks good!</small>
+
+<textarea
+  name="invalid"
+  aria-invalid="true"
+  aria-describedby="invalid-helper"
+>
+  Invalid
+</textarea>
+<small id="invalid-helper">
+  Please provide a valid value!
+</small>""",
+    lang="html",
+)
+
+sec_5_3_4 = section(
+    body_5_3_4a,
+    art_5_3_4a,
+    pico_5_3_4a,
+    body_5_3_4b,
+    art_5_3_4b,
+    pico_5_3_4b,
+    lv=3, title="Validation states",
+)
+#——————————————————
 sec_5_3_0 = section(
+    sec_5_3_1,
+    sec_5_3_2,
+    sec_5_3_3,
+    sec_5_3_4,
     lv=3, title="Textarea",
     desc=(
         "The native ",
@@ -1945,7 +2165,6 @@ sec_5_3_0 = section(
         " is styled like the input for consistency."
     ),
 )
-
 #—————————————————————————————————— 5.4
 # 5.4 Select
 # 5.4.1 Syntax
@@ -1953,9 +2172,161 @@ sec_5_3_0 = section(
 # 5.4.3 Disabled
 # 5.4.4 Validation states
 # 5.4.5 Dropdown
+#———————————————————
+art_5_4_1 = article(
+    Select(
+        "Select your favorite cuisine...", 
+        Option("Select your favorite cuisine...", disabled=True, selected=True),
+        Option("Italian"),
+        Option("Japanese"),
+        Option("Indian"),
+        Option("Thai"),
+        Option("French"),
+        name="favorite-cuisine", 
+        aria_label="Select your favorite cuisine...", 
+        required=True,
+    ),
+)
 
+pico_5_4_1 = div_code(
+    code="""<select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
+  <option selected disabled value="">
+    Select your favorite cuisine...
+  </option>
+  <option>Italian</option>
+  <option>Japanese</option>
+  <option>Indian</option>
+  <option>Thai</option>
+  <option>French</option>
+</select>""",
+    lang="html",
+)
 
+sec_5_4_1 = section(
+    art_5_4_1,
+    pico_5_4_1,
+    lv=3, title="Syntax",
+)
+#——————————————————
+art_5_4_2 = article(
+    Select(
+        "Select your favorite snacks...", 
+        Option("Select your favorite snacks...", disabled=True),
+        Option("Cheese"),
+        Option("Fruits", selected=True),
+        Option("Nuts", selected=True),
+        Option("Chocolate"),
+        Option("Crackers"),
+        multiple=True, 
+        size="6",
+        aria_label="Select your favorite snacks...",
+    ),
+)
+
+pico_5_4_2 = div_code(
+    code="""<select aria-label="Select your favorite snacks..." multiple size="6">
+  <option disabled>
+    Select your favorite snacks...
+  </option>
+  <option>Cheese</option>
+  <option selected>Fruits</option>
+  <option selected>Nuts</option>
+  <option>Chocolate</option>
+  <option>Crackers</option>
+</select>""",
+    lang="html",
+)
+
+sec_5_4_2 = section(
+    art_5_4_2,
+    pico_5_4_2,
+    lv=3, title="Multiple",
+)
+#——————————————————
+art_5_4_3 = article(
+    Select(
+        Option("Select a meal type…"),
+        Option("…"),
+        name="meal-type", 
+        aria_label="Select a meal type…",
+        disabled=True,
+    ),
+)
+
+pico_5_4_3 = div_code(
+    code="""<select name="meal-type" aria-label="Select a meal type..." disabled>
+  <option>Select a meal type...</option>
+  <option>...</option>
+</select>""",
+    lang="html",
+)
+
+sec_5_4_3 = section(
+    art_5_4_3,
+    pico_5_4_3,
+    lv=3, title="Disabled",
+)
+#——————————————————
+body_5_4_4 = P("Validation states are provided with ", Code("aria-invalid"), ".")
+
+art_5_4_4 = article(
+    Select(
+        Option("Select your favorite pizza topping…", selected=True, disabled=True),
+        Option("Pepperoni"),
+        Option("Mushrooms"),
+        Option("Onions"),
+        Option("Pineapple"),
+        Option("Olives"),
+        aria_invalid="false"
+    ),
+    Small("Great choice!"),
+    Select(
+        Option("Select your favorite pizza topping…", selected=True, disabled=True),
+        Option("Pepperoni"),
+        Option("Mushrooms"),
+        Option("Onions"),
+        Option("Pineapple"),
+        Option("Olives"),        
+        aria_invalid="true"
+    ),
+    Small("Please select your favorite pizza topping!"),
+)
+
+pico_5_4_4 = div_code(
+    code="""<select aria-invalid="false">
+  ...
+</select>
+<small>Great choice!</small>
+
+<select required aria-invalid="true">
+  ...
+</select>
+<small>
+  Please select your favorite pizza topping!
+</small>>""",
+    lang="html",
+)
+
+sec_5_4_4 = section(
+    body_5_4_4,
+    art_5_4_4,
+    pico_5_4_4,
+    lv=3, title="Validation states",
+)
+#——————————————————
+body_5_4_5 = P("The dropdown component allows you to build a custom select with the same style as the native select. See ", A("dropdown", href="https://picocss.com/docs/dropdown"), ".")
+
+sec_5_4_5 = section(
+    body_5_4_5,
+    lv=3, title="Dropdown",
+)
+#———————————————————
 sec_5_4_0 = section(
+    sec_5_4_1,
+    sec_5_4_2,
+    sec_5_4_3,
+    sec_5_4_4,
+    sec_5_4_5,
     lv=3, title="Select",
     desc=(
         "The native ",
@@ -1963,15 +2334,157 @@ sec_5_4_0 = section(
         " is styled like the input for consistency."
     ),
 )
-
 #—————————————————————————————————— 5.5
 # 5.5 Checkboxes
 # 5.5.1 Syntax
 # 5.5.2 Horizontal stacking
 # 5.5.3 Indeterminate
 # 5.5.4 Validation states
+#———————————————————
 
+art_5_5_1 = article(
+    Fieldset(
+        Legend("Language preferences:"),
+        Label(Input("English",  type="checkbox", name="english", checked=True)),
+        Label(Input("French",   type="checkbox", name="french", checked=True)),
+        Label(Input("Mandarin", type="checkbox", name="mandarin")),
+        Label(Input("Thai",     type="checkbox", name="thai")),
+        Label(Input("Dothraki", type="checkbox", name="dothraki", disabled=True)),
+    ),
+)
+
+pico_5_5_1 = div_code(
+    code="""<fieldset>
+  <legend>Language preferences:</legend>
+  <label>
+    <input type="checkbox" name="english" checked />
+    English
+  </label>
+  <label>
+    <input type="checkbox" name="french" checked />
+    French
+  </label>
+  <label>
+    <input type="checkbox" name="mandarin" />
+    Mandarin
+  </label>
+  <label>
+    <input type="checkbox" name="thai" />
+    Thai
+  </label>
+  <label aria-disabled="true">
+    <input type="checkbox" name="dothraki" disabled />
+    Dothraki
+  </label>
+</fieldset>""",
+    lang="html",
+)
+
+sec_5_5_1 = section(
+    art_5_5_1,
+    pico_5_5_1,
+    lv=3, title="Syntax",
+)
+#———————————————————
+art_5_5_2 = article(
+    Fieldset(
+        Legend("Language preferences:"),
+        Input("Hindi", type="checkbox", id="hindi", name="hindi", checked=True),
+        Label("Swahili", Input("Swahili", type="checkbox", id="swahili", name="swahili")),
+        Label("Na'vi", Input("Na'vi", type="checkbox", id="navi", name="navi", disabled=True)),
+    ),
+)
+
+pico_5_5_2 = div_code(
+    code="""<fieldset>
+  <legend>Language preferences:</legend>
+  <input type="checkbox" id="hindi" name="hindi" checked />
+  <label htmlFor="hindi">Hindi</label>
+  <input type="checkbox" id="swahili" name="swahili" />
+  <label htmlFor="swahili">Swahili</label>
+  <input type="checkbox" id="navi" name="navi" disabled />
+  <label htmlFor="navi" aria-disabled="true">Na'vi</label>
+</fieldset>""",
+    lang="html",
+)
+
+sec_5_5_2 = section(
+    art_5_5_2,
+    pico_5_5_2,
+    lv=3, title="Horizontal stacking",
+)
+#———————————————————
+body_5_5_3 = P("You can change a checkbox to an indeterminate state by setting the ", Code("indeterminate"), " property to ", Code("true"), ".")
+
+art_5_5_3 = article(
+    Label(Input(
+        "Indeterminate", 
+        type="checkbox", 
+        id="indeterminate", 
+        name="indeterminate"
+    )),
+)
+
+script_5_5_3 = Script(
+    """const checkbox = document.querySelector('#indeterminate');
+    checkbox.indeterminate = true;"""
+)
+
+pico_5_5_3 = div_code(
+    code="""<label>
+  <input type="checkbox" id="indeterminate" name="indeterminate" />
+  Indeterminate
+</label>
+
+<script>
+  const checkbox = document.querySelector('#indeterminate');
+  checkbox.indeterminate = true;
+</script>
+""",
+    lang="html",
+)
+
+sec_5_5_3 = section(
+    body_5_5_3,
+    art_5_5_3,
+    pico_5_5_3,
+    script_5_5_3,
+    lv=3, title="Indeterminate",
+)
+#———————————————————
+
+body_5_5_4 = P("Validation states are provided with ", Code(".aria-invalid."), ".")
+
+art_5_5_4 = article(
+    Label(Input("Valid", type="checkbox", name="valid", aria_invalid="false")),
+    Label(Input("Invalid", type="checkbox", name="invalid", aria_invalid="true")),
+)
+
+pico_5_5_4 = div_code(
+    code="""<label>
+  <input type="checkbox" name="valid" aria-invalid="false" />
+  Valid
+</label>
+
+<label>
+  <input type="checkbox" name="invalid" aria-invalid="true" />
+  Invalid
+</label>""",
+    lang="html",
+)
+
+sec_5_5_4 = section(
+    body_5_5_4,
+    art_5_5_4,
+    pico_5_5_4,
+    lv=3, title="Validation states",
+)
+#———————————————————
 sec_5_5_0 = section(
+    sec_5_5_1,
+    sec_5_5_2,
+    sec_5_5_3,
+    sec_5_5_4,
     lv=3, title="Checkboxes",
     desc=(
         "The native ",
@@ -1979,14 +2492,32 @@ sec_5_5_0 = section(
         " with a custom and responsive style."
     ),
 )
-
 #—————————————————————————————————— 5.6
 # 5.6 Radios
 # 5.6.1 Syntax
 # 5.6.2 Horizontal stacking
 # 5.6.3 Validation states
 
+
+sec_5_6_1 = section(
+    lv=3, title="Syntax",
+)
+#———————————————————
+
+
+sec_5_6_2 = section(
+    lv=3, title="Horizontal stacking",
+)
+#———————————————————
+
+sec_5_6_3 = section(
+    lv=3, title="Validation states",
+)
+#———————————————————
 sec_5_6_0 = section(
+    sec_5_6_1,
+    sec_5_6_2,
+    sec_5_6_3,
     lv=3, title="Radios",
     desc=(
         "The native ",
@@ -1994,23 +2525,23 @@ sec_5_6_0 = section(
         " with a custom and responsive style."
     ),
 )
-
 #—————————————————————————————————— 5.7
 # 5.7 Switch
 # 5.7.1 Syntax
 # 5.7.2 Disabled
 # 5.7.3 Validation states
 
+#———————————————————
 sec_5_7_0 = section(
     lv=3, title="Switch",
     desc=(
         "A switch component in pure CSS, using the checkbox syntax."
     ),
 )
-
 #—————————————————————————————————— 5.8
 # 5.8 Range
 
+#———————————————————
 sec_5_8_0 = section(
     lv=3, title="Range",
     desc=(
@@ -2019,7 +2550,7 @@ sec_5_8_0 = section(
         "."
     ),
 )
-
+#——————————————————————————————————
 sec_5_0_0 = section(
     sec_5_1_0,
     sec_5_2_0,
