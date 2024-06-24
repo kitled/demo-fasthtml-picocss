@@ -2,6 +2,7 @@
 .vscode/
 
 # Ad hoc
+.cursorignore
 .sesskey
 NOTES.md
 NOTES.py

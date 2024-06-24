@@ -2613,9 +2613,94 @@ sec_5_6_0 = section(
 # 5.7.1 Syntax
 # 5.7.2 Disabled
 # 5.7.3 Validation states
+art_5_7_1 = article(
+    Fieldset(
+        Label(Input("I agree to the Terms", type="checkbox", name="terms", role="switch")),
+        Label(Input("Receive news and offers", type="checkbox", name="opt-in", role="switch", checked=True)),
+    ),
+)
+
+pico_5_7_1 = div_code(
+    code="""<fieldset>
+  <label>
+    <input name="terms" type="checkbox" role="switch" />
+    I agree to the Terms
+  </label>
+  <label>
+    <input name="opt-in" type="checkbox" role="switch" checked />
+    Receive news and offers
+  </label>
+</fieldset>""",
+    lang="html",
+)
+
+sec_5_7_1 = section(
+    art_5_7_1,
+    pico_5_7_1,
+    lv=3, title="Syntax",
+)
+#———————————————————
+art_5_7_2 = article(
+    Fieldset(
+        Label(Input("Publish on my profile", type="checkbox", name="publish", role="switch", disabled=True)),
+        Label(Input("Change my password at next login", type="checkbox", name="change-password", role="switch", checked=True, disabled=True))
+    ),
+)
+
+pico_5_7_2 = div_code(
+    code="""<fieldset>
+  <label>
+    <input name="publish" type="checkbox" role="switch" disabled />
+    Publish on my profile
+  </label>
+  <label>
+    <input name="change-password" type="checkbox" role="switch" checked disabled />
+    Change my password at next login
+  </label>
+</fieldset>""",
+    lang="html",
+)
+
+sec_5_7_2 = section(
+    art_5_7_2,
+    pico_5_7_2,
+    lv=3, title="Disabled",
+)
+
 
 #———————————————————
+
+art_5_7_3 = article(
+    Fieldset(
+        Label(Input("Enable two-factor authentication", type="checkbox", name="2fa", role="switch", aria_invalid="false")),
+        Label(Input("Automatic subscription renewal", type="checkbox", name="subscription", role="switch", aria_invalid="true")),
+    ),
+)
+
+pico_5_7_3 = div_code(
+    code="""<fieldset>
+  <label>
+    <input name="2fa" type="checkbox" role="switch" aria-invalid="false" />
+    Enable two-factor authentication
+  </label>
+  <label>
+    <input name="subscription" type="checkbox" role="switch" aria-invalid="true" />
+    Automatic subscription renewal
+  </label>
+</fieldset>""",
+    lang="html",
+)
+
+sec_5_7_3 = section(
+    art_5_7_3,
+    pico_5_7_3,
+    lv=3, title="Validation states",
+)
+#———————————————————
 sec_5_7_0 = section(
+    sec_5_7_1,
+    sec_5_7_2,
+    sec_5_7_3,
     lv=3, title="Switch",
     desc=(
         "A switch component in pure CSS, using the checkbox syntax."
@@ -2623,9 +2708,28 @@ sec_5_7_0 = section(
 )
 #—————————————————————————————————— 5.8
 # 5.8 Range
-
 #———————————————————
+art_5_8_1 = article(
+    Label(Input("Brightness", type="range")),
+    Label(Input("Contrast", type="range", value="40")),
+)
+
+pico_5_8_1 = div_code(
+    code="""<label>
+  Brightness
+  <input type="range" />
+</label>
+
+<label>
+  Contrast
+  <input type="range" value="40" />
+</label>""",
+    lang="html",
+)
+
 sec_5_8_0 = section(
+    art_5_8_1,
+    pico_5_8_1,
     lv=3, title="Range",
     desc=(
         "Create a slider control with ",
@@ -2658,7 +2762,38 @@ sec_5_0_0 = section(
 # 6.9 Tooltip
 
 #—————————————————————————————————— 6.1
+# 6.1 Accordions
+# 6.1.1 Overview
+# 6.1.2 Button variants
 
+art_6_1_1 = article(
+    Details(Summary("Accordion 1"), P("...")),
+    Details(Summary("Accordion 2"), Ul(Li("..."), Li("..."))),
+)
+
+pico_6_1_1 = div_code(
+    code="""<details open>
+  <summary>Accordion 1</summary>
+  <p>...</p>
+</details>
+
+<hr />
+
+<details>
+  <summary>Accordion 2</summary>
+  <ul>
+    <li>...</li>
+    <li>...</li>
+  </ul>
+</details>""",
+    lang="html",
+)
+
+sec_6_1_1 = section(
+    lv=4, title="Overview",
+)
+
+#———————————————————
 sec_6_1_0 = section(
     lv=3, title="Accordion",
     desc=(
@@ -2667,7 +2802,13 @@ sec_6_1_0 = section(
 )
 
 #—————————————————————————————————— 6.2
+# 6.2 Card
+# 6.2.1 Syntax
+# 6.2.2 Sectioning
 
+
+
+#———————————————————
 sec_6_2_0 = section(
     lv=3, title="Card",
     desc=(
@@ -2676,14 +2817,33 @@ sec_6_2_0 = section(
 )
 
 #—————————————————————————————————— 6.3
+# 6.3 Dropdown
+# 6.3.1 Syntax
+# 6.3.2 Checkboxes and radios
+# 6.3.3 Button variants
+# 6.3.4 Validation states
+# 6.3.5 Usage with nav
 
+
+
+
+#———————————————————
 sec_6_3_0 = section(
     lv=3, title="Dropdown",
     desc="Create dropdown menus and custom selects with minimal and semantic HTML, without JavaScript."
 )
 
 #—————————————————————————————————— 6.4
+# 6.4 Group
+# 6.4.1 Forms
+# 6.4.2 Search
+# 6.4.3 Buttons
 
+
+
+
+
+#———————————————————
 sec_6_4_0 = section(
     lv=3, title="Group",
     desc=(
@@ -2696,7 +2856,12 @@ sec_6_4_0 = section(
 )
 
 #—————————————————————————————————— 6.5
+# 6.5 Loading
 
+
+
+
+#———————————————————
 sec_6_5_0 = section(
     lv=3, title="Loading",
     desc=(
@@ -2707,7 +2872,16 @@ sec_6_5_0 = section(
 )
 
 #—————————————————————————————————— 6.6
+# 6.6 Modal
+# 6.6.1 Syntax
+# 6.6.2 Demo
+# 6.6.3 Utilities
 
+
+
+
+
+#———————————————————
 sec_6_6_0 = section(
     lv=3, title="Modal",
     desc=(
@@ -2718,28 +2892,54 @@ sec_6_6_0 = section(
 )
 
 #—————————————————————————————————— 6.7
+# 6.7 Nav
+# 6.7.1 Syntax
+# 6.7.2 Link variants
+# 6.7.3 Buttons
+# 6.7.4 Dropdowns
+# 6.7.5 Vertical stacking
+# 6.7.6 Breadcrumb
+# 6.7.7 Overflow
 
+
+
+
+
+#———————————————————
 sec_6_7_0 = section(
     lv=3, title="Nav",
     desc="The essential navbar component in pure semantic HTML."
 )
 
 #—————————————————————————————————— 6.8
+# 6.8 Progress
+# 6.8.1 Syntax
+# 6.8.2 Indeterminate
 
+
+
+
+#———————————————————
 sec_6_8_0 = section(
     lv=3, title="Progress",
     desc="The progress bar element in pure HTML, without JavaScript."
 )
 
 #—————————————————————————————————— 6.9
+# 6.9 Tooltip
+# 6.9.1 Syntax
+# 6.9.2 Placement
 
+
+
+
+
+#———————————————————
 sec_6_9_0 = section(
     lv=3, title="Tooltip",
     desc="Enable tooltips everywhere, without JavaScript."
 )
-
-
-
+#———————————————————
 sec_6_0_0 = section(
     sec_6_1_0,
     sec_6_2_0,
