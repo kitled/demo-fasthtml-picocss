@@ -76,11 +76,11 @@ def div_code(code, lang=None):
         cls="pre-code",
     )
 
-def aside(*aside_tags):
-    '''Returns an <aside> block. TODO: Implementation lol 😹
-    `aside_tags` needs to be created (ToC) from the list of H2, H3, H4…
+def div_code_footer(code, lang=None):
+    '''Returns a <footer> wrapping a <pre><code> block.
+    Use in <article> to display code examples.
     '''
-    return Aside(aside_tags)
+    return Footer(div_code(code, lang), cls="code")
 
 def heading(lv:int, title:str, desc=None):
     '''Returns a header block with title and anchor link. Followed by optional description.
@@ -102,17 +102,23 @@ def heading(lv:int, title:str, desc=None):
         P(desc) if desc else None,
     )
 
-#   ➕
-def art_c(*c): # c for content
-    return (*c, )
+def aside(*aside_tags):
+    '''Returns an <aside> block. TODO: Implementation lol 😹
+    `aside_tags` needs to be created (ToC) from the list of H2, H3, H4…
+    '''
+    return Aside(aside_tags)
 
 #   ➕
-def art_footer(html, python):
-    return Footer(Pre(Code(html)), Pre(Code(python)))
+# def art_c(*c): # c for content
+#     return (*c, )
+
+# #   ➕
+# def art_footer(html, python):
+#     return Footer(Pre(Code(html)), Pre(Code(python)))
 
 #   🡇
-# def article(c, hd=None, ft=None, **kwargs):
-#     return Card(*c, header=hd, footer=ft, **kwargs)
+def article(*c, hd=None, ft=None, card=False, **kwargs):
+    return Card(*c, header=hd, footer=ft, **kwargs) if card else Article(*c, header=hd, footer=ft, **kwargs)
 
 
 # c: lv2_s & lv3_s contain other sections (lv3_s & lv4_s respectively);
@@ -813,11 +819,6 @@ sec_3_4_0 = section(
         " enables automatic scrollbars to an element if its content extends beyond its limits."),
 )
 
-
-
-
-
-
 sec_3_0_0 = section(
     sec_3_1_0,
     sec_3_2_0,
@@ -841,7 +842,143 @@ sec_3_0_0 = section(
 # 4.1.5 Blockquote
 # 4.1.6 Horizontal rule
 
+table_4_1_1a = Table(
+    Thead(
+        Tr(Th("Breakpoint"),Th("xs"),Th("sm"),Th("md"),Th("lg"),Th("xl"),Th("xxl")),
+    ),
+    Tbody(
+        Tr(Td("Base"),Td("16px"),Td("17px"),Td("18px"),    Td("19px"),   Td("20px"),    Td("21px")),
+        Tr(Td(Code("<h1>")   ),  Td("32px"),Td("34px"),    Td("36px"),   Td("38px"),    Td("40px"),  Td("42px")),
+        Tr(Td(Code("<h2>")   ),  Td("28px"),Td("29.75px"), Td("31.5px"), Td("33.25px"), Td("35px"),  Td("36.75px")),
+        Tr(Td(Code("<h3>")   ),  Td("24px"),Td("25.5px"),  Td("27px"),   Td("28.5px"),  Td("30px"),  Td("31.5px")),
+        Tr(Td(Code("<h4>")   ),  Td("20px"),Td("21.25px"), Td("22.5px"), Td("23.75px"), Td("25px"),  Td("26.25px")),
+        Tr(Td(Code("<h5>")   ),  Td("18px"),Td("19.125px"),Td("20.25px"),Td("21.375px"),Td("22.5px"),Td("23.625px")),
+        Tr(Td(Code("<h6>")   ),  Td("16px"),Td("17px"),    Td("18px"),   Td("19px"),    Td("20px"),  Td("21px")),
+        Tr(Td(Code("<small>")),  Td("14px"),Td("14.875px"),Td("15.75px"),Td("16.625px"),Td("17.5px"),Td("18.375px")),
+    ),
+    cls="overflow-auto",
+)
+
+body_4_1_1a = P("In ", Code("rem"), " units:")
+
+table_4_1_1b = Table(
+    Thead(
+        Tr(Th("Breakpoint"),Th("xs"),Th("sm"),Th("md"),Th("lg"),Th("xl"),Th("xxl")),
+    ),
+    Tbody(
+        Tr(Td("Base"),Td("100%"),Td("106.25%"),Td("112.5%"),Td("118.75%"),Td("125%"),Td("131.25%")),
+        Tr(Td(Code("<h1>")   ),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem")),
+        Tr(Td(Code("<h2>")   ),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem")),
+        Tr(Td(Code("<h3>")   ),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem")),
+        Tr(Td(Code("<h4>")   ),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem")),
+        Tr(Td(Code("<h5>")   ),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem")),
+        Tr(Td(Code("<h6>")   ),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem")),
+        Tr(Td(Code("<small>")),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em")),
+    ),
+    cls="overflow-auto",
+)
+
+body_4_1_1b = (
+    P("To ensure that the user’s default font size is followed, the base font size is defined as a percentage that grows with the user’s screen size, while HTML elements are defined in ", Code("rem"), "."), 
+    P("Since ", Code("rem"), " is a multiplier of the HTML document font size, all HTML element’s font sizes grow proportionally with the size of the user’s screen.")
+    )
+
+sec_4_1_1 = section(
+    body_4_1_1a,
+    table_4_1_1a,
+    body_4_1_1b,
+    table_4_1_1b,
+    lv=4, title="Font sizes",
+)
+
+#——————————————————
+art_4_1_2 = article(
+    H1("Heading 1"),
+    H2("Heading 2"),
+    H3("Heading 3"),
+    H4("Heading 4"),
+    H5("Heading 5"),
+    H6("Heading 6"),)
+    
+pico_4_1_2 = div_code(
+code="""<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>""",
+lang="html"),
+
+sec_4_1_2 = section(
+    art_4_1_2,
+    pico_4_1_2,
+    lv=4, title="Headings",
+)
+
+#——————————————————
+
+sec_4_1_3 = section(
+    P("Not implemented in FastHTML (as of 2024.06.24)."),
+    P("I've done a basic rendering (in CSS) of the ", Code("<hgroup>"), " demo on the Pico CSS website to style this page's ", Code("<h3>"), " titles."),
+
+    lv=4, title="Heading group",
+)
+
+#——————————————————
+body_4_1_4 = Div(
+    Div(P("Abbr.", Code("<abbr>", cls="highlight language-html")),
+    P("Bold", Code("<strong>", cls="highlight language-html"), Code("<b>", cls="highlight language-html")),
+    P("Italic", Code("<i>", cls="highlight language-html"), Code("<em>", cls="highlight language-html"), Code("<cite>", cls="highlight language-html")),
+    P("Deleted", Code("<del>", cls="highlight language-html")),
+    P("Inserted", Code("<ins>", cls="highlight language-html")),
+    P("Ctrl + S", Code("<kbd>", cls="highlight language-html")),
+    ),
+    Div(P("Highlighted", Code("<mark>", cls="highlight language-html")),
+    P("Strikethrough", Code("<s>", cls="highlight language-html")),
+    P("Small", Code("<small>", cls="highlight language-html")),
+    P("Text Sub", Code("<sub>", cls="highlight language-html")),
+    P("Text Sup", Code("<sup>", cls="highlight language-html")),
+    P("Underline", Code("<u>", cls="highlight language-html")),
+    ),
+    cls="grid",
+)
+
+sec_4_1_4 = section(
+    P("Some of these are not implemented in FastHTML (as of 2024.06.24)."),
+    body_4_1_4,
+    lv=4, title="Inline text elements",
+)
+#——————————————————
+sec_4_1_5 = section(
+    P("Not implemented in FastHTML (as of 2024.06.24)."),
+    lv=4, title="Blockquote",
+)
+#——————————————————
+art_4_1_6 = article(
+    P("Paragraph above the horizontal line."),
+    Hr(),
+    P("Paragraph below the horizontal line."),
+)
+pico_4_1_6 = div_code(
+    code="""<p>Paragraph above the horizontal line.</p>
+<hr />
+<p>Paragraph below the horizontal line.</p>""",
+    lang="html",
+)
+sec_4_1_6 = section(
+    art_4_1_6,
+    pico_4_1_6,
+    lv=4, title="Horizontal rule",
+)
+
+#——————————————————
 sec_4_1_0 = section(
+    sec_4_1_1,
+    sec_4_1_2,
+    sec_4_1_3,
+    sec_4_1_4,
+    sec_4_1_5,
+    sec_4_1_6,
     lv=3, title="Typography",
     desc="All typographic elements are responsive and scale gracefully across devices and viewports.",
 )
@@ -850,12 +987,58 @@ sec_4_1_0 = section(
 # 4.2 Link
 
 
+art_4_2_0a = article(
+    A("Primary"),
+    Br(),
+    A("Secondary", cls="secondary"),
+    Br(),
+    A("Contrast", cls="contrast"),
+)
+
+pico_4_2_0a = div_code(
+    code="""<a href="#">Primary</a>
+<a href="#" class="secondary">Secondary</a>
+<a href="#" class="contrast">Contrast</a>""",
+    lang="html",
+)
+
+body_4_2_0a = (
+    P(
+        Code(".secondary"), 
+        " and ", 
+        Code(".contrast"), 
+        " classes are not available in the class‑less version."
+    ), 
+    P(
+        Code("aria-current"), 
+        " send the active state to assistive technologies and is displayed as the hover links."
+    ),
+)
 
 
+art_4_2_0b = article(
+    A("Regular link"),
+    Br(),
+    A("Active link", aria_current="page"),
+    Br(),
+    A("Regular link"),
+)
+
+pico_4_2_0b = div_code(
+    code="""<a href="#">Regular link</a>
+<a href="#" aria-current="page">Active link</a>
+<a href="#">Regular link</a>""",
+    lang="html",
+)
 
 
 
 sec_4_2_0 = section(
+    art_4_2_0a,
+    pico_4_2_0a,
+    body_4_2_0a,
+    art_4_2_0b,
+    pico_4_2_0b,
     lv=3, title="Link",
     desc=(
         "Links come with ",
@@ -875,16 +1058,191 @@ sec_4_2_0 = section(
 # 4.3.5 Role button
 # 4.3.6 Usage with group
 
+#——————————————————
+art_4_3_1 = article(
+    Button("Button"),
+)
 
+pico_4_3_1 = div_code(
+    code="""<button>Button</button>""",
+    lang="html",
+)
 
+sec_4_3_1 = section(
+    art_4_3_1,
+    pico_4_3_1,
+    lv=4, title="Syntax",
+)
 
+#——————————————————
+body_4_3_2a = P("Buttons come with ", Code(".secondary"), " and ", Code(".contrast"), "styles (not available in the ", A("class-less version", href="https://picocss.com/docs/classless"), ")."),
 
+art_4_3_2a = article(Div(
+    Button("Secondary", cls="secondary"),
+    Button("Contrast", cls="contrast"),
+    cls="grid",
+    )
+)
 
+pico_4_3_2 = div_code(
+    code="""<button class="secondary">Button</button>
+<button class="contrast">Button</button>""",
+    lang="html",
+)
 
+body_4_3_2b = P("They also come with a classic outline style (not available in the ", A("class-less version", href="https://picocss.com/docs/classless"), ").")
 
+art_4_3_2b = article(Div(
+    Button("Primary", cls="outline"),
+    Button("Secondary", cls="outline secondary"),
+    Button("Contrast", cls="outline contrast"),
+    cls="grid",
+))
 
+pico_4_3_2b = div_code(
+    code="""<button class="outline">Primary</button>
+<button class="outline secondary">Secondary</button>
+<button class="outline contrast">Contrast</button>""",
+    lang="html",
+)
 
+sec_4_3_2 = section(
+    body_4_3_2a,
+    art_4_3_2a,
+    pico_4_3_2,
+    body_4_3_2b,
+    art_4_3_2b,
+    pico_4_3_2b,
+    lv=4, title="Variants",
+)
+
+#——————————————————
+
+body_4_3_3a = P(
+    Code('type="submit"'), 
+    " and ", 
+    Code('type="button"'), 
+    " inputs are also displayed as buttons. All form buttons are ", 
+    Code('width: 100%;'), 
+    " by default, to match with the other form elements."
+)
+
+art_4_3_3a = article(
+    Input(type="submit"),
+    Input(type="button", value="Input"),
+)
+
+pico_4_3_3a = div_code(
+    code="""<input type="submit" />
+<input type="button" value="Input" />""",
+    lang="html",
+)
+
+body_4_3_3b = P("Reset inputs have the secondary style by default.")
+
+art_4_3_3b = article(
+    Input(type="reset"),
+)
+
+pico_4_3_3b = div_code(
+    code="""<input type="reset" />""",
+    lang="html",
+)
+
+sec_4_3_3 = section(
+    body_4_3_3a,
+    art_4_3_3a,
+    pico_4_3_3a,
+    body_4_3_3b,
+    art_4_3_3b,
+    pico_4_3_3b,
+    lv=4, title="Form buttons",
+)
+
+#——————————————————
+
+body_4_3_4 = (
+    P("Not implemented in FastHTML (as of 2024.06.24)."),
+    P("Buttons come with a disabled style."),
+    )
+
+art_4_3_4 = article(
+    Button("Button"),
+    Button("Button", cls="secondary"),
+    Button("Button", cls="contrast"),
+)
+
+pico_4_3_4 = div_code(
+    code="""<button disabled>Button</button>""",
+    lang="html",
+)
+
+sec_4_3_4 = section(
+    body_4_3_4,
+    art_4_3_4,
+    pico_4_3_4,
+    lv=4, title="Disabled",
+)
+
+#——————————————————
+
+body_4_3_5 = P("Clickable elements with ", 
+               Code("role='button'"), 
+               " are rendered as buttons.")
+
+art_4_3_5 = article(
+    Div("Div as a button", role="button", tabindex="0"),
+)
+
+pico_4_3_5 = div_code(
+    code="""<div role="button" tabindex="0">Div as a button</div>""",
+    lang="html",
+)
+
+sec_4_3_5 = section(
+    body_4_3_5,
+    art_4_3_5,
+    pico_4_3_5,
+    lv=4, title="Role button",
+)
+
+#——————————————————
+
+body_4_3_6 = P("You can use ", Code("role='group'"), " with buttons. See Group.")
+
+art_4_3_6 = article(
+    Div(
+        Button("Button"),
+        Button("Button"),
+        Button("Button"),
+        role="group",
+    )
+)
+
+pico_4_3_6 = div_code(
+    code="""<div role="group">
+  <button>Button</button>
+  <button>Button</button>
+  <button>Button</button>
+</div>""",
+    lang="html",
+)
+
+sec_4_3_6 = section(
+    body_4_3_6,
+    art_4_3_6,
+    pico_4_3_6,
+    lv=4, title="Usage with group",
+)
+
+#——————————————————
 sec_4_3_0 = section(
+    sec_4_3_1,
+    sec_4_3_2,
+    sec_4_3_3,
+    sec_4_3_4,
+    sec_4_3_5,
+    sec_4_3_6,
     lv=3, title="Button",
     desc=(
         "Buttons are using the native ",
@@ -900,11 +1258,101 @@ sec_4_3_0 = section(
 # 4.4.2 Color schemes
 # 4.4.3 Striped
 
+table_4_4_1 = Table(
+    Thead(
+        Tr(
+            Th("Planet"),
+            Th("Diameter (km)"),
+            Th("Distance to Sun (AU)"),
+            Th("Orbit (days)"),
+        )
+    ),
+    Tbody(
+        Tr(
+            Td("Mercury"),
+            Td("4,880"),
+            Td("0.39"),
+            Td("88"),
+        ),
+        Tr(
+            Td("Venus"),
+            Td("12,104"),
+            Td("0.72"),
+            Td("225"),
+        ),
+        Tr(
+            Td("Earth"),
+            Td("12,742"),
+            Td("1.00"),
+            Td("365"),
+        ),
+        Tr(
+            Td("Mars"),
+            Td("6,779"),
+            Td("1.52"),
+            Td("687"),
+        ),
+        Tfoot(
+            Td("Average"),
+            Td("9,126"),
+            Td("0.91"),
+            Td("341"),
+        ),
+    )
+)
+
+pico_4_4_1 = div_code(
+    code="""<table>
+  <thead>
+    <tr>
+      <th scope="col">Planet</th>
+      <th scope="col">Diameter (km)</th>
+      <th scope="col">Distance to Sun (AU)</th>
+      <th scope="col">Orbit (days)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Mercury</th>
+      <td>4,880</td>
+      <td>0.39</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <th scope="row">Venus</th>
+      <td>12,104</td>
+      <td>0.72</td>
+      <td>225</td>
+    </tr>
+    <tr>
+      <th scope="row">Earth</th>
+      <td>12,742</td>
+      <td>1.00</td>
+      <td>365</td>
+    </tr>
+    <tr>
+      <th scope="row">Mars</th>
+      <td>6,779</td>
+      <td>1.52</td>
+      <td>687</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row">Average</th>
+      <td>9,126</td>
+      <td>0.91</td>
+      <td>341</td>
+    </tr>
+  </tfoot>
+</table>""",
+    lang="html",
+)
 
 
-
-
-sec_4_4_0 = section(
+sec_4_4_1 = section(
+    table_4_4_1,
+    pico_4_4_1,
     lv=3, title="Table",
     desc=(
         "Clean and minimal styles for ",
@@ -912,6 +1360,168 @@ sec_4_4_0 = section(
         ", providing consistent spacings and a minimal unbordered look."),
 )
 
+#——————————————————
+body_4_4_2 = P(
+    Code("data-theme='light'", cls="highlight"),
+    " or ",
+    Code("data-theme='dark'", cls="highlight"),
+    " can be used at any level: ",
+    Code("<table>", cls="highlight"),
+    ", ",
+    Code("<thead>", cls="highlight"),
+    ", ",
+    Code("<tbody>", cls="highlight"),
+    ", ",
+    Code("<tfoot>", cls="highlight"),
+    ", ",
+    Code("<tr>", cls="highlight"),
+    ", ",
+    Code("<th>", cls="highlight"),
+    ", ",
+    Code("<td>", cls="highlight"),
+    ".",
+)
+
+table_4_4_2 = Table(
+    Thead(
+        Tr(
+            Th("Planet"),
+            Th("Diameter (km)"),
+            Th("Distance to Sun (AU)"),
+            Th("Orbit (days)"),
+        ),
+        data_theme="light",
+    ),
+    Tbody(
+        Tr(
+            Td("Mercury"),
+            Td("4,880"),
+            Td("0.39"),
+            Td("88"),
+        ),
+        Tr(
+            Td("Venus"),
+            Td("12,104"),
+            Td("0.72"),
+            Td("225"),
+        ),
+        Tr(
+            Td("Earth"),
+            Td("12,742"),
+            Td("1.00"),
+            Td("365"),
+        ),
+        Tr(
+            Td("Mars"),
+            Td("6,779"),
+            Td("1.52"),
+            Td("687"),
+        ),
+        Tfoot(
+            Td("Average"),
+            Td("9,126"),
+            Td("0.91"),
+            Td("341"),
+        ),
+    )
+)
+
+pico_4_4_2 = div_code(
+    code="""<table>
+  <thead data-theme="light">
+    ...
+  </thead>
+  <tbody>...</tbody>
+  <tfoot>...</tfoot>
+</table>""",
+    lang="html",
+)
+
+sec_4_4_2 = section(
+    body_4_4_2,
+    table_4_4_2,
+    pico_4_4_2,
+    lv=4, title="Color schemes",
+)
+
+
+#——————————————————
+
+body_4_4_3 = P(
+    Code(".striped"),
+    " enable striped rows (not available in the class‑less version).",
+)
+
+table_4_4_3 = Table(
+    Thead(
+        Tr(
+            Th("Planet"),
+            Th("Diameter (km)"),
+            Th("Distance to Sun (AU)"),
+            Th("Orbit (days)"),
+        ),
+    ),
+    Tbody(
+        Tr(
+            Td("Mercury"),
+            Td("4,880"),
+            Td("0.39"),
+            Td("88"),
+        ),
+        Tr(
+            Td("Venus"),
+            Td("12,104"),
+            Td("0.72"),
+            Td("225"),
+        ),
+        Tr(
+            Td("Earth"),
+            Td("12,742"),
+            Td("1.00"),
+            Td("365"),
+        ),
+        Tr(
+            Td("Mars"),
+            Td("6,779"),
+            Td("1.52"),
+            Td("687"),
+        ),
+        Tfoot(
+            Td("Average"),
+            Td("9,126"),
+            Td("0.91"),
+            Td("341"),
+        ),
+    ),
+    cls="striped",
+)
+
+pico_4_4_3 = div_code(
+    code="""<table class="striped">
+  ...
+</table>""",
+    lang="html",
+)
+
+
+
+sec_4_4_3 = section(
+    body_4_4_3,
+    table_4_4_3,
+    pico_4_4_3,
+    lv=4, title="Striped",
+)
+
+
+#——————————————————
+sec_4_4_0 = section(
+    sec_4_4_1,
+    sec_4_4_2,
+    sec_4_4_3,
+    lv=2, title="Table",
+)
+
+#——————————————————
 sec_4_0_0 = section(
     sec_4_1_0,
     sec_4_2_0,
@@ -931,20 +1541,401 @@ sec_4_0_0 = section(
 # 5.8 Range
 
 #—————————————————————————————————— 5.1
+# 5.1 Overview
+# 5.1.1 Introduction
+# 5.1.2 Helper text
+# 5.1.3 Usage with grid
+# 5.1.4 Usage with group
 
+body_5_1_1a = P(
+    "Inputs are ",
+    Code("width: 100%;", cls="highlight"),
+    " by default and are the same size as the buttons to build consistent forms."
+)
+
+art_5_1_1a = article(
+    Form(Fieldset(
+        Label(
+            "First name", 
+            Input(name="first_name", placeholder="First name", autocomplete="given-name"),
+        ),
+        Label("Email", For="email"),
+            Input(type="email", id="email", placeholder="Email", autocomplete="email"),
+        ),
+    ),
+    Input(type="submit", value="Subscribe"),
+)
+   
+
+pico_5_1_1a = div_code(
+    code="""<form>
+  <fieldset>
+    <label>
+      First name
+      <input
+        name="first_name"
+        placeholder="First name"
+        autocomplete="given-name"
+      />
+    </label>
+    <label>
+      Email
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        autocomplete="email"
+      />
+    </label>
+  </fieldset>
+
+  <input
+    type="submit"
+    value="Subscribe"
+  />
+</form>""",
+    lang="html",
+)
+
+body_5_1_1b = P(
+    Code("<input>", cls="highlight"),
+    " can be inside or outside ",
+    Code("<label>", cls="highlight"),
+    "."
+)
+
+art_5_1_1b = article(
+    Form(
+        Label("First name", Input(name="first_name", placeholder="First name", autocomplete="given-name")),
+        Label("Email", For="email"),
+        Input(name="email", placeholder="Email", autocomplete="email"),
+    ),
+)
+
+pico_5_1_1b = div_code(
+    code="""<form>
+  
+  <!-- Input inside label -->
+  <label>
+    First name
+    <input
+      name="first_name"
+      placeholder="First name"
+      autocomplete="given-name"
+    />
+  </label>
+
+  <!-- Input outside label -->
+  <label for="email">Email</label>
+  <input
+    type="email"
+    id="email"
+    placeholder="Email"
+    autocomplete="email"
+  />
+
+</form>""",
+    lang="html",
+)
+
+sec_5_1_1 = section(
+    body_5_1_1a,
+    art_5_1_1a,
+    pico_5_1_1a,
+    body_5_1_1b,
+    art_5_1_1b,
+    pico_5_1_1b,
+    lv=3, title="Introduction",
+)
+#——————————————————
+body_5_1_2 = P(
+    Code("<small>", cls="highlight"),
+    " below form elements are muted and act as helper texts.",
+)
+
+art_5_1_2 = article(
+    Input(type="email", name="email", placeholder="Email", autoComplete="email", aria_label="Email", aria_describedby="email-helper"),
+    Small("We'll never share your email with anyone else.", id="email-helper"),
+)
+
+pico_5_1_2 = div_code(
+    code="""<input
+  type="email"
+  name="email"
+  placeholder="Email"
+  autoComplete="email"
+  aria-label="Email"
+  aria-describedby="email-helper"
+/>
+<small id="email-helper">
+  We'll never share your email with anyone else.
+</small>""",
+    lang="html",
+)
+
+sec_5_1_2 = section(
+    body_5_1_2,
+    art_5_1_2,
+    pico_5_1_2,
+    lv=3, title="Helper text",
+)
+#——————————————————
+body_5_1_3 = P(
+    "You can use ",
+    Code(".grid"),
+    " inside a form. See ",
+    A("Grid", href="https://picocss.com/docs/grid"),
+    ".",
+)
+
+art_5_1_3 = article(
+    Form(
+        Fieldset(
+            Input(name="login", placeholder="Login", aria_label="Login", autocomplete="username"),
+            Input(type="password", name="password", placeholder="Password", aria_label="Password", autocomplete="current-password"),
+            Input(type="submit", value="Log in"),
+            cls="grid"
+        ),
+    ),
+)
+
+pico_5_1_3 = div_code(
+    code="""<form>
+  <fieldset class="grid">
+    <input 
+      name="login"
+      placeholder="Login"
+      aria-label="Login"
+      autocomplete="username"
+    />
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      aria-label="Password"
+      autocomplete="current-password"
+    />
+    <input
+      type="submit"
+      value="Log in"
+    />
+  </fieldset>
+</form>""",
+    lang="html",
+)
+
+sec_5_1_3 = section(
+    body_5_1_3,
+    art_5_1_3,
+    pico_5_1_3,
+    lv=3, title="Usage with grid",
+)
+#——————————————————
+body_5_1_4 = P(
+    "You can use ",
+    Code('role="group"'),
+    " inside a form. See ",
+    A("Group", href="https://picocss.com/docs/group"),
+    ".",
+)
+
+art_5_1_4 = article(
+    Form(
+        Fieldset(
+            Input(type="email", name="email", placeholder="Enter your email", autocomplete="email"),
+            Input(type="submit", value="Subscribe"),
+            role="group"
+        ),
+    ),
+)
+
+pico_5_1_4 = div_code(
+    code="""<form>
+  <fieldset role="group">
+    <input
+      type="email"
+      name="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+    />
+    <input type="submit" value="Subscribe" />
+  </fieldset>
+</form>""",
+    lang="html",
+)
+
+sec_5_1_4 = section(
+    body_5_1_4,
+    art_5_1_4,
+    pico_5_1_4,
+    lv=3, title="Usage with group",
+)
+#——————————————————
 sec_5_1_0 = section(
+    sec_5_1_1,
+    sec_5_1_2,
+    sec_5_1_3,
+    sec_5_1_4,
     lv=3, title="Overview",
     desc="All form elements are fully responsive with pure semantic HTML, enabling forms to scale gracefully across devices and viewports."
 )
 
 #—————————————————————————————————— 5.2
+# 5.2 Input
+# 5.2.1 Syntax
+# 5.2.2 Datetime
+# 5.2.3 Search
+# 5.2.4 Color
+# 5.2.5 File
+# 5.2.6 Disabled
+# 5.2.7 Readonly
+# 5.2.8 Validation states
 
+art_5_2_1 = article(
+    Input(type="text", name="text", placeholder="Text", aria_label="Text"),
+    Input(type="email", name="email", placeholder="Email", aria_label="Email", autocomplete="email"),
+    Input(type="number", name="number", placeholder="Number", aria_label="Number"),
+    Input(type="password", name="password", placeholder="Password", aria_label="Password"),
+    Input(type="tel", name="tel", placeholder="Tel", aria_label="Tel", autocomplete="tel"),
+    Input(type="url", name="url", placeholder="Url", aria_label="Url"),
+)
+
+pico_5_2_1 = div_code(
+    code="""<input type="text" name="text" placeholder="Text" aria-label="Text" />
+<input type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" />
+<input type="number" name="number" placeholder="Number" aria-label="Number" />
+<input type="password" name="password" placeholder="Password" aria-label="Password" />
+<input type="tel" name="tel" placeholder="Tel" aria-label="Tel" autocomplete="tel" />
+<input type="url" name="url" placeholder="Url" aria-label="Url" />""",
+    lang="html",
+)
+
+sec_5_2_1 = section(
+    art_5_2_1,
+    pico_5_2_1,
+    lv=3, title="Syntax",
+)
+
+#——————————————————
+body_5_2_2 = P("Datetime inputs come with an icon.")
+
+art_5_2_2 = article(
+    Input(type="date", name="date", aria_label="Date"),
+    Input(type="datetime-local", name="datetime-local", aria_label="Datetime local"),
+    Input(type="month", name="month", aria_label="Month"),
+    Input(type="time", name="time", aria_label="Time"),
+)
+
+pico_5_2_2 = div_code(
+    code="""<input type="date" name="date" aria-label="Date" />
+<input type="datetime-local" name="datetime-local" aria-label="Datetime local" />
+<input type="month" name="month" aria-label="Month" />
+<input type="time" name="time" aria-label="Time" />""",
+    lang="html",
+)
+
+sec_5_2_2 = section(
+    body_5_2_2,
+    art_5_2_2,
+    pico_5_2_2,
+    lv=3, title="Datetime",
+)
+
+
+body_5_2_3 = P(
+    Code('type="search"'),
+    " comes with a distinctive style.")
+
+art_5_2_3 = article(
+    Input(type="search", name="search", aria_label="Search"),
+)
+
+pico_5_2_3 = div_code(
+    code="""<input type="search" name="search" placeholder="Search" aria-label="Search" />""",
+    lang="html",
+)
+
+sec_5_2_3 = section(
+    body_5_2_3,
+    art_5_2_3,
+    pico_5_2_3,
+    lv=3, title="Search",
+)
+#——————————————————
+body_5_2_4 = P(
+    Code('type="color"'),
+    " is also consistent with the other input types.",
+)
+
+art_5_2_4 = article(
+    Input(type="color", value="#ff9500", aria_label="Color picker"),
+)
+
+pico_5_2_4 = div_code(
+    code="""<input
+  type="color"
+  value="#ff9500"
+  aria-label="Color picker"
+/>""",
+    lang="html",
+)
+
+sec_5_2_4 = section(
+    body_5_2_4,
+    art_5_2_4,
+    pico_5_2_4,
+    lv=3, title="Color",
+)
+#——————————————————
+body_5_2_5 = P("Input type file button has a ", Code("secondary button style"), ".")
+
+art_5_2_5 = article(
+    Input(type="file"),
+)
+
+pico_5_2_5 = div_code(
+    code="""<input type="file" />""",
+    lang="html",
+)
+
+sec_5_2_5 = section(
+    body_5_2_5,
+    art_5_2_5,
+    pico_5_2_5,
+    lv=3, title="File",
+)
+#——————————————————
+sec_5_2_6 = section(
+    lv=3, title="Disabled",
+)
+#——————————————————
+sec_5_2_7 = section(
+    lv=3, title="Readonly",
+)
+#——————————————————
+sec_5_2_8 = section(
+    lv=3, title="Validation states",
+)
+#——————————————————
 sec_5_2_0 = section(
+    sec_5_2_1,
+    sec_5_2_2,
+    sec_5_2_3,
+    sec_5_2_4,
+    sec_5_2_5,
+    sec_5_2_6,
+    sec_5_2_7,
+    sec_5_2_8,
     lv=3, title="Input",
     desc="All input types are consistently styled and come with validation states."
 )
 
 #—————————————————————————————————— 5.3
+# 5.3 Textarea
+# 5.3.1 Syntax
+# 5.3.2 Disabled
+# 5.3.3 Readonly
+# 5.3.4 Validation states
 
 sec_5_3_0 = section(
     lv=3, title="Textarea",
@@ -956,6 +1947,13 @@ sec_5_3_0 = section(
 )
 
 #—————————————————————————————————— 5.4
+# 5.4 Select
+# 5.4.1 Syntax
+# 5.4.2 Multiple
+# 5.4.3 Disabled
+# 5.4.4 Validation states
+# 5.4.5 Dropdown
+
 
 sec_5_4_0 = section(
     lv=3, title="Select",
@@ -967,6 +1965,11 @@ sec_5_4_0 = section(
 )
 
 #—————————————————————————————————— 5.5
+# 5.5 Checkboxes
+# 5.5.1 Syntax
+# 5.5.2 Horizontal stacking
+# 5.5.3 Indeterminate
+# 5.5.4 Validation states
 
 sec_5_5_0 = section(
     lv=3, title="Checkboxes",
@@ -978,6 +1981,10 @@ sec_5_5_0 = section(
 )
 
 #—————————————————————————————————— 5.6
+# 5.6 Radios
+# 5.6.1 Syntax
+# 5.6.2 Horizontal stacking
+# 5.6.3 Validation states
 
 sec_5_6_0 = section(
     lv=3, title="Radios",
@@ -989,6 +1996,10 @@ sec_5_6_0 = section(
 )
 
 #—————————————————————————————————— 5.7
+# 5.7 Switch
+# 5.7.1 Syntax
+# 5.7.2 Disabled
+# 5.7.3 Validation states
 
 sec_5_7_0 = section(
     lv=3, title="Switch",
@@ -998,6 +2009,7 @@ sec_5_7_0 = section(
 )
 
 #—————————————————————————————————— 5.8
+# 5.8 Range
 
 sec_5_8_0 = section(
     lv=3, title="Range",

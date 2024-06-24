@@ -3,11 +3,21 @@
     --pico-card-component-outline-width: 2px;
 }
 
-main>[role=document] section {
-    margin-top: calc(var(--pico-spacing)* 3);
+section>h1,section>h2,section>h3,section>h4,section>h5,section>h6 {
+    color: var(--pico-primary-hover);
 }
+
 #content > section:nth-child(1) {
-    margin-top: calc(var(--pico-spacing)* 6);
+    margin-top: calc(var(--pico-spacing)* 7);
+}
+main>[role=document] section {
+    margin-top: calc(var(--pico-spacing)* 12);
+}
+main>[role=document] section>section {
+    margin-top: calc(var(--pico-spacing)* 4);
+}
+main>[role=document] section>section {
+    margin-top: calc(var(--pico-spacing)* 3);
 }
 /* #content > section > section > h3 {
     margin-bottom: 0.5rem!important;
@@ -15,6 +25,7 @@ main>[role=document] section {
 #content > section > section > h3 + p {
     --pico-color: var(--pico-muted-color);
     margin-top: -0.5rem!important;
+    margin-bottom: 3rem!important;
   }
 
 /* Titles anchor - taken from Pico CSS own website */
