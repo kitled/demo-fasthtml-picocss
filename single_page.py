@@ -2497,20 +2497,103 @@ sec_5_5_0 = section(
 # 5.6.1 Syntax
 # 5.6.2 Horizontal stacking
 # 5.6.3 Validation states
+#———————————————————
+art_5_6_1 = article(
+    Fieldset(
+        Legend("Language preference:"),
+        Label(Input("English", type="radio", name="language", checked=True)),
+        Label(Input("French", type="radio", name="language")),
+        Label(Input("Mandarin", type="radio", name="language")),
+        Label(Input("Thai", type="radio", name="language")),
+        Label(Input("Dothraki", type="radio", name="language", disabled=True)),
+    ),
+)
 
+pico_5_6_1 = div_code(
+    code="""<fieldset>
+  <legend>Language preference:</legend>
+  <label>
+    <input type="radio" name="language" checked />
+    English
+  </label>
+  <label>
+    <input type="radio" name="language" />
+    French
+  </label>
+  <label>
+    <input type="radio" name="language" />
+    Mandarin
+  </label>
+  <label>
+    <input type="radio" name="language" />
+    Thai
+  </label>
+  <label aria-disabled="true">
+    <input type="radio" name="language" disabled />
+    Dothraki
+  </label>
+</fieldset>""",
+    lang="html",
+)
 
 sec_5_6_1 = section(
+    art_5_6_1,
+    pico_5_6_1,
     lv=3, title="Syntax",
 )
 #———————————————————
+art_5_6_2 = article(
+    Fieldset(
+        Legend("Second language:"),
+        Input("Hindi", type="radio", id="hindi", name="second-language", checked=True),
+        Input("Swahili", type="radio", id="swahili", name="second-language"),
+        Input("Na'vi", type="radio", id="navi", name="second-language", disabled=True),
+    ),
+)
 
+pico_5_6_2 = div_code(
+    code="""<fieldset>
+  <legend>Second language:</legend>
+  <input type="radio" id="hindi" name="second-language" checked />
+  <label htmlFor="hindi">Hindi</label>
+  <input type="radio" id="swahili" name="second-language" />
+  <label htmlFor="swahili">Swahili</label>
+  <input type="radio" id="navi" name="second-language" disabled />
+  <label htmlFor="navi" aria-disabled="true">Na'vi</label>
+</fieldset>""",
+    lang="html",
+)
 
 sec_5_6_2 = section(
+    art_5_6_2,
+    pico_5_6_2,
     lv=3, title="Horizontal stacking",
 )
 #———————————————————
+body_5_6_3 = P("Validation states are provided with ", Code(".aria-invalid."), ".")
+
+art_5_6_3 = article(
+    Label(Input(type="radio", name="valid", aria_invalid="false"), "Valid", ),
+    Label(Input(type="radio", name="invalid", aria_invalid="true"), "Invalid", ),
+)
+
+pico_5_6_3 = div_code(
+    code="""<label>
+  <input type="radio" name="valid" aria-invalid="false" />
+  Valid
+</label>
+
+<label>
+  <input type="radio" name="invalid" aria-invalid="true" />
+  Invalid
+</label>""",
+    lang="html",
+)
 
 sec_5_6_3 = section(
+    body_5_6_3,
+    art_5_6_3,
+    pico_5_6_3,
     lv=3, title="Validation states",
 )
 #———————————————————
