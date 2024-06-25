@@ -3910,37 +3910,214 @@ sec_6_6_0 = section(
 # 6.7.7 Overflow
 #———————————————————
 
+art_6_7_1 = article(
+    Nav(
+        Ul(
+            Li(Strong("Acme Corp")),
+        ),
+        Ul(
+            Li(A("About", href="#")),
+            Li(A("Services", href="#")),
+            Li(A("Products", href="#")),
+        ),
+    )
+)
 
+pico_6_7_1 = div_code(
+    code="""<nav>
+  <ul>
+    <li><strong>Acme Corp</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Products</a></li>
+  </ul>
+</nav>""",
+    lang="html",
+)
 
-
-
+body_6_7_1 = (
+    P(Code("<ul>", cls="highlight"), " are automatically distributed horizontally."),
+    P(Code("<li>", cls="highlight"), " are unstyled and inlined."),
+    P(Code("<a>", cls="highlight"), " are underlined only on :hover."),
+)
 
 sec_6_7_1 = section(
+    art_6_7_1,
+    pico_6_7_1,
+    body_6_7_1,
     lv=4, title="Syntax",
 )
 #———————————————————
+body_6_7_2a = (
+    P("You can use  ", Code(".secondary", cls="highlight"),  ", ", Code(".contrast", cls="highlight"), " and  ", Code(".outline", cls="highlight"), "  classes (not available in the class-less version)."),
+)
 
+art_6_7_2a = article(
+    Nav(
+        Ul(
+            Li(Strong("Acme Corp")),
+        ),
+        Ul(
+            Li(A("About", href="#", cls="contrast")),
+            Li(A("Services", href="#", cls="contrast")),
+            Li(A("Products", href="#", cls="contrast")),
+        ),
+    )
+)
 
+pico_6_7_2a = div_code(
+    code="""<nav>
+  <ul>
+    <li><strong>Acme Corp</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#" class="contrast">About</a></li>
+    <li><a href="#" class="contrast">Services</a></li>
+    <li><a href="#" class="contrast">Products</a></li>
+  </ul>
+</nav>>""",
+    lang="html",
+)
 
+art_6_7_2b = article(
+    Nav(
+        Ul(
+            Li(A("...", href="#", cls="secondary")),
+        ),
+        Ul(
+            Li(Strong("Acme Corp")),
+        ),
+        Ul(
+            Li(A("...", href="#", cls="secondary")),
+        ),
+    )
+)
+
+pico_6_7_2b = div_code(
+    code="""<nav>
+  <ul>
+    <li><a href="#" class="secondary">...</a></li>
+  </ul>
+  <ul>
+    <li><strong>Acme Corp</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#" class="secondary">...</a></li>
+  </ul>
+</nav>""",
+    lang="html",
+)
 
 sec_6_7_2 = section(
+    body_6_7_2a,
+    art_6_7_2a,
+    pico_6_7_2a,
+    art_6_7_2b,
+    pico_6_7_2b,
     lv=4, title="Link variants",
 )
 #———————————————————
 
+body_6_7_3 = (
+    P("You can use  ", Code("<button>", cls="highlight"), " inside ", Code("<li>", cls="highlight"), "."),
+    P("Button sizes automatically match link size and margin."),
+)
 
+art_6_7_3 = article(
+    Nav(
+        Ul(
+            Li(Strong("Acme Corp")),
+        ),
+        Ul(
+            Li(A("About", href="#")),
+            Li(A("Services", href="#")),
+            Li(Button("Products", href="#")),
+        ),
+    )
+)
 
-
+pico_6_7_3 = div_code(
+    code="""<nav>
+  <ul>
+    <li><strong>Acme Corp</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><button class="secondary">Products</button></li>
+  </ul>
+</nav>""",
+    lang="html",
+)
 
 sec_6_7_3 = section(
+    body_6_7_3,
+    art_6_7_3,
+    pico_6_7_3,
     lv=4, title="Buttons",
 )
 #———————————————————
 
+body_6_7_4 = (
+    P("You can use dropdowns inside Nav."),
+)
 
+art_6_7_4 = article(
+    Nav(
+        Ul(
+            Li(Strong("Acme Corp")),
+        ),
+        Ul(
+            Li(A("Services", href="#", cls="secondary")),
+            Li(
+                Details(
+                    Summary("Account"), 
+                    Ul(
+                        Li(A("Profile", href="#")), 
+                        Li(A("Settings", href="#")), 
+                        Li(A("Security", href="#")), 
+                          Li(A("Logout", href="#")),
+                          dir="rtl",
+                    ),
+                    cls="dropdown",
+                ),
+            ),
+        ),
+    )
+)
+
+pico_6_7_4 = div_code(
+    code="""<nav>
+  <ul>
+    <li><strong>Acme Corp</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#" class="secondary">Services</a></li>
+    <li>
+      <details class="dropdown">
+        <summary>
+          Account
+        </summary>
+        <ul dir="rtl">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </details>
+    </li>
+  </ul>
+</nav>""",
+    lang="html",
+)
 
 
 sec_6_7_4 = section(
+    body_6_7_4,
+    art_6_7_4,
+    pico_6_7_4,
     lv=4, title="Dropdowns",
 )
 #———————————————————
