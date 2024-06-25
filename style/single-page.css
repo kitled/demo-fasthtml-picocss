@@ -14,9 +14,9 @@ main>[role=document] section {
     margin-top: calc(var(--pico-spacing)* 12);
 }
 main>[role=document] section>section {
-    margin-top: calc(var(--pico-spacing)* 4);
+    margin-top: calc(var(--pico-spacing)* 7);
 }
-main>[role=document] section>section {
+main>[role=document] section>section>section {
     margin-top: calc(var(--pico-spacing)* 3);
 }
 /* #content > section > section > h3 {
@@ -75,7 +75,8 @@ p.fh-cue {
 
 /* 3_3_1 */
 article {
-    background: var(--pico-background-color) !important;
+    /* background: var(--pico-background-color) !important; */
+    background: var(--pico-card-background-color) !important;
 }
 article.component {
     outline-color: var(--pico-card-component-outline-color);
@@ -94,3 +95,12 @@ article > div.grid > div {
 article > footer > div.pre-code {
     background: var(--pico-background-color) !important;
 }
+dialog.example {
+    z-index: inherit;
+    position: relative;
+    min-height: inherit;
+    margin: 0 calc(var(--pico-spacing)* -1) var(--pico-block-spacing-vertical) calc(var(--pico-spacing)* -1);
+    inset: inherit;
+}
+
+

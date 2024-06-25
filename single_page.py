@@ -135,6 +135,7 @@ def main(*lv2_s, aside_tags=None, **kwargs):
     return (
         Main(
             aside(aside_tags) if aside_tags else None,
+            modal,
             div_lv2_s(*lv2_s, **kwargs),
             cls="container",
         )
@@ -2765,10 +2766,19 @@ sec_5_0_0 = section(
 # 6.1 Accordions
 # 6.1.1 Overview
 # 6.1.2 Button variants
-
+#———————————————————
 art_6_1_1 = article(
-    Details(Summary("Accordion 1"), P("...")),
-    Details(Summary("Accordion 2"), Ul(Li("..."), Li("..."))),
+    Details(
+        Summary("Accordion 1"), 
+        P("Flamingos are known for their bright pink feathers and distinctive long necks. These birds are social creatures that live in large groups, and a group of flamingos is called a flamboyance. They can often be seen standing on one leg, which helps them conserve body heat."), 
+        open=True),
+    Details(Summary("Accordion 2"), Ul(
+        Li("Kangaroos are marsupials that are native to Australia."), 
+        Li("They are known for their powerful hind legs, which they use to hop around."),
+        Li("Kangaroos can’t walk backwards due to the shape of their legs and tail."),
+        Li("Baby kangaroos, called joeys, are born very small and undeveloped and must crawl into their mother’s pouch to continue developing."),
+        Li("Some species of kangaroos can leap up to 30 feet in a single bound."),
+        )),
 )
 
 pico_6_1_1 = div_code(
@@ -2790,26 +2800,167 @@ pico_6_1_1 = div_code(
 )
 
 sec_6_1_1 = section(
+    art_6_1_1,
+    pico_6_1_1,
     lv=4, title="Overview",
 )
+#———————————————————
+body_6_1_2a = P(
+    Code("role='button'"),
+    " can be used to turn ",
+    Code("<summary>", cls="highlight"),
+    " into a button.",
+)
 
+art_6_1_2a = article(
+    Details(Summary("Button", role="button"), P("Owls are nocturnal birds of prey that are known for their distinctive hooting calls. A group of owls is called a parliament, and these birds are often associated with wisdom and intelligence. Owls have excellent hearing and vision, which helps them hunt prey in the dark.")),
+)
+
+pico_6_1_2a = div_code(
+    code="""<details>
+  <summary role="button">Owls</summary>
+  <p>...</p>
+</details>""",
+    lang="html",
+)
+
+body_6_1_2b = P(
+    "Like regular buttons, they come with ",
+    Code(".secondary"),
+    Code(".contrast"),
+    ", and ",
+    Code(".outline"),
+    " (Not available in the class-less version).",
+)
+
+art_6_1_2b = article(
+    Details(
+        Summary("Secondary", role="button", cls="secondary"), 
+        P("Ostriches are the largest birds in the world and are native to Africa. They have long, powerful legs that they use to run at high speeds, and they can reach up to 45 miles per hour. An ostrich’s eye is bigger than its brain, which is unusual for birds.")
+        ),
+    Details(
+        Summary("Contrast", role="button", cls="contrast"), 
+        P("Koalas are arboreal marsupials that are native to Australia. They are known for their cute and cuddly appearance, but they can be quite aggressive if provoked. The fingerprints of koalas are so similar to those of humans that they have been mistaken for crime scene prints.")
+        ),
+    Details(
+        Summary("Primary outline", role="button", cls="outline"), 
+        P("Elephants are the largest land animals and highly intelligent with intricate communication systems. They use infrasonic sounds to talk and have long memories. They create and maintain habitats for other species, and can eat up to 300 pounds of vegetation per day. Their elongated incisor teeth, called tusks, serve various purposes, including digging and defense.")
+        ),
+    Details(
+        Summary("Secondary outline", role="button", cls="outline secondary"), 
+        P("Crows are intelligent birds that are known for their problem-solving abilities. A group of crows is called a murder, and these birds have a reputation for being mischievous and sometimes even aggressive. Despite their negative image in some cultures, crows are important for their role in controlling pest populations and maintaining ecological balance.")
+        ),
+    Details(
+        Summary("Contrast outline", role="button", cls="outline contrast"), 
+        P("Penguins are flightless birds with a tuxedo-like appearance. They swim well and can hold their breath for up to 20 minutes. Penguins are social, forming tight-knit communities, and some mate for life. They have adaptations to survive in cold climates, including thick feathers and a layer of fat for insulation.")
+        ),
+)
+
+pico_6_1_2b = div_code(
+    code="""<!-- Secondary -->
+<details>
+  <summary role="button" class="secondary">Secondary</summary>
+  <p>...</p>
+</details>
+
+<!-- Contrast -->
+<details>
+  <summary role="button" class="contrast">Contrast</summary>
+  <p>...</p>
+</details>
+
+<!-- Primary outline -->
+<details>
+  <summary role="button" class="outline">Primary outline</summary>
+  <p>...</p>
+</details>
+
+<!-- Secondary outline -->
+<details>
+  <summary role="button" class="outline secondary">Secondary outline</summary>
+  <p>...</p>
+</details>
+
+<!-- Contrast outline -->
+<details>
+  <summary role="button" class="outline contrast">Contrast outline</summary>
+  <p>...</p>
+</details>""",
+    lang="html",
+)
+
+sec_6_1_2 = section(
+    body_6_1_2a,
+    art_6_1_2a,
+    pico_6_1_2a,
+    body_6_1_2b,
+    art_6_1_2b,
+    pico_6_1_2b,
+    lv=4, title="Button variants",
+)
 #———————————————————
 sec_6_1_0 = section(
+    sec_6_1_1,
+    sec_6_1_2,
     lv=3, title="Accordion",
     desc=(
         "Toggle sections of content in pure HTML, without JavaScript, using minimal and semantic markup."
     ),
 )
-
 #—————————————————————————————————— 6.2
 # 6.2 Card
 # 6.2.1 Syntax
 # 6.2.2 Sectioning
 
+art_6_2_1 = Card("I’m a card!")
 
+pico_6_2_1 = div_code(
+    code="""<article>I’m a card!</article>""",
+    lang="html",
+)
 
+body_6_2_1 = P(
+    "You can use ",
+    Code("<header>", cls="highlight"),
+    " and ",
+    Code("<footer>", cls="highlight"),
+    " inside ",
+    Code("<article>", cls="highlight"),
+    ".",
+)
+
+sec_6_2_1 = section(
+    body_6_2_1,
+    art_6_2_1,
+    pico_6_2_1,
+    lv=4, title="Syntax",
+)
+#———————————————————
+
+art_6_2_2 = Article(
+    Header("Header"),
+    "Body",
+    Footer("Footer"),
+)
+
+pico_6_2_2 = div_code(
+    code="""<article>
+  <header>Header</header>
+  Body
+  <footer>Footer</footer>
+</article>""",
+    lang="html",
+)
+
+sec_6_2_2 = section(
+    art_6_2_2,
+    pico_6_2_2,
+    lv=4, title="Sectioning",
+)
 #———————————————————
 sec_6_2_0 = section(
+    sec_6_2_1,
+    sec_6_2_2,
     lv=3, title="Card",
     desc=(
         "Create flexible cards with a semantic markup that provides graceful spacings across various devices and viewports."
@@ -2823,12 +2974,447 @@ sec_6_2_0 = section(
 # 6.3.3 Button variants
 # 6.3.4 Validation states
 # 6.3.5 Usage with nav
+#———————————————————
+body_6_3_1 = (
+    P(
+        "Dropdowns are built with ",
+        Code("<details class='dropdown'>", cls="highlight"),
+        " as a wrapper and ",
+        Code("<summary>", cls="highlight"),
+        " and ",
+        Code("<ul>", cls="highlight"),
+        " as direct childrens. Unless they are in a Nav, dropdowns are width: 100%; by default.",
+    ), 
+    P("Dropdowns are not available in the class‑less version."), 
+    P("For style consistency with the form elements, dropdowns are styled like a select by default."),
+)
+
+art_6_3_1 = article(
+    Details(
+        Summary("Dropdown"), 
+        Ul(
+            Li(A("Solid", href="#")),
+            Li(A("Liquid", href="#")),
+            Li(A("Gas", href="#")),
+            Li(A("Plasma", href="#")),
+        ),
+        cls="dropdown"
+    ),
+    Select(
+        Option("Select", selected=True, disabled=True, value=""),
+        Option("Solid"),
+        Option("Liquid"),
+        Option("Gas"),
+        Option("Plasma"),
+        name="select",
+        aria_label="Select",
+        required=True,
+    ),
+    cls="grid",
+)
+
+pico_6_3_1 = div_code(
+    code="""<!-- Dropdown -->
+<details class="dropdown">
+  <summary>Dropdown</summary>
+  <ul>
+    <li><a href="#">Solid</a></li>
+    <li><a href="#">Liquid</a></li>
+    <li><a href="#">Gas</a></li>
+    <li><a href="#">Plasma</a></li>
+  </ul>
+</details>
+
+<!-- Select -->
+<select name="select" aria-label="Select" required>
+  <option selected disabled value="">Select</option>
+  <option>Solid</option>
+  <option>Liquid</option>
+  <option>Gas</option>
+  <option>Plasma</option>false
+</select>""",
+    lang="html",
+)
+
+sec_6_3_1 = section(
+    body_6_3_1,
+    art_6_3_1,
+    pico_6_3_1,
+    lv=4, title="Syntax",
+)
+#———————————————————
+body_6_3_2 = P("Dropdowns can be used as custom selects with ", Code("<input type='radio'>", cls="highlight language-html"), " or ", Code("<input type='checkbox'>", cls="highlight language-html"), ".")
+
+art_6_3_2 = article(
+    Details(
+        Summary("Select a phase of matter…"), 
+        Ul(
+            Li(Label(Input(type="radio", name="phase", value="solid"),
+                "Solid")),
+            Li(Label(Input(type="radio", name="phase", value="liquid"),
+                "Liquid")),
+            Li(Label(Input(type="radio", name="phase", value="gas"),
+                "Gas")),
+            Li(Label(Input(type="radio", name="phase", value="plasma"),
+                "Plasma")),
+        ),
+        cls="dropdown"
+    ),
+    Details(
+        Summary("Select phases of matter…"), 
+        Ul(
+            Li(Label(Input(type="checkbox", name="solid"),
+                "Solid")),
+            Li(Label(Input(type="checkbox", name="liquid"),
+                "Liquid")),
+            Li(Label(Input(type="checkbox", name="gas"),
+                "Gas")),
+            Li(Label(Input(type="checkbox", name="plasma"),
+                "Plasma")),
+        ),
+        cls="dropdown"
+    ),
+)
+
+pico_6_3_2 = div_code(
+    code="""<!-- Radios -->
+<details class="dropdown">
+  <summary>
+    Select a phase of matter...
+  </summary>
+  <ul>
+    <li>
+      <label>
+        <input type="radio" name="phase" value="solid" />
+        Solid
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="radio" name="phase" value="liquid" />
+        Liquid
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="radio" name="phase" value="gas" />
+        Gas
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="radio" name="phase" value="plasma" />
+        Plasma
+      </label>
+    </li>
+  </ul>
+</details>
+
+<!-- Checkboxes -->
+<details class="dropdown">
+  <summary>
+    Select phases of matter...
+  </summary>
+  <ul>
+    <li>
+      <label>
+        <input type="checkbox" name="solid" />
+        Solid
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" name="liquid" />
+        Liquid
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" name="gas" />
+        Gas
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="checkbox" name="plasma" />
+        Plasma
+      </label>
+    </li>
+  </ul>
+</details>""",
+    lang="html",
+)
+
+sec_6_3_2 = section(
+    body_6_3_2,
+    art_6_3_2,
+    pico_6_3_2,
+    lv=4, title="Checkboxes and radios",
+)
+#———————————————————
+body_6_3_3a = P(
+    Code('<summary role="button">', cls="highlight language-html"), 
+    " transforms the dropdown into a button.",
+)
+
+art_6_3_3a = article(
+    Details(
+        Summary("Dropdown as a button", role="button"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+)
+
+pico_6_3_3a = div_code(
+    code="""<details class="dropdown">
+  <summary role="button">
+    Dropdown as a button
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>""",
+    lang="html",
+)
+
+body_6_3_3b = P(
+    "Like regular buttons, they come with ",
+    Code(".secondary", cls="highlight"),
+    ", ",
+    Code(".contrast", cls="highlight"),
+    ", and ",
+    Code(".outline", cls="highlight"),
+    " (not available in the class-less version).",
+)
+
+art_6_3_3b = article(
+    Details(
+        Summary("Primary", role="button"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+    Details(
+        Summary("Secondary", role="button", cls="secondary"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+    Details(
+        Summary("Contrast", role="button", cls="contrast"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+    Details(
+        Summary("Outline", role="button", cls="outline"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+    Details(
+        Summary("Outline secondary", role="button", cls="outline secondary"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+    Details(
+        Summary("Outline contrast", role="button", cls="outline contrast"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+)
+
+pico_6_3_3b = div_code(
+    code="""<!-- Primary -->
+<details class="dropdown">
+  <summary role="button">
+    Primary
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>
+
+<!-- Secondary -->
+<details class="dropdown">
+  <summary role="button" class="secondary">
+    Secondary
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>
+
+<!-- Contrast -->
+<details class="dropdown">
+  <summary role="button" class="contrast">
+    Contrast
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>
+
+<!-- Primary outline -->
+<details class="dropdown">
+  <summary role="button" class="outline">
+    Primary outline
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>
+
+<!-- Secondary outline -->
+<details class="dropdown">
+  <summary role="button" class="outline secondary">
+    Secondary outline
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>
+
+<!-- Contrast outline -->
+<details class="dropdown">
+  <summary role="button" class="outline contrast">
+    Contrast outline
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>""",
+    lang="html",
+)
 
 
 
 
+sec_6_3_3 = section(
+    body_6_3_3a,
+    art_6_3_3a,
+    pico_6_3_3a,
+    body_6_3_3b,
+    art_6_3_3b,
+    pico_6_3_3b,
+    lv=4, title="Button variants",
+)
+#———————————————————
+body_6_3_4 = P(
+    "Just like any form elements, validation states are provided with ",
+    Code("aria-invalid", cls="highlight language-html"),
+    ".",
+)
+
+art_6_3_4 = article(
+    Details(
+        Summary("Valid phase of matter: Solid", aria_invalid="false"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+    Details(
+        Summary("Debated classification: Plasma", aria_invalid="true"), 
+        Ul(Li(A("Solid", href="#")), Li(A("Liquid", href="#")), Li(A("Gas", href="#")), Li(A("Plasma", href="#")),),
+        cls="dropdown"
+    ),
+)
+
+pico_6_3_4 = div_code(
+    code="""<details class="dropdown">
+  <summary aria-invalid="false">
+    Valid phase of matter: Solid
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>
+
+<details class="dropdown">
+  <summary aria-invalid="true">
+    Debated classification: Plasma
+  </summary>
+  <ul>
+    ...
+  </ul>
+</details>""",
+    lang="html",
+)
+
+
+sec_6_3_4 = section(
+    body_6_3_4,
+    art_6_3_4,
+    pico_6_3_4,
+    lv=4, title="Validation states",
+)
+#———————————————————
+body_6_3_5 = (P(
+    "You can use dropdowns inside ",
+    Code("Nav", cls="highlight"),
+    "."),
+    P("To change the alignment of the submenu, simply use ",
+    Code("<ul dir='rtl'>", cls="highlight language-html"),
+    "."),
+)
+
+art_6_3_5 = article(
+    Nav(
+        Ul(
+            Li(Strong("Acme Corp")), 
+        ),
+        Ul(
+            Li(A("Services", href="#", cls="secondary")),
+            Li(
+                Details(
+                    Summary("Account"), 
+                    Ul(
+                        Li(A("Profile", href="#")), 
+                        Li(A("Settings", href="#")), 
+                        Li(A("Security", href="#")), 
+                        Li(A("Logout", href="#")),
+                        dir="rtl",
+                    ),
+                    cls="dropdown"
+                ),
+            ),
+        ),
+    ),
+)
+
+pico_6_3_5 = div_code(
+    code="""<nav>
+  <ul>
+    <li><strong>Acme Corp</strong></li>
+  </ul>
+  <ul>
+    <li><a href="#" class="secondary">Services</a></li>
+    <li>
+      <details class="dropdown">
+        <summary>
+          Account
+        </summary>
+        <ul dir="rtl">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </details>
+    </li>
+  </ul>
+</nav>""",
+    lang="html",
+)
+
+sec_6_3_5 = section(
+    body_6_3_5,
+    art_6_3_5,
+    pico_6_3_5,
+    lv=4, title="Usage with nav",
+)
 #———————————————————
 sec_6_3_0 = section(
+    sec_6_3_1,
+    sec_6_3_2,
+    sec_6_3_3,
+    sec_6_3_4,
+    sec_6_3_5,
     lv=3, title="Dropdown",
     desc="Create dropdown menus and custom selects with minimal and semantic HTML, without JavaScript."
 )
@@ -2839,12 +3425,181 @@ sec_6_3_0 = section(
 # 6.4.2 Search
 # 6.4.3 Buttons
 
+body_6_4_1a = (
+    P(Code('role="group"'), " is used to stack children horizontally."),
+    P(
+        "When used with the ", 
+        Code('<form>', cls="highlight"), 
+        " tag, the group is ", 
+        Code('width: 100%;', cls="highlight"), 
+        "."),
+    P(
+        "Unlike ", 
+        Code('.grid', cls="highlight"), 
+        " (see ",
+        A("Grid", href="https://picocss.com/docs/grid", cls="secondary"),
+        ")",
+        " columns are not collapsed on mobile devices."),
+)
 
+art_6_4_1 = article(
+    Form(
+        Fieldset(
+            Input(name="email", type="email", placeholder="Enter your email", autocomplete="email"),
+            Input(type="submit", value="Subscribe"),
+            role="group",
+        ),
+    ),
+)
 
+pico_6_4_1 = div_code(
+    code="""<form>
+  <fieldset role="group">
+    <input name="email" type="email" placeholder="Enter your email" autocomplete="email" />
+    <input type="submit" value="Subscribe" />
+  </fieldset>
+</form>""",
+    lang="html",
+)
 
+body_6_4_1b = (
+    P("This component is mainly designed for form elements and buttons. It brings a ", Code(':focus', cls="highlight"), " style to the group depending on whether the focused child is an ", Code('<input>', cls="highlight language-html"), " or a ", Code('<button>', cls="highlight language-html"), "."),
+    P("The group ", Code(':focus'), " style relies on the ", Code(':has()', cls="highlight language-css"), " CSS selector and is therefore not (yet) supported by Firefox (see on ", A("caniuse", href="https://caniuse.com/css-has", cls="secondary"), "). When ", Code(':has()', cls="highlight language-css"), " is not supported the children have their regular ", Code(':focus'), " style."),
+)
+
+art_6_4_1b = article(
+    Form(
+        Fieldset(
+            Input(name="email", type="email", placeholder="Email", autocomplete="email"),
+            Input(name="password", type="password", placeholder="Password"),
+            Input(type="submit", value="Log in"),
+            role="group",
+        ),
+    ),
+)
+
+pico_6_4_1b = div_code(
+    code="""<form>
+  <fieldset role="group">
+    <input name="email" type="email" placeholder="Email" autocomplete="email" />
+    <input name="password" type="password" placeholder="Password" />
+    <input type="submit" value="Log in" />
+  </fieldset>
+</form>""",
+    lang="html",
+)
+
+sec_6_4_1 = section(
+    body_6_4_1a,
+    art_6_4_1,
+    pico_6_4_1,
+    body_6_4_1b,
+    art_6_4_1b,
+    pico_6_4_1b,
+    lv=4, title="Forms",
+)
+#———————————————————
+body_6_4_2 = (
+    P(Code('role="search"'), " role='search' also stacks children horizontally and brings a special style, consistent with ", Code('<input type="search" />', cls="highlight language-html"), " (see ", A("Search input", href="https://picocss.com/docs/input#search", cls="secondary"), ")."),
+)
+
+art_6_4_2 = article(
+    Form(
+        Input(name="search", type="search", placeholder="Search"),
+        Input(type="submit", value="Search"),
+        role="search",
+    ),
+)
+
+pico_6_4_2 = div_code(
+    code="""<form role="search">
+  <input name="search" type="search" placeholder="Search" />
+  <input type="submit" value="Search" />
+</form>""",
+    lang="html",
+)
+
+sec_6_4_2 = section(
+    body_6_4_2,
+    art_6_4_2,
+    pico_6_4_2,
+    lv=4, title="Search",
+)
+#———————————————————
+body_6_4_3 = (
+    P(Code('role="group"'), " is also useful for grouping a series of buttons."),
+)
+
+art_6_4_3a = article(
+    Div(
+        Button("Button"),
+        Button("Button"),
+        Button("Button"),
+        role="group",
+    ),
+)
+
+pico_6_4_3a = div_code(
+    code="""<div role="group">
+  <button>Button</button>
+  <button>Button</button>
+  <button>Button</button>
+</div>""",
+    lang="html",
+)
+
+art_6_4_3b = article(
+    Div(
+        Button("Active", aria_current="true"),
+        Button("Button"),
+        Button("Button"),
+        role="group",
+    ),
+)
+
+pico_6_4_3b = div_code(
+    code="""<div role="group">
+  <button aria-current="true">Active</button>
+  <button>Button</button>
+  <button>Button</button>
+</div>""",
+    lang="html",
+)
+
+art_6_4_3c = article(
+    Div(
+        Button("Button"),
+        Button("Button", cls="secondary"),
+        Button("Button", cls="contrast"),
+        role="group",
+    ),
+)
+
+pico_6_4_3c = div_code(
+    code="""<div role="group">
+  <button>Button</button>
+  <button class="secondary">Button</button>
+  <button class="contrast">Button</button>
+</div>""",
+    lang="html",
+)
+
+sec_6_4_3 = section(
+    body_6_4_3,
+    art_6_4_3a,
+    pico_6_4_3a,
+    art_6_4_3b,
+    pico_6_4_3b,
+    art_6_4_3c,
+    pico_6_4_3c,
+    lv=4, title="Buttons",
+)
 
 #———————————————————
 sec_6_4_0 = section(
+    sec_6_4_1,
+    sec_6_4_2,
+    sec_6_4_3,
     lv=3, title="Group",
     desc=(
         "Stack forms elements and buttons horizontally with ",
@@ -2857,12 +3612,68 @@ sec_6_4_0 = section(
 
 #—————————————————————————————————— 6.5
 # 6.5 Loading
+#———————————————————
+body_6_5_1 = (
+    P("It can be applied to any block:"),
+)
 
+art_6_5_1a = article(
+    Div(
+        aria_busy="true",
+    ),
+)
 
+pico_6_5_1a = div_code(
+    code="""<article aria-busy="true"></article>""",
+    lang="html",
+)
 
+art_6_5_1b = article(
+    Span(
+        aria_busy="true",
+    ),
+)
+
+pico_6_5_1b = div_code(
+    code="""<span aria-busy="true">Generating your link...</span>""",
+    lang="html",
+)
+
+art_6_5_1c = article(
+    Div(
+        Button(aria_busy="true", aria_label="Please wait…"),
+        Button(aria_busy="true", aria_label="Please wait…", cls="secondary"),
+        Button(aria_busy="true", aria_label="Please wait…", cls="contrast"),
+        cls="grid", 
+        style="margin-bottom: 1em;" # separation with the next div
+    ),
+    Div(
+        Button("Please wait…", aria_busy="true", cls="outline"),
+        Button("Please wait…", aria_busy="true", cls="outline secondary"),
+        Button("Please wait…", aria_busy="true", cls="outline contrast"),
+        cls="grid",
+    ),
+)
+
+pico_6_5_1c = div_code(
+    code="""<button aria-busy="true" aria-label="Please wait…" />
+<button aria-busy="true" aria-label="Please wait…" class="secondary" />
+<button aria-busy="true" aria-label="Please wait…" class="contrast" />
+<button aria-busy="true" class="outline">Please wait…</button>
+<button aria-busy="true" class="outline secondary">Please wait…</button>
+<button aria-busy="true" class="outline contrast">Please wait…</button>""",
+    lang="html",
+)
 
 #———————————————————
 sec_6_5_0 = section(
+    body_6_5_1,
+    art_6_5_1a,
+    pico_6_5_1a,
+    art_6_5_1b,
+    pico_6_5_1b,
+    art_6_5_1c,
+    pico_6_5_1c,
     lv=3, title="Loading",
     desc=(
         "Add a loading indicator with ",
@@ -2876,13 +3687,180 @@ sec_6_5_0 = section(
 # 6.6.1 Syntax
 # 6.6.2 Demo
 # 6.6.3 Utilities
+#———————————————————
+
+body_6_6_1a = (
+    P("Modals are built with ", Code('<dialog>', cls="highlight"), " as a wrapper and ", Code('<article>', cls="highlight"), " for the modal content."),
+    P("Inside ", Code('<header>', cls="highlight language-html"), " ", Code('<button rel="prev">', cls="highlight language-html"), " is defined to ", Code('float: right;', cls="highlight language-css"), " allowing a close icon to be top aligned with a title."),
+)
+
+modal_6_6_1a = Dialog(
+    Article(
+        Header(
+                Button(aria_label="Close", rel="prev"),
+            P(Strong("🗓️ Thank You for Registering!")),
+            ),
+            P("We're excited to have you join us for our upcoming event. Please arrive at the museum on time to check in and get started."),
+            Ul(
+                Li("Date: Saturday, April 15"),
+                Li("Time: 10:00am - 12:00pm"),
+            ),
+        ),
+        cls="example",
+        open="true",
+    ),
+
+
+pico_6_6_1a = div_code(
+    code="""<dialog open>
+  <article>
+    <header>
+      <button aria-label="Close" rel="prev"></button>
+      <p>
+        <strong>🗓️ Thank You for Registering!</strong>
+      </p>
+    </header>
+    <p>
+      We're excited to have you join us for our
+      upcoming event. Please arrive at the museum 
+      on time to check in and get started.
+    </p>
+    <ul>
+      <li>Date: Saturday, April 15</li>
+      <li>Time: 10:00am - 12:00pm</li>
+    </ul>
+  </article>
+</dialog>""",
+    lang="html",
+)
+
+body_6_6_1b = (
+    P("Inside ", Code('<footer>', cls="highlight language-html"), ", the content is right aligned by default."),
+)
+
+modal_6_6_1b = Dialog(
+    Article(
+        Header(
+            H2("Confirm Your Membership"),
+        ),
+        P("Thank you for signing up for a membership!"),
+        Ul(
+            Li("Membership: Individual"),
+            Li("Price: $10"),
+        ),
+        Footer(
+            Button("Cancel", cls="secondary"),
+            Button("Confirm"),
+        ),
+    ),
+    cls="example",
+    open="true",
+)
+
+pico_6_6_1b = div_code(
+    code="""<dialog open>
+  <article>
+    <h2>Confirm Your Membership</h2>
+    <p>
+      Thank you for signing up for a membership!
+      Please review the membership details below:
+    </p>
+    <ul>
+      <li>Membership: Individual</li>
+      <li>Price: $10</li>
+    </ul>
+    <footer>
+      <button className="secondary">
+        Cancel
+      </button>
+      <button>Confirm</button>
+    </footer>
+  </article>
+</dialog>""",
+    lang="html",
+)
+
+sec_6_6_1 = section(
+    body_6_6_1a,
+    modal_6_6_1a,
+    pico_6_6_1a,
+    body_6_6_1b,
+    modal_6_6_1b,
+    pico_6_6_1b,
+    lv=4, title="Syntax",
+)
+#———————————————————
+body_6_6_2a = (
+    P("Toggle a modal by clicking the button below."),
+)
+
+modal_6_6_2 = Dialog(
+    Article(
+        Header(
+            H2("Confirm Your Membership"),
+        ),
+        P("Thank you for signing up for a membership!"),
+        Ul(
+            Li("Membership: Individual"),
+            Li("Price: $10"),
+        ),
+        Footer(
+            Button("Cancel", cls="secondary"),
+            Button("Confirm"),
+        ),
+    ),
+    id="modal-demo",
+)
+
+def open_modal():
+    return """
+    <script>
+        document.getElementById('modal-demo').querySelector('button').addEventListener('click', function() {
+            document.getElementById('modal-demo').setAttribute('open', 'true');
+        });
+    </script>
+    """
+
+btnmod_6_6_2a = Article(
+    Button("Open Modal", cls="contrast", onclick="open_modal()"),
+    aria_label="Modal demo",
+    id="modal-demo",
+)
+
+
+body_6_6_2b = (
+    P("The modal can be closed by clicking the close button or by clicking outside the modal."),
+    P("Pico does not include JavaScript code. You need to implement your JS to interact with modals."),
+    P("As a starting point, you can look at the ", A("HTMLDialogElement", href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement", target="_blank"), " or the advanced examples below:"),
+    Ul(
+        Li(A("Vanilla JavaScript", href="https://codesandbox.io/embed/4mrnhq?view=Editor+%2B+Preview&module=%2Fjs%2Fmodal.js", target="_blank")),
+        Li(A("React", href="https://codesandbox.io/p/devbox/github/picocss/examples/tree/master/v2-react-color-schemes-and-modal?embed=1&file=%2Fsrc%2Fcomponents%2FModal.js", target="_blank")),
+    ),
+    P("To open a modal, add the ", Code("open", cls="highlight"), " attribute to the ", Code("<dialog>", cls="highlight language-html"), " container."),
+)
+
+
+
+sec_6_6_2 = section(
+    body_6_6_2a,
+    # modal_6_6_2,
+    btnmod_6_6_2a,
+    body_6_6_2b,
+    lv=4, title="Demo",
+)
+#———————————————————
 
 
 
 
-
+sec_6_6_3 = section(
+    lv=4, title="Utilities",
+)
 #———————————————————
 sec_6_6_0 = section(
+    sec_6_6_1,
+    sec_6_6_2,
+    sec_6_6_3,
     lv=3, title="Modal",
     desc=(
         "The classic modal component with graceful spacings across devices and viewports, using the semantic HTML tag ",
@@ -2900,13 +3878,74 @@ sec_6_6_0 = section(
 # 6.7.5 Vertical stacking
 # 6.7.6 Breadcrumb
 # 6.7.7 Overflow
+#———————————————————
 
 
 
 
 
+
+sec_6_7_1 = section(
+    lv=4, title="Syntax",
+)
+#———————————————————
+
+
+
+
+sec_6_7_2 = section(
+    lv=4, title="Link variants",
+)
+#———————————————————
+
+
+
+
+
+sec_6_7_3 = section(
+    lv=4, title="Buttons",
+)
+#———————————————————
+
+
+
+
+sec_6_7_4 = section(
+    lv=4, title="Dropdowns",
+)
+#———————————————————
+
+
+
+
+sec_6_7_5 = section(
+    lv=4, title="Vertical stacking",
+)
+#———————————————————
+
+
+
+
+sec_6_7_6 = section(
+    lv=4, title="Breadcrumb",
+)
+#———————————————————
+
+
+
+
+sec_6_7_7 = section(
+    lv=4, title="Overflow",
+)
 #———————————————————
 sec_6_7_0 = section(
+    sec_6_7_1,
+    sec_6_7_2,
+    sec_6_7_3,
+    sec_6_7_4,
+    sec_6_7_5,
+    sec_6_7_6,
+    sec_6_7_7,
     lv=3, title="Nav",
     desc="The essential navbar component in pure semantic HTML."
 )
@@ -2915,27 +3954,59 @@ sec_6_7_0 = section(
 # 6.8 Progress
 # 6.8.1 Syntax
 # 6.8.2 Indeterminate
-
-
-
-
 #———————————————————
+
+
+
+
+
+sec_6_8_1 = section(
+    lv=4, title="Syntax",
+)
+#———————————————————
+
+
+
+
+sec_6_8_2 = section(
+    lv=4, title="Indeterminate",
+)
+#———————————————————
+
+
+
+
 sec_6_8_0 = section(
+    sec_6_8_1,
+    sec_6_8_2,
     lv=3, title="Progress",
     desc="The progress bar element in pure HTML, without JavaScript."
 )
-
 #—————————————————————————————————— 6.9
 # 6.9 Tooltip
 # 6.9.1 Syntax
 # 6.9.2 Placement
-
-
-
-
-
 #———————————————————
+
+sec_6_9_1 = section(
+    lv=4, title="Syntax",
+)
+#———————————————————
+
+
+
+
+sec_6_9_2 = section(
+    lv=4, title="Placement",
+)
+#———————————————————
+
+
+
+
 sec_6_9_0 = section(
+    sec_6_9_1,
+    sec_6_9_2,
     lv=3, title="Tooltip",
     desc="Enable tooltips everywhere, without JavaScript."
 )
@@ -2959,6 +4030,10 @@ sec_6_0_0 = section(
 # 7.3 Usage scenarios
 # 7.4 Brand
 # 7.5 Built With
+#———————————————————
+
+
+
 
 #—————————————————————————————————— 7.1
 
@@ -3014,6 +4089,7 @@ sections = (
     sec_6_0_0,
     sec_7_0_0,
 )
+modal = modal_6_6_2
 page = (title, html, main(sections))
 
 # Home page
