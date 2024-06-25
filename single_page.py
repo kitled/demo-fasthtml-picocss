@@ -1,3 +1,4 @@
+from tkinter.ttk import Progressbar
 from fasthtml.common import * # type: ignore
 from fasthtml.js import MarkdownJS, SortableJS, HighlightJS
 from fastapi import Request
@@ -4121,27 +4122,140 @@ sec_6_7_4 = section(
     lv=4, title="Dropdowns",
 )
 #———————————————————
+body_6_7_5 = (
+    P("Inside ", Code("<aside>", cls="highlight"), ", navs items are stacked vertically."),
+)
 
+art_6_7_5 = article(
+    Aside(
+        Nav(
+            Ul(
+                Li(A("About", href="#")),
+                Li(A("Services", href="#")),
+                Li(A("Products", href="#")),
+            ),
+        ),
+    )
+)
 
-
+pico_6_7_5 = div_code(
+    code="""<aside>
+  <nav>
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Products</a></li>
+    </ul>
+  </nav>
+</aside>""",
+    lang="html",
+)
 
 sec_6_7_5 = section(
+    body_6_7_5,
+    art_6_7_5,
+    pico_6_7_5,
     lv=4, title="Vertical stacking",
 )
 #———————————————————
 
+body_6_7_6a = (
+    P("With ", Code("<nav aria-label='breadcrumb'>", cls="highlight"), ", you can turn a nav into a breadcrumb."),
+)
 
+art_6_7_6a = article(
+    Nav(
+        Ul(
+            Li(A("Home", href="#")),
+            Li(A("Services", href="#")),
+            Li("Design"),
+        ),
+        aria_label="breadcrumb",
+    )
+)
 
+pico_6_7_6a = div_code(
+    code="""<nav aria-label="breadcrumb">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Services</a></li>
+    <li>Design</li>
+  </ul>
+</nav>""",
+    lang="html",
+)
+
+body_6_7_6b = (
+    P("You can change the divider with a local CSS custom property ", Code("--pico-nav-breadcrumb-divider", cls="highlight"), "."),
+)
+
+art_6_7_6b = article(
+    Nav(
+        Ul(
+            Li(A("Home", href="#")),
+            Li(A("Services", href="#")),
+            Li("Design"),
+        ),
+        aria_label="breadcrumb",
+        style="--pico-nav-breadcrumb-divider: '✨';",
+    )
+)
+
+pico_6_7_6b = div_code(
+    code="""<nav
+  aria-label="breadcrumb"
+  style="--pico-nav-breadcrumb-divider: '✨';"
+>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Services</a></li>
+    <li>Design</li>
+  </ul>
+</nav>""",
+    lang="html",
+)
 
 sec_6_7_6 = section(
+    body_6_7_6a,
+    art_6_7_6a,
+    pico_6_7_6a,
+    body_6_7_6b,
+    art_6_7_6b,
+    pico_6_7_6b,
     lv=4, title="Breadcrumb",
 )
 #———————————————————
+body_6_7_7 = (
+    P("The ", Code("<nav>"), " component uses ", Code("overflow: visible;"), " on the container and negative margins on childrens to provide a nice ", Code("::focus-visible"), " style for links on keyboard navigation while keeping the content aligned horizontally."),
+)
 
-
+art_6_7_7 = article(
+    Nav(
+        Ul(
+            Li(A("About", href="#")),
+            Li(A("Services", href="#")),
+        ),
+        Ul(
+            Li("Products"),
+        ),
+        aria_label="overflow",
+    ),
+    Nav(
+        Ul(
+            Li(A("About", href="#", cls="focused")),
+            Li(A("Services", href="#")),
+        ),
+        Ul(
+            Li("Products", cls="focused"),
+        ),
+        aria_label="overflow-with-focus",
+    )
+)
 
 
 sec_6_7_7 = section(
+    body_6_7_7,
+    art_6_7_7,
     lv=4, title="Overflow",
 )
 #———————————————————
@@ -4163,26 +4277,39 @@ sec_6_7_0 = section(
 # 6.8.2 Indeterminate
 #———————————————————
 
+# art_6_8_1 = article(
+#     Progressbar(value="89", max="100"),
+# )
 
+pico_6_8_1 = div_code(
+    code="""<progress value="89" max="100" />""",
+    lang="html",
+)
 
 
 
 sec_6_8_1 = section(
+    # art_6_8_1,
+    pico_6_8_1,
     lv=4, title="Syntax",
 )
 #———————————————————
 
+# art_6_8_2 = article(
+#     Progress(),
+# )
 
-
+pico_6_8_2 = div_code(
+    code="""<progress />""",
+    lang="html",
+)
 
 sec_6_8_2 = section(
+    # art_6_8_2,
+    pico_6_8_2,
     lv=4, title="Indeterminate",
 )
 #———————————————————
-
-
-
-
 sec_6_8_0 = section(
     sec_6_8_1,
     sec_6_8_2,
@@ -4195,15 +4322,49 @@ sec_6_8_0 = section(
 # 6.9.2 Placement
 #———————————————————
 
+art_6_9_1 = article(
+    P("Tooltip on a ", A("link", href="#", data_tooltip="Tooltip"), "."),
+    P("Tooltip on an ", Em("inline element", data_tooltip="Tooltip"), "."),
+    P(Button("Tooltip on a button", data_tooltip="Tooltip")),
+)
+
+pico_6_9_1 = div_code(
+    code="""<p>Tooltip on a <a href="#" data-tooltip="Tooltip">link</a></p>
+<p>Tooltip on <em data-tooltip="Tooltip">inline element</em></p>
+<p><button data-tooltip="Tooltip">Tooltip on a button</button></p>""",
+    lang="html",
+)
+
 sec_6_9_1 = section(
+    art_6_9_1,
+    pico_6_9_1,
     lv=4, title="Syntax",
 )
 #———————————————————
+body_6_9_2 = (
+    P("The tooltip is displayed on top by default but you can change it with the ", Code("data-placement", cls="highlight"), " attribute."),
+)
 
+art_6_9_2 = article(
+    Button("Top", data_tooltip="Top", data_placement="top"),
+    Button("Right", data_tooltip="Right", data_placement="right"),
+    Button("Bottom", data_tooltip="Bottom", data_placement="bottom"),
+    Button("Left", data_tooltip="Left", data_placement="left"),
+    cls="grid",
+)
 
-
+pico_6_9_2 = div_code(
+    code="""<button data-tooltip="Top">Top</button>
+<button data-tooltip="Right" data-placement="right">Right</button>
+<button data-tooltip="Bottom" data-placement="bottom">Bottom</button>
+<button data-tooltip="Left" data-placement="left">Left</button>""",
+    lang="html",
+)
 
 sec_6_9_2 = section(
+    body_6_9_2,
+    art_6_9_2,
+    pico_6_9_2,
     lv=4, title="Placement",
 )
 #———————————————————
