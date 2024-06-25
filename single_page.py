@@ -11,6 +11,7 @@ head = (
     Meta(charset="utf-8"),
     Meta(name="viewport", content="width=device-width, initial-scale=1"),
     Meta(name="color-scheme", content="light dark"),
+    Script(src="https://unpkg.com/hyperscript.org@0.9.12"),
     )
 #—————————————————————————————————————————————————————————————————————————————
 # Page-specific
@@ -135,7 +136,7 @@ def main(*lv2_s, aside_tags=None, **kwargs):
     return (
         Main(
             aside(aside_tags) if aside_tags else None,
-            modal,
+            # modal_6_6_2,
             div_lv2_s(*lv2_s, **kwargs),
             cls="container",
         )
@@ -3794,9 +3795,10 @@ body_6_6_2a = (
     P("Toggle a modal by clicking the button below."),
 )
 
-modal_6_6_2 = Dialog(
+modal_6_6_2 = Div(
     Article(
         Header(
+            Button("×", aria_label="Close", rel="prev", hx_post="/close_modal", hx_target="#modal-demo", hx_swap="outerHTML"),
             H2("Confirm Your Membership"),
         ),
         P("Thank you for signing up for a membership!"),
@@ -3805,28 +3807,33 @@ modal_6_6_2 = Dialog(
             Li("Price: $10"),
         ),
         Footer(
-            Button("Cancel", cls="secondary"),
+            Button("Cancel", cls="secondary", hx_post="/close_modal", hx_target="#modal-demo", hx_swap="outerHTML"),
             Button("Confirm"),
         ),
     ),
-    id="modal-demo",
+    _="on closeModal add .closing then wait for animationend then remove me",
+    id="modal",
 )
 
-def open_modal():
-    return """
-    <script>
-        document.getElementById('modal-demo').querySelector('button').addEventListener('click', function() {
-            document.getElementById('modal-demo').setAttribute('open', 'true');
-        });
-    </script>
-    """
+# def open_modal():
+#     return """
+#     <script>
+#         document.getElementById('modal-demo').querySelector('button').addEventListener('click', function() {
+#             document.getElementById('modal-demo').setAttribute('open', 'true');
+#         });
+#     </script>
+#     """
+
+# btnmod_6_6_2a = Article(
+#     Button("Open Modal", cls="contrast", hx_post="/open_modal", hx_target="#modal-container", hx_swap="innerHTML"),
+#     id="modal-container",
+# )
 
 btnmod_6_6_2a = Article(
-    Button("Open Modal", cls="contrast", onclick="open_modal()"),
-    aria_label="Modal demo",
-    id="modal-demo",
+    Button("Open Modal", hx_get="/modal", hx_target="body", hx_swap="beforeend"),
 )
 
+# <button class="btn primary" hx-get="/modal" hx-target="body" hx-swap="beforeend">Open a Modal</button>
 
 body_6_6_2b = (
     P("The modal can be closed by clicking the close button or by clicking outside the modal."),
@@ -4089,8 +4096,8 @@ sections = (
     sec_6_0_0,
     sec_7_0_0,
 )
-modal = modal_6_6_2
-page = (title, html, main(sections))
+# modal = modal_6_6_2
+page = (title, html, main(sections), modal_6_6_2)
 
 # Home page
 @rt("/")
@@ -4116,3 +4123,11 @@ async def post(request: Request):
     """
     
     return HTMLResponse(content=response_content)
+
+@rt("/modal")
+async def get():
+    return HTMLResponse(content=str(modal_6_6_2))
+
+@rt("/close_modal")
+async def get():
+    return HTMLResponse(content="")
