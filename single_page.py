@@ -136,7 +136,6 @@ def main(*lv2_s, aside_tags=None, **kwargs):
     return (
         Main(
             aside(aside_tags) if aside_tags else None,
-            # modal_6_6_2,
             div_lv2_s(*lv2_s, **kwargs),
             cls="container",
         )
@@ -3795,6 +3794,7 @@ body_6_6_2a = (
     P("Toggle a modal by clicking the button below."),
 )
 
+# will be inserted at the end of `<body>`
 modal_6_6_2 = Div(
     Article(
         Header(
@@ -3815,25 +3815,9 @@ modal_6_6_2 = Div(
     id="modal",
 )
 
-# def open_modal():
-#     return """
-#     <script>
-#         document.getElementById('modal-demo').querySelector('button').addEventListener('click', function() {
-#             document.getElementById('modal-demo').setAttribute('open', 'true');
-#         });
-#     </script>
-#     """
-
-# btnmod_6_6_2a = Article(
-#     Button("Open Modal", cls="contrast", hx_post="/open_modal", hx_target="#modal-container", hx_swap="innerHTML"),
-#     id="modal-container",
-# )
-
 btnmod_6_6_2a = Article(
     Button("Open Modal", hx_get="/modal", hx_target="body", hx_swap="beforeend"),
 )
-
-# <button class="btn primary" hx-get="/modal" hx-target="body" hx-swap="beforeend">Open a Modal</button>
 
 body_6_6_2b = (
     P("The modal can be closed by clicking the close button or by clicking outside the modal."),
@@ -3846,21 +3830,60 @@ body_6_6_2b = (
     P("To open a modal, add the ", Code("open", cls="highlight"), " attribute to the ", Code("<dialog>", cls="highlight language-html"), " container."),
 )
 
-
-
 sec_6_6_2 = section(
     body_6_6_2a,
-    # modal_6_6_2,
     btnmod_6_6_2a,
     body_6_6_2b,
     lv=4, title="Demo",
 )
 #———————————————————
 
+body_6_6_3a = (
+    P("Modals come with 3 utility classes."),
+    P("These classes are not available in the class-less version."),
 
+    P(Code(".modal-is-open", cls="highlight"), " prevents any scrolling and interactions below the modal."),
+)
 
+pico_6_6_3a = div_code(
+    code="""<!doctype html>
+<html class="modal-is-open">
+  ...
+</html>""",
+    lang="html",
+)
+
+body_6_6_3b = (
+    P(Code(".modal-is-opening"), " brings an opening animation."),
+)
+
+pico_6_6_3b = div_code(
+    code="""<!doctype html>
+<html class="modal-is-open modal-is-opening">
+  ...
+</html>""",
+    lang="html",
+)
+
+body_6_6_3c = (
+    P(Code(".modal-is-closing"), " brings an closing animation."),
+)
+
+pico_6_6_3c = div_code(
+    code="""<!doctype html>
+<html class="modal-is-open modal-is-closing">
+  ...
+</html>""",
+    lang="html",
+)
 
 sec_6_6_3 = section(
+    body_6_6_3a,
+    pico_6_6_3a,
+    body_6_6_3b,
+    pico_6_6_3b,
+    body_6_6_3c,
+    pico_6_6_3c,
     lv=4, title="Utilities",
 )
 #———————————————————
@@ -4097,7 +4120,9 @@ sections = (
     sec_7_0_0,
 )
 # modal = modal_6_6_2
-page = (title, html, main(sections), modal_6_6_2)
+page = (title, html, main(sections), 
+        # modal_6_6_2,
+        )
 
 # Home page
 @rt("/")
@@ -4124,9 +4149,30 @@ async def post(request: Request):
     
     return HTMLResponse(content=response_content)
 
+def render_modal():
+    return f"""
+    <dialog id="modal" open>
+        <article>
+            <header>
+                <button aria-label="Close" rel="prev" hx-get="/close_modal" hx-target="#modal" hx-swap="outerHTML">×</button>
+                <h2>Confirm Your Membership</h2>
+            </header>
+            <p>Thank you for signing up for a membership!</p>
+            <ul>
+                <li>Membership: Individual</li>
+                <li>Price: $10</li>
+            </ul>
+            <footer>
+                <button aria-label="Closed" class="secondary" hx-get="/close_modal" hx-target="#modal" hx-swap="outerHTML">Cancel</button>
+                <button>Confirm</button>
+            </footer>
+        </article>
+    </dialog>
+    """
+
 @rt("/modal")
 async def get():
-    return HTMLResponse(content=str(modal_6_6_2))
+    return HTMLResponse(content=render_modal())
 
 @rt("/close_modal")
 async def get():
