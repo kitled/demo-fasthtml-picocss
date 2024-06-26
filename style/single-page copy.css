@@ -1,5 +1,30 @@
+:root {
+    /* font-size: 100%; */
+    line-height: calc(var(--pico-line-height)*1.2);
+}
 
 
+section>h1,
+section>h2,
+section>h3,
+section>h4,
+section>h5,
+section>h6 {
+    color: var(--pico-primary-hover);
+}
+
+#content > section:nth-child(1) {
+    margin-top: calc(var(--pico-spacing)* 7);
+}
+main>[role=document] section {
+    margin-top: calc(var(--pico-spacing)* 12);
+}
+main>[role=document] section>section {
+    margin-top: calc(var(--pico-spacing)* 7);
+}
+main>[role=document] section>section>section {
+    margin-top: calc(var(--pico-spacing)* 3);
+}
 
 dialog.example {
     z-index: inherit;
@@ -10,77 +35,43 @@ dialog.example {
 }
 
 
-/* 
-.code {
-    position: relative;
-    background-color: var(--pico-card-background-color)
-}
-.code pre {
-    margin-bottom: 0
-}
-.code code {
-    min-width: -moz-min-content;
-    min-width: min-content;
-    margin-right: var(--pico-block-spacing-horizontal);
-    padding: 0
+code,
+kbd {
+    display: inline-block;
+    padding: .375rem;
 }
 
-
-.code>a.copy-to-clipboard {
-    z-index: 1;
-    position: absolute;
-    top: 1rem;
-    right: 0;
-    padding: .25rem 1rem .25rem .25rem;
-    background-color: var(--pico-card-background-color);
-    color: var(--pico-code-comment);
-    transition: color var(--pico-transition)
-}
-.code>a.copy-to-clipboard>svg {
-    display: block;
-    width: 1.125rem;
-    height: 1.125rem;
-    opacity: .5;
-    transition: opacity var(--pico-transition)
+div.code pre {
+    border: 2px solid var(--pico-border-color) !important;
+    background-color: transparent !important;
 }
 
-.code>a.copy-to-clipboard svg.check {
-    color: var(--pico-code-copied);
-    opacity: 1
+div.code > pre > code.highlight.hljs {
+    background-color: #181c25 !important;
+    padding: 1rem 0rem !important;
+    border: var(--pico-border-width) solid var(--pico-table-border-color) !important;
 }
 
-.code>a.copy-to-clipboard[data-tooltip]:after,.code>a.copy-to-clipboard[data-tooltip]:before {
-    font-size: .75em
+div.code {
+    background-color: transparent;
+    /* margin-bottom: 0; */
 }
 
-.code>a.copy-to-clipboard[data-tooltip]:has(svg.check):after {
-    display: none
-}
-
-.code:after {
-    position: absolute;
-    inset: 0;
-    border-radius: var(--pico-border-radius);
-    content: "";
-    pointer-events: none
-}
-
-
-
-.code:not(article footer.code) {
-    margin-bottom: var(--pico-block-spacing-vertical);
-    overflow: hidden;
-    border-radius: var(--pico-border-radius);
-    box-shadow: var(--pico-card-box-shadow)
+/* p code.hljs {
+    background-color: rgba(0,0,0,0) !important;
+    background-color: var(--pico-code-background-color) !important;
+    padding: 0 !important;
 } */
+/* border: none !important; */
 
+.hljs-ln {
+    margin: 0 !important;
+}
 
-
-
-
-
-
-
+.hljs-ln-line {
+    /* background-color: rgba(0,0,0,0) !important; */
+    border: none;
+}
 
 /* for block of numbers */
 .hljs-ln-numbers {
@@ -92,11 +83,12 @@ dialog.example {
     user-select: none;
 
     text-align: right;
-    color: #ccc;
-    border-right: 0px solid #CCC;
-    vertical-align: top;
-    padding: 0.08rem 20px 0.08rem 20px !important;
-    background-color: rgba(0,0,0,0) !important;
+    color: var(--pico-muted-color);
+    border-right: var(--pico-border-width) solid var(--pico-table-border-color);
+    vertical-align: middle;
+    padding: 0.08rem 1rem 0.08rem 1rem !important;
+    background-color: transparent;
+    /* background-color: rgba(0,0,0,0) !important; */
     /* padding: 0 20px 0 20px; */
     /* top right bottom left */
     /* your custom style here */
@@ -104,7 +96,26 @@ dialog.example {
 
 /* for block of code */
 .hljs-ln-code {
+    vertical-align: middle;
+    padding: 0.08rem 1rem 0.08rem 1rem !important;
+    background-color: transparent;
     /* padding-left: 20px !important; */
-    background-color: rgba(0,0,0,0) !important;
+    /* background-color: rgba(0,0,0,0) !important; */
 }
+
+/* Padding for 1-line (not line-numbered) code block */
+div.code > pre > code > span {
+    padding: 0.08rem 1rem 0.08rem 1rem !important;
+}
+
+/* Restore Pico CSS for inline code */
+p code.hljs {
+    padding: .375rem;
+    background-color: var(--pico-code-background-color) !important;
+}
+/* Remove copy button from inline code */
+#content p > button.hljs-copy-button {
+    display: none;
+}
+
 

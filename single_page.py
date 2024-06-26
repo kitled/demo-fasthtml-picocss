@@ -15,7 +15,7 @@ head = (
     )
 line_numbers = (
     Script(src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"),
-    Script("hljs.highlightAll(); hljs.initLineNumbersOnLoad();")
+    Script("hljs.highlightAll(); hljs.initLineNumbersOnLoad({singleLine: false});")
     )
 #—————————————————————————————————————————————————————————————————————————————
 # Page-specific
@@ -69,6 +69,16 @@ def theme_switch():
 #—————————————————————————————————————————————————————————————————————————————
 # Helper functions to build proper HTML structure (nesting, etc.)
 # Must-have to change ALL at once (CSS class, HTML layout, whatever)
+
+def c(code, lang=None):
+    '''Returns an inline <code> block.
+    Use within <h4> sections to display code examples.
+    '''
+    if lang:
+        cls = "inline-code highlight language-"+lang
+    else:
+        cls = "inline-code highlight"
+    return Code(code, cls=cls)
 
 def div_code(code, lang=None):
     '''Returns a <div> wrapping a <pre><code> block.
@@ -204,7 +214,7 @@ body_1_1_1 = (
         """ and link """,
         Code("/css/pico.min.css"),
         """ in the """,
-        Code("""<head>""", cls="language-html", ),
+        c("""<head>""", lang="html", ),
         """ of your website.""",
     ),
     pico_1_1_1,
@@ -261,7 +271,7 @@ pico_1_1_5 = div_code(
     </main>
   </body>
 </html>""",
-    # lang="html",
+    lang="html",
 )
 
 fh_1_1_5 = div_code(
