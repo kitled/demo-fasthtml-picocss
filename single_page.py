@@ -70,7 +70,7 @@ def theme_switch():
 # Helper functions to build proper HTML structure (nesting, etc.)
 # Must-have to change ALL at once (CSS class, HTML layout, whatever)
 
-def c(code, lang=None):
+def span_code(code, lang=None):
     '''Returns an inline <code> block.
     Use within <h4> sections to display code examples.
     '''
@@ -78,7 +78,7 @@ def c(code, lang=None):
         cls = "inline-code highlight language-"+lang
     else:
         cls = "inline-code highlight"
-    return Code(code, cls=cls)
+    return CodeX(code, cls=cls)
 
 def div_code(code, lang=None):
     '''Returns a <div> wrapping a <pre><code> block.
@@ -87,7 +87,7 @@ def div_code(code, lang=None):
     if lang:
         res = Div(
             Pre(
-                Code(code,
+                CodeX(code,
                     cls="highlight language-"+lang
                 ),
             ),
@@ -96,7 +96,7 @@ def div_code(code, lang=None):
     else:
         res = Div(
             Pre(
-                Code(code,
+                CodeX(code,
                     cls="highlight",
                 ),
             ),
@@ -212,9 +212,9 @@ body_1_1_1 = (
             target="_blank"
         ),
         """ and link """,
-        Code("/css/pico.min.css"),
+        span_code("/css/pico.min.css"),
         """ in the """,
-        c("""<head>""", lang="html", ),
+        span_code("""<head>""", lang="html", ),
         """ of your website.""",
     ),
     pico_1_1_1,
@@ -1981,7 +1981,7 @@ sec_5_2_7 = section(
     lv=3, title="Readonly",
 )
 #——————————————————
-body_5_2_8a = P("Validation states are provided with ",Code("aria-invalid"), ".")
+body_5_2_8a = P("Validation states are provided with ", Code("aria-invalid"), ".")
 
 art_5_2_8a = article(
     Input(type="text", name="valid", value="Valid", aria_invalid="false"),

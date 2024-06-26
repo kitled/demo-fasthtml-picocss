@@ -1,8 +1,7 @@
-:root {
-    /* font-size: 100%; */
-    line-height: calc(var(--pico-line-height)*1.2);
-}
-
+/* font-size: 100%; */
+/* line-height: calc(var(--pico-line-height)*1.2); */
+/* :root {
+} */
 
 section>h1,
 section>h2,
@@ -26,6 +25,7 @@ main>[role=document] section>section>section {
     margin-top: calc(var(--pico-spacing)* 3);
 }
 
+/* Put modals "in-page" rather than as a typical overlay. */
 dialog.example {
     z-index: inherit;
     position: relative;
@@ -35,10 +35,26 @@ dialog.example {
 }
 
 
-code,
-kbd {
+
+
+
+
+/* Restore Pico CSS for inline code */
+p code.inline-code.hljs {
+    padding: .25rem !important;
+    background-color: var(--pico-code-background-color) !important;
+}
+/* Remove copy button from inline code */
+#content p > button.hljs-copy-button {
+    display: none;
+}
+
+
+
+
+code, kbd {
     display: inline-block;
-    padding: .375rem;
+    padding: .25rem;
 }
 
 div.code pre {
@@ -47,7 +63,7 @@ div.code pre {
 }
 
 div.code > pre > code.highlight.hljs {
-    background-color: #181c25 !important;
+    background-color: #0e1118 !important;
     padding: 1rem 0rem !important;
     border: var(--pico-border-width) solid var(--pico-table-border-color) !important;
 }
@@ -107,15 +123,3 @@ div.code {
 div.code > pre > code > span {
     padding: 0.08rem 1rem 0.08rem 1rem !important;
 }
-
-/* Restore Pico CSS for inline code */
-p code.hljs {
-    padding: .375rem;
-    background-color: var(--pico-code-background-color) !important;
-}
-/* Remove copy button from inline code */
-#content p > button.hljs-copy-button {
-    display: none;
-}
-
-
