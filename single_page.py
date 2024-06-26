@@ -96,16 +96,6 @@ def div_code(code, lang=None):
             cls='code',
         )
 
-# TRY: make two wrapper versions of div_code(…) function:
-#     1. cl_h(…, lang='html')    🡆 HTML
-#     2. cl_f(…, lang='python')  🡆 FastHTML (Python)
-# Advantages:
-# - everything hardwired even `lang` → it will never change in relation to the code itself but to the highlighter
-# - readability
-#   - only diff is style, logic is the same
-# - maintainability (→ select all HTML or all Python at once)
-# - faster to write
-
 def cl_h(code, lang='html'):
     '''Think of this as div_code_html().
     '''
@@ -115,16 +105,6 @@ def cl_f(code, lang='python'):
     '''Think of this as div_code_python_fasthtml().
     '''
     return div_code(code, lang)
-
-
-
-# def div_code_footer(code, lang=None):
-#     '''⚠ DEPRECATED → looks bad, useless.
-    
-#     Returns a <footer> wrapping a <pre><code> block.
-#     Use in <article> to display code examples.
-#     '''
-#     return Footer(div_code(code, lang), cls="code")
 
 def heading(lv:int, title:str, desc=None):
     '''Returns a header block with title and anchor link. Followed by optional description.
@@ -211,7 +191,7 @@ def main(*lv2_s, aside_tags=None, **kwargs):
 # 1.1.4 Install with Composer
 # 1.1.5 Starter HTML template
 
-pico_1_1_1 = div_code(
+pico_1_1_1 = cl_h(
     """<link rel="stylesheet" href="css/pico.min.css" />""",
     lang="html",
     )
@@ -240,7 +220,7 @@ sec_1_1_1 = section(
 
 #  ＋
 
-pico_1_1_2 = div_code(
+pico_1_1_2 = cl_h(
 """<link 
   rel="stylesheet" 
   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
@@ -268,7 +248,7 @@ sec_1_1_2 = section(body_1_1_2,
 
 #  ＋
 
-pico_1_1_5 = div_code(
+pico_1_1_5 = cl_h(
 """<!doctype html>
 <html lang="en">
   <head>
@@ -287,7 +267,7 @@ pico_1_1_5 = div_code(
     lang="html",
 )
 
-fh_1_1_5 = div_code(
+fh_1_1_5 = cl_f(
 """from fasthtml.common import *
 
 html = Html(lang='en')
@@ -305,8 +285,7 @@ rt = app.route
 
 @rt("/")
 def get():
-    return html, Main(H1('Hello world!'), cls="container")""",
-    lang="python",
+    return html, Main(H1('Hello world!'), cls="container")"""
 )
 
 
@@ -439,7 +418,7 @@ def art_1_3_2(dark:bool=False) -> Article:
 
 art_1_3_2a = art_1_3_2()
 art_1_3_2b = art_1_3_2(dark=True), 
-fh_1_3_2 = P("FastHTML 🡇", cls="fh-cue"), div_code(
+fh_1_3_2 = P("FastHTML 🡇", cls="fh-cue"), cl_h(
 """Article(…, data_theme="light")\nArticle(…, data_theme="dark")""", 
     lang="python",
     )
@@ -592,7 +571,7 @@ sec_3_1_1 = section(
 
 body_3_1_2 = (
     P(span_code(".container"), " provides a centered container with a fixed width."),
-    div_code(
+    cl_h(
 """<body>
   <main class="container">
     ...
@@ -608,7 +587,7 @@ sec_3_1_2 = section(
 
 body_3_1_3 = (
     P(span_code(".container-fluid"), " provides a full-width container."),
-    div_code(
+    cl_h(
 """<body>
   <main class="container-fluid">
     ...
@@ -666,7 +645,7 @@ body_3_2_1 = (
     ),
 )
 
-pico_3_2_1 = div_code(
+pico_3_2_1 = cl_h(
 """<body>
   <header>...</header>
   <main>...</main>
@@ -692,7 +671,7 @@ body_3_2_2a = (
     P("Useful for ", A("React", href="https://reactjs.org/"), ", ", A("Gatsby", href="https://www.gatsbyjs.com/"), " or ", A("Next.js", href="https://nextjs.org/"), "."),
 )
 
-pico_3_2_2a = div_code(
+pico_3_2_2a = cl_h(
 """/* Custom Class-less version for React */
 @use "pico" with (
   
@@ -719,7 +698,7 @@ pico_3_2_2b = div_code(
 #root > footer {
   ...
 }
-""", lang="css"),
+""", lang='css'),
 
 body_3_2_2c = (
     P(
@@ -771,7 +750,7 @@ art_3_3_1 = Article(
         cls="grid"
     ),
     Footer(
-        div_code(
+        cl_h(
 """<div class="grid">
   <div>1</div>
   <div>2</div>
@@ -845,7 +824,7 @@ table_3_4_1 = (Div(
     cls="overflow-auto",
 ))
 
-pico_3_4_1 = div_code(
+pico_3_4_1 = cl_h(
 """<div class="overflow-auto">
   <table>
     …
@@ -945,7 +924,7 @@ art_4_1_2 = article(
     H5("Heading 5"),
     H6("Heading 6"),)
     
-pico_4_1_2 = div_code(
+pico_4_1_2 = cl_h(
 code="""<h1>Heading 1</h1>
 <h2>Heading 2</h2>
 <h3>Heading 3</h3>
@@ -1004,7 +983,7 @@ art_4_1_6 = article(
     Hr(),
     P("Paragraph below the horizontal line."),
 )
-pico_4_1_6 = div_code(
+pico_4_1_6 = cl_h(
     code="""<p>Paragraph above the horizontal line.</p>
 <hr />
 <p>Paragraph below the horizontal line.</p>""",
@@ -1040,7 +1019,7 @@ art_4_2_0a = article(
     A("Contrast", cls="contrast"),
 )
 
-pico_4_2_0a = div_code(
+pico_4_2_0a = cl_h(
     code="""<a href="#">Primary</a>
 <a href="#" class="secondary">Secondary</a>
 <a href="#" class="contrast">Contrast</a>""",
@@ -1069,7 +1048,7 @@ art_4_2_0b = article(
     A("Regular link"),
 )
 
-pico_4_2_0b = div_code(
+pico_4_2_0b = cl_h(
     code="""<a href="#">Regular link</a>
 <a href="#" aria-current="page">Active link</a>
 <a href="#">Regular link</a>""",
@@ -1108,7 +1087,7 @@ art_4_3_1 = article(
     Button("Button"),
 )
 
-pico_4_3_1 = div_code(
+pico_4_3_1 = cl_h(
     code="""<button>Button</button>""",
     lang="html",
 )
@@ -1129,7 +1108,7 @@ art_4_3_2a = article(Div(
     )
 )
 
-pico_4_3_2 = div_code(
+pico_4_3_2 = cl_h(
     code="""<button class="secondary">Button</button>
 <button class="contrast">Button</button>""",
     lang="html",
@@ -1144,7 +1123,7 @@ art_4_3_2b = article(Div(
     cls="grid",
 ))
 
-pico_4_3_2b = div_code(
+pico_4_3_2b = cl_h(
     code="""<button class="outline">Primary</button>
 <button class="outline secondary">Secondary</button>
 <button class="outline contrast">Contrast</button>""",
@@ -1177,7 +1156,7 @@ art_4_3_3a = article(
     Input(type="button", value="Input"),
 )
 
-pico_4_3_3a = div_code(
+pico_4_3_3a = cl_h(
     code="""<input type="submit" />
 <input type="button" value="Input" />""",
     lang="html",
@@ -1189,7 +1168,7 @@ art_4_3_3b = article(
     Input(type="reset"),
 )
 
-pico_4_3_3b = div_code(
+pico_4_3_3b = cl_h(
     code="""<input type="reset" />""",
     lang="html",
 )
@@ -1215,7 +1194,7 @@ art_4_3_4 = article(
     Button("Button", disabled=True),
 )
 
-pico_4_3_4 = div_code(
+pico_4_3_4 = cl_h(
     code="""<button disabled>Button</button>""",
     lang="html",
 )
@@ -1237,7 +1216,7 @@ art_4_3_5 = article(
     Div("Div as a button", role="button", tabindex="0"),
 )
 
-pico_4_3_5 = div_code(
+pico_4_3_5 = cl_h(
     code="""<div role="button" tabindex="0">Div as a button</div>""",
     lang="html",
 )
@@ -1262,7 +1241,7 @@ art_4_3_6 = article(
     )
 )
 
-pico_4_3_6 = div_code(
+pico_4_3_6 = cl_h(
     code="""<div role="group">
   <button>Button</button>
   <button>Button</button>
@@ -1344,7 +1323,7 @@ table_4_4_1 = Table(
     )
 )
 
-pico_4_4_1 = div_code(
+pico_4_4_1 = cl_h(
     code="""<table>
   <thead>
     <tr>
@@ -1469,7 +1448,7 @@ table_4_4_2 = Table(
     )
 )
 
-pico_4_4_2 = div_code(
+pico_4_4_2 = cl_h(
     code="""<table>
   <thead data-theme="light">
     ...
@@ -1539,7 +1518,7 @@ table_4_4_3 = Table(
     cls="striped",
 )
 
-pico_4_4_3 = div_code(
+pico_4_4_3 = cl_h(
     code="""<table class="striped">
   ...
 </table>""",
@@ -1610,7 +1589,7 @@ art_5_1_1a = article(
 )
    
 
-pico_5_1_1a = div_code(
+pico_5_1_1a = cl_h(
     code="""<form>
   <fieldset>
     <label>
@@ -1655,7 +1634,7 @@ art_5_1_1b = article(
     ),
 )
 
-pico_5_1_1b = div_code(
+pico_5_1_1b = cl_h(
     code="""<form>
   
   <!-- Input inside label -->
@@ -1701,7 +1680,7 @@ art_5_1_2 = article(
     Small("We'll never share your email with anyone else.", id="email-helper"),
 )
 
-pico_5_1_2 = div_code(
+pico_5_1_2 = cl_h(
     code="""<input
   type="email"
   name="email"
@@ -1742,7 +1721,7 @@ art_5_1_3 = article(
     ),
 )
 
-pico_5_1_3 = div_code(
+pico_5_1_3 = cl_h(
     code="""<form>
   <fieldset class="grid">
     <input 
@@ -1792,7 +1771,7 @@ art_5_1_4 = article(
     ),
 )
 
-pico_5_1_4 = div_code(
+pico_5_1_4 = cl_h(
     code="""<form>
   <fieldset role="group">
     <input
@@ -1843,7 +1822,7 @@ art_5_2_1 = article(
     Input(type="url", name="url", placeholder="Url", aria_label="Url"),
 )
 
-pico_5_2_1 = div_code(
+pico_5_2_1 = cl_h(
     code="""<input type="text" name="text" placeholder="Text" aria-label="Text" />
 <input type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" />
 <input type="number" name="number" placeholder="Number" aria-label="Number" />
@@ -1869,7 +1848,7 @@ art_5_2_2 = article(
     Input(type="time", name="time", aria_label="Time"),
 )
 
-pico_5_2_2 = div_code(
+pico_5_2_2 = cl_h(
     code="""<input type="date" name="date" aria-label="Date" />
 <input type="datetime-local" name="datetime-local" aria-label="Datetime local" />
 <input type="month" name="month" aria-label="Month" />
@@ -1893,7 +1872,7 @@ art_5_2_3 = article(
     Input(type="search", name="search", aria_label="Search"),
 )
 
-pico_5_2_3 = div_code(
+pico_5_2_3 = cl_h(
     code="""<input type="search" name="search" placeholder="Search" aria-label="Search" />""",
     lang="html",
 )
@@ -1914,7 +1893,7 @@ art_5_2_4 = article(
     Input(type="color", value="#ff9500", aria_label="Color picker"),
 )
 
-pico_5_2_4 = div_code(
+pico_5_2_4 = cl_h(
     code="""<input
   type="color"
   value="#ff9500"
@@ -1936,7 +1915,7 @@ art_5_2_5 = article(
     Input(type="file"),
 )
 
-pico_5_2_5 = div_code(
+pico_5_2_5 = cl_h(
     code="""<input type="file" />""",
     lang="html",
 )
@@ -1956,7 +1935,7 @@ art_5_2_6 = article(
           disabled=True,),
 )
 
-pico_5_2_6 = div_code(
+pico_5_2_6 = cl_h(
     code="""<input
   type="text"
   name="text"
@@ -1977,7 +1956,7 @@ art_5_2_7 = article(
     Input(type="text", name="text", value="Read-only", aria_label="Read-only input", readonly=True),
 )
 
-pico_5_2_7 = div_code(
+pico_5_2_7 = cl_h(
     code="""<input
   type="text"
   name="text"
@@ -2001,7 +1980,7 @@ art_5_2_8a = article(
     Input(type="text", name="invalid", value="Invalid", aria_invalid="true"),
 )
 
-pico_5_2_8a = div_code(
+pico_5_2_8a = cl_h(
     code="""<input
   type="text"
   name="valid"
@@ -2027,7 +2006,7 @@ art_5_2_8b = article(
     Small("Please provide a valid value!"),
 )
 
-pico_5_2_8b = div_code(
+pico_5_2_8b = cl_h(
     code="""<input
   type="text"
   name="valid"
@@ -2085,7 +2064,7 @@ art_5_3_1 = article(
     Textarea(name="bio", placeholder="Write a professional short bio...", aria_label="Professional short bio"),
 )
 
-pico_5_3_1 = div_code(
+pico_5_3_1 = cl_h(
     code="""<textarea
   name="bio"
   placeholder="Write a professional short bio..."
@@ -2106,7 +2085,7 @@ art_5_3_2 = article(
     Textarea("Disabled", name="disabled", disabled=True),
 )
 
-pico_5_3_2 = div_code(
+pico_5_3_2 = cl_h(
     code="""<textarea name="disabled" disabled>
   Disabled
 </textarea>""",
@@ -2124,7 +2103,7 @@ art_5_3_3 = article(
     Textarea("Read-only", name="readonly", readonly=True),
 )
 
-pico_5_3_3 = div_code(
+pico_5_3_3 = cl_h(
     code="""<textarea name="readonly" readonly>
   Read-only
 </textarea>""",
@@ -2145,7 +2124,7 @@ art_5_3_4a = article(
     Small("Looks good!"),
 )
 
-pico_5_3_4a = div_code(
+pico_5_3_4a = cl_h(
     code="""<textarea name="valid" aria-invalid="false">
   Valid
 </textarea>
@@ -2165,7 +2144,7 @@ art_5_3_4b = article(
     Small("Please provide a valid value!"),
 )
 
-pico_5_3_4b = div_code(
+pico_5_3_4b = cl_h(
     code="""<textarea
   name="valid"
   aria-invalid="false"
@@ -2233,7 +2212,7 @@ art_5_4_1 = article(
     ),
 )
 
-pico_5_4_1 = div_code(
+pico_5_4_1 = cl_h(
     code="""<select name="favorite-cuisine" aria-label="Select your favorite cuisine..." required>
   <option selected disabled value="">
     Select your favorite cuisine...
@@ -2268,7 +2247,7 @@ art_5_4_2 = article(
     ),
 )
 
-pico_5_4_2 = div_code(
+pico_5_4_2 = cl_h(
     code="""<select aria-label="Select your favorite snacks..." multiple size="6">
   <option disabled>
     Select your favorite snacks...
@@ -2298,7 +2277,7 @@ art_5_4_3 = article(
     ),
 )
 
-pico_5_4_3 = div_code(
+pico_5_4_3 = cl_h(
     code="""<select name="meal-type" aria-label="Select a meal type..." disabled>
   <option>Select a meal type...</option>
   <option>...</option>
@@ -2337,7 +2316,7 @@ art_5_4_4 = article(
     Small("Please select your favorite pizza topping!"),
 )
 
-pico_5_4_4 = div_code(
+pico_5_4_4 = cl_h(
     code="""<select aria-invalid="false">
   ...
 </select>
@@ -2398,7 +2377,7 @@ art_5_5_1 = article(
     ),
 )
 
-pico_5_5_1 = div_code(
+pico_5_5_1 = cl_h(
     code="""<fieldset>
   <legend>Language preferences:</legend>
   <label>
@@ -2440,7 +2419,7 @@ art_5_5_2 = article(
     ),
 )
 
-pico_5_5_2 = div_code(
+pico_5_5_2 = cl_h(
     code="""<fieldset>
   <legend>Language preferences:</legend>
   <input type="checkbox" id="hindi" name="hindi" checked />
@@ -2475,7 +2454,7 @@ script_5_5_3 = Script(
     checkbox.indeterminate = true;"""
 )
 
-pico_5_5_3 = div_code(
+pico_5_5_3 = cl_h(
     code="""<label>
   <input type="checkbox" id="indeterminate" name="indeterminate" />
   Indeterminate
@@ -2505,7 +2484,7 @@ art_5_5_4 = article(
     Label(Input("Invalid", type="checkbox", name="invalid", aria_invalid="true")),
 )
 
-pico_5_5_4 = div_code(
+pico_5_5_4 = cl_h(
     code="""<label>
   <input type="checkbox" name="valid" aria-invalid="false" />
   Valid
@@ -2554,7 +2533,7 @@ art_5_6_1 = article(
     ),
 )
 
-pico_5_6_1 = div_code(
+pico_5_6_1 = cl_h(
     code="""<fieldset>
   <legend>Language preference:</legend>
   <label>
@@ -2596,7 +2575,7 @@ art_5_6_2 = article(
     ),
 )
 
-pico_5_6_2 = div_code(
+pico_5_6_2 = cl_h(
     code="""<fieldset>
   <legend>Second language:</legend>
   <input type="radio" id="hindi" name="second-language" checked />
@@ -2622,7 +2601,7 @@ art_5_6_3 = article(
     Label(Input(type="radio", name="invalid", aria_invalid="true"), "Invalid", ),
 )
 
-pico_5_6_3 = div_code(
+pico_5_6_3 = cl_h(
     code="""<label>
   <input type="radio" name="valid" aria-invalid="false" />
   Valid
@@ -2665,7 +2644,7 @@ art_5_7_1 = article(
     ),
 )
 
-pico_5_7_1 = div_code(
+pico_5_7_1 = cl_h(
     code="""<fieldset>
   <label>
     <input name="terms" type="checkbox" role="switch" />
@@ -2692,7 +2671,7 @@ art_5_7_2 = article(
     ),
 )
 
-pico_5_7_2 = div_code(
+pico_5_7_2 = cl_h(
     code="""<fieldset>
   <label>
     <input name="publish" type="checkbox" role="switch" disabled />
@@ -2722,7 +2701,7 @@ art_5_7_3 = article(
     ),
 )
 
-pico_5_7_3 = div_code(
+pico_5_7_3 = cl_h(
     code="""<fieldset>
   <label>
     <input name="2fa" type="checkbox" role="switch" aria-invalid="false" />
@@ -2759,7 +2738,7 @@ art_5_8_1 = article(
     Label(Input("Contrast", type="range", value="40")),
 )
 
-pico_5_8_1 = div_code(
+pico_5_8_1 = cl_h(
     code="""<label>
   Brightness
   <input type="range" />
@@ -2825,7 +2804,7 @@ art_6_1_1 = article(
         )),
 )
 
-pico_6_1_1 = div_code(
+pico_6_1_1 = cl_h(
     code="""<details open>
   <summary>Accordion 1</summary>
   <p>...</p>
@@ -2860,7 +2839,7 @@ art_6_1_2a = article(
     Details(Summary("Button", role="button"), P("Owls are nocturnal birds of prey that are known for their distinctive hooting calls. A group of owls is called a parliament, and these birds are often associated with wisdom and intelligence. Owls have excellent hearing and vision, which helps them hunt prey in the dark.")),
 )
 
-pico_6_1_2a = div_code(
+pico_6_1_2a = cl_h(
     code="""<details>
   <summary role="button">Owls</summary>
   <p>...</p>
@@ -2900,7 +2879,7 @@ art_6_1_2b = article(
         ),
 )
 
-pico_6_1_2b = div_code(
+pico_6_1_2b = cl_h(
     code="""<!-- Secondary -->
 <details>
   <summary role="button" class="secondary">Secondary</summary>
@@ -2958,7 +2937,7 @@ sec_6_1_0 = section(
 
 art_6_2_1 = Card("I’m a card!")
 
-pico_6_2_1 = div_code(
+pico_6_2_1 = cl_h(
     code="""<article>I’m a card!</article>""",
     lang="html",
 )
@@ -2987,7 +2966,7 @@ art_6_2_2 = Article(
     Footer("Footer"),
 )
 
-pico_6_2_2 = div_code(
+pico_6_2_2 = cl_h(
     code="""<article>
   <header>Header</header>
   Body
@@ -3057,7 +3036,7 @@ art_6_3_1 = article(
     cls="grid",
 )
 
-pico_6_3_1 = div_code(
+pico_6_3_1 = cl_h(
     code="""<!-- Dropdown -->
 <details class="dropdown">
   <summary>Dropdown</summary>
@@ -3120,7 +3099,7 @@ art_6_3_2 = article(
     ),
 )
 
-pico_6_3_2 = div_code(
+pico_6_3_2 = cl_h(
     code="""<!-- Radios -->
 <details class="dropdown">
   <summary>
@@ -3209,7 +3188,7 @@ art_6_3_3a = article(
     ),
 )
 
-pico_6_3_3a = div_code(
+pico_6_3_3a = cl_h(
     code="""<details class="dropdown">
   <summary role="button">
     Dropdown as a button
@@ -3264,7 +3243,7 @@ art_6_3_3b = article(
     ),
 )
 
-pico_6_3_3b = div_code(
+pico_6_3_3b = cl_h(
     code="""<!-- Primary -->
 <details class="dropdown">
   <summary role="button">
@@ -3359,7 +3338,7 @@ art_6_3_4 = article(
     ),
 )
 
-pico_6_3_4 = div_code(
+pico_6_3_4 = cl_h(
     code="""<details class="dropdown">
   <summary aria-invalid="false">
     Valid phase of matter: Solid
@@ -3421,7 +3400,7 @@ art_6_3_5 = article(
     ),
 )
 
-pico_6_3_5 = div_code(
+pico_6_3_5 = cl_h(
     code="""<nav>
   <ul>
     <li><strong>Acme Corp</strong></li>
@@ -3496,7 +3475,7 @@ art_6_4_1 = article(
     ),
 )
 
-pico_6_4_1 = div_code(
+pico_6_4_1 = cl_h(
     code="""<form>
   <fieldset role="group">
     <input name="email" type="email" placeholder="Enter your email" autocomplete="email" />
@@ -3522,7 +3501,7 @@ art_6_4_1b = article(
     ),
 )
 
-pico_6_4_1b = div_code(
+pico_6_4_1b = cl_h(
     code="""<form>
   <fieldset role="group">
     <input name="email" type="email" placeholder="Email" autocomplete="email" />
@@ -3555,7 +3534,7 @@ art_6_4_2 = article(
     ),
 )
 
-pico_6_4_2 = div_code(
+pico_6_4_2 = cl_h(
     code="""<form role="search">
   <input name="search" type="search" placeholder="Search" />
   <input type="submit" value="Search" />
@@ -3583,7 +3562,7 @@ art_6_4_3a = article(
     ),
 )
 
-pico_6_4_3a = div_code(
+pico_6_4_3a = cl_h(
     code="""<div role="group">
   <button>Button</button>
   <button>Button</button>
@@ -3601,7 +3580,7 @@ art_6_4_3b = article(
     ),
 )
 
-pico_6_4_3b = div_code(
+pico_6_4_3b = cl_h(
     code="""<div role="group">
   <button aria-current="true">Active</button>
   <button>Button</button>
@@ -3619,7 +3598,7 @@ art_6_4_3c = article(
     ),
 )
 
-pico_6_4_3c = div_code(
+pico_6_4_3c = cl_h(
     code="""<div role="group">
   <button>Button</button>
   <button class="secondary">Button</button>
@@ -3667,7 +3646,7 @@ art_6_5_1a = article(
     ),
 )
 
-pico_6_5_1a = div_code(
+pico_6_5_1a = cl_h(
     code="""<article aria-busy="true"></article>""",
     lang="html",
 )
@@ -3678,7 +3657,7 @@ art_6_5_1b = article(
     ),
 )
 
-pico_6_5_1b = div_code(
+pico_6_5_1b = cl_h(
     code="""<span aria-busy="true">Generating your link...</span>""",
     lang="html",
 )
@@ -3699,7 +3678,7 @@ art_6_5_1c = article(
     ),
 )
 
-pico_6_5_1c = div_code(
+pico_6_5_1c = cl_h(
     code="""<button aria-busy="true" aria-label="Please wait…" />
 <button aria-busy="true" aria-label="Please wait…" class="secondary" />
 <button aria-busy="true" aria-label="Please wait…" class="contrast" />
@@ -3755,7 +3734,7 @@ modal_6_6_1a = Dialog(
     ),
 
 
-pico_6_6_1a = div_code(
+pico_6_6_1a = cl_h(
     code="""<dialog open>
   <article>
     <header>
@@ -3801,7 +3780,7 @@ modal_6_6_1b = Dialog(
     open="true",
 )
 
-pico_6_6_1b = div_code(
+pico_6_6_1b = cl_h(
     code="""<dialog open>
   <article>
     <h2>Confirm Your Membership</h2>
@@ -3912,7 +3891,7 @@ body_6_6_3a = (
     P(span_code(".modal-is-open", lang='html'), " prevents any scrolling and interactions below the modal."),
 )
 
-pico_6_6_3a = div_code(
+pico_6_6_3a = cl_h(
     code="""<!doctype html>
 <html class="modal-is-open">
   ...
@@ -3924,7 +3903,7 @@ body_6_6_3b = (
     P(span_code(".modal-is-opening"), " brings an opening animation."),
 )
 
-pico_6_6_3b = div_code(
+pico_6_6_3b = cl_h(
     code="""<!doctype html>
 <html class="modal-is-open modal-is-opening">
   ...
@@ -3936,7 +3915,7 @@ body_6_6_3c = (
     P(span_code(".modal-is-closing"), " brings an closing animation."),
 )
 
-pico_6_6_3c = div_code(
+pico_6_6_3c = cl_h(
     code="""<!doctype html>
 <html class="modal-is-open modal-is-closing">
   ...
@@ -3990,7 +3969,7 @@ art_6_7_1 = article(
     )
 )
 
-pico_6_7_1 = div_code(
+pico_6_7_1 = cl_h(
     code="""<nav>
   <ul>
     <li><strong>Acme Corp</strong></li>
@@ -4034,7 +4013,7 @@ art_6_7_2a = article(
     )
 )
 
-pico_6_7_2a = div_code(
+pico_6_7_2a = cl_h(
     code="""<nav>
   <ul>
     <li><strong>Acme Corp</strong></li>
@@ -4062,7 +4041,7 @@ art_6_7_2b = article(
     )
 )
 
-pico_6_7_2b = div_code(
+pico_6_7_2b = cl_h(
     code="""<nav>
   <ul>
     <li><a href="#" class="secondary">...</a></li>
@@ -4105,7 +4084,7 @@ art_6_7_3 = article(
     )
 )
 
-pico_6_7_3 = div_code(
+pico_6_7_3 = cl_h(
     code="""<nav>
   <ul>
     <li><strong>Acme Corp</strong></li>
@@ -4155,7 +4134,7 @@ art_6_7_4 = article(
     )
 )
 
-pico_6_7_4 = div_code(
+pico_6_7_4 = cl_h(
     code="""<nav>
   <ul>
     <li><strong>Acme Corp</strong></li>
@@ -4204,7 +4183,7 @@ art_6_7_5 = article(
     )
 )
 
-pico_6_7_5 = div_code(
+pico_6_7_5 = cl_h(
     code="""<aside>
   <nav>
     <ul>
@@ -4240,7 +4219,7 @@ art_6_7_6a = article(
     )
 )
 
-pico_6_7_6a = div_code(
+pico_6_7_6a = cl_h(
     code="""<nav aria-label="breadcrumb">
   <ul>
     <li><a href="#">Home</a></li>
@@ -4267,7 +4246,7 @@ art_6_7_6b = article(
     )
 )
 
-pico_6_7_6b = div_code(
+pico_6_7_6b = cl_h(
     code="""<nav
   aria-label="breadcrumb"
   style="--pico-nav-breadcrumb-divider: '✨';"
@@ -4347,7 +4326,7 @@ sec_6_7_0 = section(
 #     Progressbar(value="89", max="100"),
 # )
 
-pico_6_8_1 = div_code(
+pico_6_8_1 = cl_h(
     code="""<progress value="89" max="100" />""",
     lang="html",
 )
@@ -4365,7 +4344,7 @@ sec_6_8_1 = section(
 #     Progress(),
 # )
 
-pico_6_8_2 = div_code(
+pico_6_8_2 = cl_h(
     code="""<progress />""",
     lang="html",
 )
@@ -4394,7 +4373,7 @@ art_6_9_1 = article(
     P(Button("Tooltip on a button", data_tooltip="Tooltip")),
 )
 
-pico_6_9_1 = div_code(
+pico_6_9_1 = cl_h(
     code="""<p>Tooltip on a <a href="#" data-tooltip="Tooltip">link</a></p>
 <p>Tooltip on <em data-tooltip="Tooltip">inline element</em></p>
 <p><button data-tooltip="Tooltip">Tooltip on a button</button></p>""",
@@ -4419,7 +4398,7 @@ art_6_9_2 = article(
     cls="grid",
 )
 
-pico_6_9_2 = div_code(
+pico_6_9_2 = cl_h(
     code="""<button data-tooltip="Top">Top</button>
 <button data-tooltip="Right" data-placement="right">Right</button>
 <button data-tooltip="Bottom" data-placement="bottom">Bottom</button>
