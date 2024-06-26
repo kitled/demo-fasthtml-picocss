@@ -69,7 +69,7 @@ def theme_switch():
 #—————————————————————————————————————————————————————————————————————————————
 # Helper functions to build proper HTML structure (nesting, etc.)
 # Must-have to change ALL at once (CSS class, HTML layout, whatever)
-
+# ⚠️ Absolutely minimalist and specific to this website
 def span_code(code, lang=None):
     '''Returns an inline <code> block.
     Use within <h4> sections to display code examples.
@@ -81,25 +81,12 @@ def span_code(code, lang=None):
         cls = "inline-code"
     return Code(code, cls=cls)
 
-# TRY: make two wrapper versions of this function:
-#     1. html()       HTML
-#     2. fast()       FastHTML (Python)
-# Advantages:
-# - everything hardwired even `lang` → it will never change in relation to the code itself but to the highlighter
-# - readability
-#   - only diff is style, logic is the same
-# - maintainability (→ select all HTML or all Python at once)
-# - faster to write
-
 def div_code(code, lang=None):
     '''Returns a <div> wrapping a <pre><code> block.
     Use within <h4> sections to display code examples.
     '''
-
-    if lang:
-        cls='highlight language-'+lang
-    else:
-        cls='highlight'
+    if lang: cls='highlight language-'+lang
+    else:    cls='highlight'
     return Div(
             Pre(
                 Code(code,
@@ -108,6 +95,28 @@ def div_code(code, lang=None):
             ),
             cls='code',
         )
+
+# TRY: make two wrapper versions of div_code(…) function:
+#     1. cl_h(…, lang='html')    🡆 HTML
+#     2. cl_f(…, lang='python')  🡆 FastHTML (Python)
+# Advantages:
+# - everything hardwired even `lang` → it will never change in relation to the code itself but to the highlighter
+# - readability
+#   - only diff is style, logic is the same
+# - maintainability (→ select all HTML or all Python at once)
+# - faster to write
+
+def cl_h(code, lang='html'):
+    '''Think of this as div_code_html().
+    '''
+    return div_code(code, lang)
+
+def cl_f(code, lang='python'):
+    '''Think of this as div_code_python_fasthtml().
+    '''
+    return div_code(code, lang)
+
+
 
 # def div_code_footer(code, lang=None):
 #     '''⚠ DEPRECATED → looks bad, useless.
