@@ -1,7 +1,9 @@
-# FastHTML 💙 Pico CSS
+# FastHTML 🧡 Pico CSS
 *Demonstrating Pico CSS in FastHTML.*
 
-View it live at: <!-- kit + GHP links -->
+View it live at: <kbd>Coming Soon™<kbd> <!-- kit + GHP links -->
+
+Pre-release `v0.0.1-alpha` is a test version. It has most of the Pico CSS documentation thus far.
 
 ## Resources
 
