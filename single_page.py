@@ -81,38 +81,41 @@ def span_code(code, lang=None):
         cls = "inline-code"
     return Code(code, cls=cls)
 
+# TRY: make two wrapper versions of this function:
+#     1. html()       HTML
+#     2. fast()       FastHTML (Python)
+# Advantages:
+# - everything hardwired even `lang` → it will never change in relation to the code itself but to the highlighter
+# - readability
+#   - only diff is style, logic is the same
+# - maintainability (→ select all HTML or all Python at once)
+# - faster to write
+
 def div_code(code, lang=None):
     '''Returns a <div> wrapping a <pre><code> block.
     Use within <h4> sections to display code examples.
     '''
+
     if lang:
-        res = Div(
-            Pre(
-                Code(code,
-                    cls='highlight language-'+lang
-                ),
-            ),
-            cls="code",
-        )
+        cls='highlight language-'+lang
     else:
-        res = Div(
+        cls='highlight'
+    return Div(
             Pre(
                 Code(code,
-                    cls='highlight',
+                    cls=cls
                 ),
             ),
-            cls="code",
+            cls='code',
         )
 
-    return res
-
-def div_code_footer(code, lang=None):
-    '''⚠ DEPRECATED → looks bad, useless.
+# def div_code_footer(code, lang=None):
+#     '''⚠ DEPRECATED → looks bad, useless.
     
-    Returns a <footer> wrapping a <pre><code> block.
-    Use in <article> to display code examples.
-    '''
-    return Footer(div_code(code, lang), cls="code")
+#     Returns a <footer> wrapping a <pre><code> block.
+#     Use in <article> to display code examples.
+#     '''
+#     return Footer(div_code(code, lang), cls="code")
 
 def heading(lv:int, title:str, desc=None):
     '''Returns a header block with title and anchor link. Followed by optional description.
@@ -3869,7 +3872,7 @@ def render_modal():
     </dialog>
     """
 
-
+# will call the above render_modal() in the router (bottom of this file)
 btnmod_6_6_2a = Article(
     Button("Open Modal", hx_get="/modal", hx_target="body", hx_swap="beforeend"),
 )
