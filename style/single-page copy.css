@@ -1,3 +1,62 @@
+html {
+    content: "";
+  }
+  
+  @media (prefers-color-scheme: light) {
+    html {
+      content: "light";
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    html {
+      content: "dark";
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+:root:not([data-theme]) {
+    --fhlpc-code-bg: #0e1118;
+    color-scheme: dark;
+}
+
+
+:root:not([data-theme=dark]),[data-theme=light] {
+    --fhlpc-code-bg: #eee;
+    color-scheme: light;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --fhlpc-code-bg: #0e1118;
+        color-scheme: dark;
+    }
+}
+
+
+
+
+
+
+
+
+[data-theme=light] {
+    --fhlpc-code-bg: #fafafa;
+}
+
+
+[data-theme=dark] {
+    --fhlpc-code-bg: #0e1118;
+}
+
 /* font-size: 100%; */
 /* line-height: calc(var(--pico-line-height)*1.2); */
 /* :root {
@@ -34,7 +93,16 @@ dialog.example {
     inset: inherit;
 }
 
-
+article > div.grid > div {
+    padding: calc(var(--pico-spacing) / 2) 0;
+    border-radius: var(--pico-border-radius);
+    border: var(--pico-border-width) solid #0e1118;
+    background-color: var(--pico-code-background-color);
+    /* color: var(); */
+    color: var(--pico-primary);
+    font-size: .875rem;
+    text-align: center;
+}
 
 
 
@@ -42,7 +110,7 @@ dialog.example {
 /* Restore Pico CSS for inline code */
 p code.inline-code.hljs {
     padding: .25rem !important;
-    background-color: var(--pico-code-background-color) !important;
+    background-color: var(--fhlpc-code-bg) !important;
 }
 /* Remove copy button from inline code */
 #content p > button.hljs-copy-button {
@@ -63,9 +131,9 @@ div.code pre {
 }
 
 div.code > pre > code.highlight.hljs {
-    background-color: #0e1118 !important;
+    background-color: var(--fhlpc-code-bg) !important;
     padding: 1rem 0rem !important;
-    border: var(--pico-border-width) solid var(--pico-table-border-color) !important;
+    /* border: var(--pico-border-width) solid var(--pico-table-border-color) !important; */
 }
 
 div.code {

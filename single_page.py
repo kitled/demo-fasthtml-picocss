@@ -7,11 +7,47 @@ from fastapi import Request
 html = Html(lang='en', 
     # data_theme="light"
     )
+    # document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+# Dark/Lite mode
+# // const prefersDark =
+# //   window.matchMedia &&
+# //   window.matchMedia("(prefers-color-scheme: dark)").matches;
+# // 
+# // document.addEventListener("DOMContentLoaded", function () {
+# //   document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+data_theme = Script('''
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".dark-mode-switcher").forEach(function (switcher) {
+    switcher.addEventListener("click", function (e) {
+      // const theme = document.documentElement.getAttribute('data-theme');
+      if (document.documentElement.getAttribute('data-theme') === "dark") {
+        document.documentElement.setAttribute("data-theme", "light");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+      e.preventDefault();
+    });
+  });
+});
+''')
+
+onload_theme = Script(
+'''const prefersDark =
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+me("html").attribute('data-theme', prefersDark ? 'dark' : 'light');'''
+)
+
+# theme_switch_test = Script('''me("html").attribute('data-theme', 'dark' ? 'light' : 'dark');''')
+
 head = (
     Meta(charset="utf-8"),
     Meta(name="viewport", content="width=device-width, initial-scale=1"),
     Meta(name="color-scheme", content="light dark"),
-    Script(src="https://unpkg.com/hyperscript.org@0.9.12"),
+    # Script(src="https://unpkg.com/hyperscript.org@0.9.12"),
+    # Script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"),
+    data_theme,
     )
 line_numbers = (
     Script(src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"),
@@ -43,6 +79,8 @@ app = FastHTML(hdrs=(
     SortableJS('.sortable'),
     HighlightJS('.highlight'),
     line_numbers,
+    onload_theme,
+    # theme_switch_test,
     # title,
     ))
 rt = app.route
@@ -53,14 +91,28 @@ async def get(fname:str, ext:str): return FileResponse(f'{fname}.{ext}') # type:
 #—————————————————————————————————————————————————————————————————————————————
 # Features
 # Dark/Light mode toggle
+# def theme_switch():
+#     return Article(
+#         Button(
+#             Script('''me("html").on("theme-switcher", async event => { me(event).attribute('data-theme', 'light' ? 'dark' : 'light');'''),
+#         "Toggle theme",
+#         cls="theme-switcher",
+#         # type="button",
+#         # hx_post="/toggle_theme",
+#         # hx_swap="outerHTML",
+#         # hx_target="#theme-switcher"
+#         ),
+#     )
 def theme_switch():
     return Article(
         Button(
         f"Toggle theme",
-        cls="contrast",
-        hx_post="/toggle_theme",
-        hx_swap="outerHTML",
-        hx_target="#theme-switcher"
+        cls="contrast dark-mode-switcher",
+        # type="button",
+        value="Toggle dark mode",
+        # hx_post="/toggle_theme",
+        # hx_swap="outerHTML",
+        # hx_target="#theme-switcher"
         ),
         id="theme-switcher",
         aria_label="Theme switcher",
@@ -4511,26 +4563,6 @@ page = (title, html, main(sections),
 @rt("/")
 def get(): # type: ignore
     return page
-
-# Dark/Light theme switch
-@rt("/toggle_theme")
-async def post(request: Request):
-    # Get the current theme from the button's name attribute
-    current_theme = request.headers.get("HX-Trigger-Name", "").split("(")[-1].strip(")")
-    new_theme = "light" if current_theme == "dark" else "dark"
-
-    response_content = f"""
-    <article id="theme-switcher" aria-label="Theme switcher">
-        <button class="contrast" hx-post="/toggle_theme" hx-swap="outerHTML" hx-target="#theme-switcher" name="theme-toggle({new_theme})">
-            Make {new_theme}!
-        </button>
-    </article>
-    <script>
-        document.documentElement.setAttribute('data-theme', '{current_theme}');
-    </script>
-    """
-    
-    return HTMLResponse(content=response_content)
 
 @rt("/modal")
 async def get(): # type: ignore
