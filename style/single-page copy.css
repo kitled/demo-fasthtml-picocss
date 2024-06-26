@@ -1,0 +1,10 @@
+
+dialog.example {
+    z-index: inherit;
+    position: relative;
+    min-height: inherit;
+    margin: 0 calc(var(--pico-spacing)* -1) var(--pico-block-spacing-vertical) calc(var(--pico-spacing)* -1);
+    inset: inherit;
+}
+
+
