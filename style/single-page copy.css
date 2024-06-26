@@ -48,6 +48,7 @@ html {
 
 
 /* TOP HEADER */
+
 body>header .container {
     display: flex;
     align-items: center;
@@ -81,6 +82,7 @@ body > header.top-header > div > a > h1 {
 
 
 
+/* HGROUP, HEADINGS, HEADERS */
 
 section>h1,
 section>h2,
@@ -103,6 +105,22 @@ main>[role=document] section>section {
 main>[role=document] section>section>section {
     margin-top: calc(var(--pico-spacing)* 3);
 }
+/* Titles anchor - taken from Pico CSS own website */
+:is(h1,h2,h3,h4,h5,h6) > a[id] {
+    padding-left: calc(var(--pico-spacing)* .5);
+    font-weight: 400;
+    text-decoration: none;
+    opacity: 0;
+}
+:hover:is(h1,h2,h3,h4,h5,h6) > a[id] {
+    transition: color var(--pico-transition) opacity var(--pico-transition);
+    opacity: 1;
+}
+
+
+
+
+/* MISC */
 
 /* Put modals "in-page" rather than as a typical overlay. */
 dialog.example {
@@ -113,6 +131,7 @@ dialog.example {
     inset: inherit;
 }
 
+/* Grid example */
 article > div.grid > div {
     padding: calc(var(--pico-spacing) / 2) 0;
     border-radius: var(--pico-border-radius);
@@ -123,9 +142,6 @@ article > div.grid > div {
     font-size: .875rem;
     text-align: center;
 }
-
-
-
 
 /* Restore Pico CSS for inline code */
 p code.inline-code.hljs {
@@ -140,6 +156,7 @@ p code.inline-code.hljs {
 
 
 
+/* CODE STYLE & HIGHLIGHTING */
 code, kbd {
     display: inline-block;
     padding: .25rem;
