@@ -76,8 +76,33 @@ starter_html_template = NotStr("""&lt;!doctype html>
     &lt;/main>
   &lt;/body>
 &lt;/html>""")
+
+# ＋
+
+starter_Fasthtml_template = NotStr("""from fasthtml.common import *
+
+html = Html(lang='en')
+head = (
+    Meta(charset="utf-8"),
+    Meta(name="viewport", content="width=device-width, initial-scale=1"),
+    Meta(name="color-scheme", content="light dark"),
+    Link(rel="stylesheet", 
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.pumpkin.min.css"
+        )
+    )
+
+app = FastHTML(hdrs=head)
+rt = app.route
+
+@rt("/")
+def get():
+    return html, Main(H1('Hello world!'), cls="container")""")
+
 # ↓
+
 block_code = Pre(Code(starter_html_template, cls='language-html'), cls='prismjs')
+block_code2 = Pre(Code(starter_Fasthtml_template, cls='language-python'), cls='prismjs')
+
 
 
 colors = [
@@ -200,7 +225,7 @@ section_7 = {
 
 
 # All demos are indexed by section number
-d1_1_5 = Div(block_code, cls='code', id='demo-1-1-5')
+d1_1_5 = Div(block_code, block_code2, cls='code', id='demo-1-1-5')
 
 
 

@@ -1,4 +1,6 @@
 
+
+
 dialog.example {
     z-index: inherit;
     position: relative;
@@ -7,4 +9,102 @@ dialog.example {
     inset: inherit;
 }
 
+
+/* 
+.code {
+    position: relative;
+    background-color: var(--pico-card-background-color)
+}
+.code pre {
+    margin-bottom: 0
+}
+.code code {
+    min-width: -moz-min-content;
+    min-width: min-content;
+    margin-right: var(--pico-block-spacing-horizontal);
+    padding: 0
+}
+
+
+.code>a.copy-to-clipboard {
+    z-index: 1;
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    padding: .25rem 1rem .25rem .25rem;
+    background-color: var(--pico-card-background-color);
+    color: var(--pico-code-comment);
+    transition: color var(--pico-transition)
+}
+.code>a.copy-to-clipboard>svg {
+    display: block;
+    width: 1.125rem;
+    height: 1.125rem;
+    opacity: .5;
+    transition: opacity var(--pico-transition)
+}
+
+.code>a.copy-to-clipboard svg.check {
+    color: var(--pico-code-copied);
+    opacity: 1
+}
+
+.code>a.copy-to-clipboard[data-tooltip]:after,.code>a.copy-to-clipboard[data-tooltip]:before {
+    font-size: .75em
+}
+
+.code>a.copy-to-clipboard[data-tooltip]:has(svg.check):after {
+    display: none
+}
+
+.code:after {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--pico-border-radius);
+    content: "";
+    pointer-events: none
+}
+
+
+
+.code:not(article footer.code) {
+    margin-bottom: var(--pico-block-spacing-vertical);
+    overflow: hidden;
+    border-radius: var(--pico-border-radius);
+    box-shadow: var(--pico-card-box-shadow)
+} */
+
+
+
+
+
+
+
+
+
+/* for block of numbers */
+.hljs-ln-numbers {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    text-align: right;
+    color: #ccc;
+    border-right: 0px solid #CCC;
+    vertical-align: top;
+    padding: 0.08rem 20px 0.08rem 20px !important;
+    background-color: rgba(0,0,0,0) !important;
+    /* padding: 0 20px 0 20px; */
+    /* top right bottom left */
+    /* your custom style here */
+}
+
+/* for block of code */
+.hljs-ln-code {
+    /* padding-left: 20px !important; */
+    background-color: rgba(0,0,0,0) !important;
+}
 

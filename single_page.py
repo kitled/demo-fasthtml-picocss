@@ -68,16 +68,20 @@ def theme_switch():
 
 #—————————————————————————————————————————————————————————————————————————————
 # Helper functions to build proper HTML structure (nesting, etc.)
+# Must-have to change ALL at once (CSS class, HTML layout, whatever)
 
 def div_code(code, lang=None):
     '''Returns a <div> wrapping a <pre><code> block.
     Use within <h4> sections to display code examples.
     '''
     if lang:
-        res = Pre(
-            Code(code,
-                cls="highlight language-"+lang
+        res = Div(
+            Pre(
+                Code(code,
+                    cls="highlight language-"+lang
+                ),
             ),
+            cls="code",
         )
     else:
         res = Div(
@@ -86,6 +90,7 @@ def div_code(code, lang=None):
                     cls="highlight",
                 ),
             ),
+            cls="code",
         )
 
     return res

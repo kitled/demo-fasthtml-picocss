@@ -65,11 +65,11 @@ p > code {
 /* div.pre-code {
     margin-bottom: 1rem;
 } */
-/* pre > code {
+pre > code {
     background-color: rgba(0,0,0,0) !important;
     padding: calc(var(--pico-block-spacing-vertical)*0.5) var(--pico-block-spacing-horizontal) !important;
     margin-bottom: -1.25rem !important;
-} */
+}
 #content > section > section > section > p > button.hljs-copy-button {
     display: none !important;
 }
