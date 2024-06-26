@@ -7,8 +7,7 @@ html    = Html(lang='en',
 head = Meta(charset="utf-8"), Meta(name="viewport", 
     content="width=device-width, initial-scale=1"), Meta(
     name="color-scheme", content="light dark") 
-#                PLAY WITH THIS 🔥☯️ 🡅🡅🡅 ☯️🔥
-#                                   BUTTONS!
+
 title = "FastHTML 🧡 Pico CSS"
 footer_text = P("Made by kit using FastHTML & Pico CSS + PrismJS, June 2024.")
 

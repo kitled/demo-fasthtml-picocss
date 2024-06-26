@@ -55,8 +55,9 @@ line_numbers = (
     )
 #—————————————————————————————————————————————————————————————————————————————
 # Page-specific
-title = Title('FastHTML 🧡 Pico CSS')
-footer_text = P("Made by kit using FastHTML & Pico CSS + PrismJS, June 2024.")
+header_text = 'FastHTML 🧡 Pico CSS'
+title = Title(header_text)
+footer_text = P("Made by kit using FastHTML & Pico CSS, June 2024.")
 #—————————————————————————————————————————————————————————————————————————————
 # <head> scripts & css
 pico_css = Link(
@@ -4554,10 +4555,34 @@ sections = (
     sec_6_0_0,
     sec_7_0_0,
 )
-# modal = modal_6_6_2
-page = (title, html, main(sections), 
-        # modal_6_6_2,
-        )
+
+# Global top header, fixed & translucent
+
+test = Hgroup(H1('Pico'), P('Conditional Styling'))
+
+top_header = Header(
+  Div(
+    A(H1(header_text), href="/"), 
+    Nav(
+      Ul(
+          Li(A("FastHTML", href="https://answerdotai.github.io/fasthtml/", target="_blank", cls="contrast")),
+          Li(A("Pico CSS", href="https://picocss.com/docs/", target="_blank", cls="contrast")),
+        #   Li(A("About",    href="/about", cls="contrast")),
+      ), 
+      Ul(
+          Li(A("Code",  href="https://github.com/agenkit/demo-fasthtml-picocss/", target="_blank", cls="contrast")),
+          Li(A("🌅", href="/", data_tooltip="Light mode", data_placement="bottom")),
+          Li(A("🌃",  href="/", data_tooltip="Dark mode", data_placement="bottom", cls="contrast")),
+      ),
+    ), 
+    cls="container",  # use this class to add left-right margins + centering of blocks
+  ), 
+  cls="top-header",   # specific class → fixed above + translucent
+)
+
+bottom_footer = Footer(footer_text)
+
+page = (title, html, top_header, main(sections), test, bottom_footer)
 
 # Home page
 @rt("/")
