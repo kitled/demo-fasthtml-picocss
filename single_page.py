@@ -1,4 +1,3 @@
-from tkinter.ttk import Progressbar
 from fasthtml.common import * # type: ignore
 from fasthtml.js import MarkdownJS, SortableJS, HighlightJS
 from fastapi import Request
@@ -13,6 +12,10 @@ head = (
     Meta(name="viewport", content="width=device-width, initial-scale=1"),
     Meta(name="color-scheme", content="light dark"),
     Script(src="https://unpkg.com/hyperscript.org@0.9.12"),
+    )
+line_numbers = (
+    Script(src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"),
+    Script("hljs.highlightAll(); hljs.initLineNumbersOnLoad();")
     )
 #—————————————————————————————————————————————————————————————————————————————
 # Page-specific
@@ -39,6 +42,7 @@ app = FastHTML(hdrs=(
     MarkdownJS('.markdown'),
     SortableJS('.sortable'),
     HighlightJS('.highlight'),
+    line_numbers,
     # title,
     ))
 rt = app.route
@@ -69,17 +73,27 @@ def div_code(code, lang=None):
     '''Returns a <div> wrapping a <pre><code> block.
     Use within <h4> sections to display code examples.
     '''
-    return Div(
-        Pre(
+    if lang:
+        res = Pre(
             Code(code,
-                cls="highlight language-"+lang if lang else "highlight",
+                cls="highlight language-"+lang
             ),
-        ),
-        cls="pre-code",
-    )
+        )
+    else:
+        res = Div(
+            Pre(
+                Code(code,
+                    cls="highlight",
+                ),
+            ),
+        )
+
+    return res
 
 def div_code_footer(code, lang=None):
-    '''Returns a <footer> wrapping a <pre><code> block.
+    '''⚠ DEPRECATED → looks bad, useless.
+    
+    Returns a <footer> wrapping a <pre><code> block.
     Use in <article> to display code examples.
     '''
     return Footer(div_code(code, lang), cls="code")
@@ -185,13 +199,14 @@ body_1_1_1 = (
         """ and link """,
         Code("/css/pico.min.css"),
         """ in the """,
-        Code("""<head>""", cls="highlight language-html", ),
+        Code("""<head>""", cls="language-html", ),
         """ of your website.""",
     ),
     pico_1_1_1,
 )
 #   🡇🡇🡇
-sec_1_1_1 = section(body_1_1_1,
+sec_1_1_1 = section(
+    body_1_1_1,
     lv=4, title="Install manually",
 )
 
@@ -241,7 +256,7 @@ pico_1_1_5 = div_code(
     </main>
   </body>
 </html>""",
-    lang="html",
+    # lang="html",
 )
 
 fh_1_1_5 = div_code(
@@ -3816,6 +3831,29 @@ modal_6_6_2 = Div(
     id="modal",
 )
 
+
+def render_modal():
+    return f"""
+    <dialog id="modal" open>
+        <article>
+            <header>
+                <button aria-label="Close" rel="prev" hx-get="/close_modal" hx-target="#modal" hx-swap="outerHTML">×</button>
+                <h2>Confirm Your Membership</h2>
+            </header>
+            <p>Thank you for signing up for a membership!</p>
+            <ul>
+                <li>Membership: Individual</li>
+                <li>Price: $10</li>
+            </ul>
+            <footer>
+                <button aria-label="Closed" class="secondary" hx-get="/close_modal" hx-target="#modal" hx-swap="outerHTML">Cancel</button>
+                <button>Confirm</button>
+            </footer>
+        </article>
+    </dialog>
+    """
+
+
 btnmod_6_6_2a = Article(
     Button("Open Modal", hx_get="/modal", hx_target="body", hx_swap="beforeend"),
 )
@@ -4464,7 +4502,7 @@ page = (title, html, main(sections),
 
 # Home page
 @rt("/")
-def get():
+def get(): # type: ignore
     return page
 
 # Dark/Light theme switch
@@ -4487,29 +4525,8 @@ async def post(request: Request):
     
     return HTMLResponse(content=response_content)
 
-def render_modal():
-    return f"""
-    <dialog id="modal" open>
-        <article>
-            <header>
-                <button aria-label="Close" rel="prev" hx-get="/close_modal" hx-target="#modal" hx-swap="outerHTML">×</button>
-                <h2>Confirm Your Membership</h2>
-            </header>
-            <p>Thank you for signing up for a membership!</p>
-            <ul>
-                <li>Membership: Individual</li>
-                <li>Price: $10</li>
-            </ul>
-            <footer>
-                <button aria-label="Closed" class="secondary" hx-get="/close_modal" hx-target="#modal" hx-swap="outerHTML">Cancel</button>
-                <button>Confirm</button>
-            </footer>
-        </article>
-    </dialog>
-    """
-
 @rt("/modal")
-async def get():
+async def get(): # type: ignore
     return HTMLResponse(content=render_modal())
 
 @rt("/close_modal")

@@ -19,6 +19,16 @@ main>[role=document] section>section {
 main>[role=document] section>section>section {
     margin-top: calc(var(--pico-spacing)* 3);
 }
+.chapter {
+    color: var(--pico-chapter-color);
+    font-weight: 600;
+    /* font-size: 13px; */
+    letter-spacing: .0625em;
+    text-transform: uppercase;
+}
+
+
+
 /* #content > section > section > h3 {
     margin-bottom: 0.5rem!important;
 } */
@@ -52,15 +62,14 @@ p > code {
     background-color: var(--pico-code-background-color) !important;
     padding: .375rem !important;
 }
-div.pre-code {
-    /* background-color: rgba(0,0,0,0) !important; */
+/* div.pre-code {
     margin-bottom: 1rem;
-}
-pre > code {
+} */
+/* pre > code {
     background-color: rgba(0,0,0,0) !important;
     padding: calc(var(--pico-block-spacing-vertical)*0.5) var(--pico-block-spacing-horizontal) !important;
     margin-bottom: -1.25rem !important;
-}
+} */
 #content > section > section > section > p > button.hljs-copy-button {
     display: none !important;
 }
@@ -92,9 +101,9 @@ article > div.grid > div {
     font-size: .875rem;
     text-align: center;
 }
-article > footer > div.pre-code {
+/* article > footer > div.pre-code {
     background: var(--pico-background-color) !important;
-}
+} */
 dialog.example {
     z-index: inherit;
     position: relative;
