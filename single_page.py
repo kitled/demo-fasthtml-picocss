@@ -77,8 +77,9 @@ def span_code(code, lang=None):
     if lang:
         cls = "inline-code highlight language-"+lang
     else:
-        cls = "inline-code highlight"
-    return CodeX(code, cls=cls)
+        # cls = "inline-code highlight"
+        cls = "inline-code"
+    return Code(code, cls=cls)
 
 def div_code(code, lang=None):
     '''Returns a <div> wrapping a <pre><code> block.
@@ -87,8 +88,8 @@ def div_code(code, lang=None):
     if lang:
         res = Div(
             Pre(
-                CodeX(code,
-                    cls="highlight language-"+lang
+                Code(code,
+                    cls='highlight language-'+lang
                 ),
             ),
             cls="code",
@@ -96,8 +97,8 @@ def div_code(code, lang=None):
     else:
         res = Div(
             Pre(
-                CodeX(code,
-                    cls="highlight",
+                Code(code,
+                    cls='highlight',
                 ),
             ),
             cls="code",
@@ -145,7 +146,7 @@ def aside(*aside_tags):
 
 # #   ➕
 # def art_footer(html, python):
-#     return Footer(Pre(Code(html)), Pre(Code(python)))
+#     return Footer(Pre(span_code(html)), Pre(span_code(python)))
 
 #   🡇
 def article(*c, hd=None, ft=None, card=False, **kwargs):
@@ -244,7 +245,7 @@ body_1_1_2 = P(
         target="_blank"
     ),
     """ to link """,
-    Code("pico.min.css"),
+    span_code("pico.min.css"),
     '.',
     pico_1_1_2,
 )
@@ -312,7 +313,7 @@ sec_1_1_0 = section(
     lv=3, title="Quick start",
     desc=(
         """Link """,
-        Code("pico.css"),
+        span_code("pico.css"),
          """ manually or via CDN for a dependency-free setup, or use NPM or Composer for advanced usage.""",
     ),
 )
@@ -340,28 +341,28 @@ sec_1_2_0 = section(
 
 body_1_3_1 = (
     P(  "Color schemes can be defined for the entire document using ",
-        Code('<html data-theme="light">', cls='highlight language-html'),
+        span_code('<html data-theme="light">', lang='html'),
         " or for specific HTML elements, such as ",
-        Code('<article data-theme="dark">', cls='highlight language-html'),
+        span_code('<article data-theme="dark">', lang='html'),
         ".",
     ),
     P(  "Color schemes at the HTML tag level work great for elements such as ",
-        Code('<a>', cls='highlight language-html'), ', ',
-        Code('<button>', cls='highlight language-html'), ', ',
-        Code('<table>', cls='highlight language-html'), ', ',
-        Code('<input>', cls='highlight language-html'), ', ',
-        Code('<textarea>', cls='highlight language-html'), ', ',
-        Code('<select>', cls='highlight language-html'), ', ',
-        Code('<article>', cls='highlight language-html'), ', ',
-        Code('<dialog>', cls='highlight language-html'), ', ',
-        Code('<progress>', cls='highlight language-html'), '.',
+        span_code('<a>', lang='html'), ', ',
+        span_code('<button>', lang='html'), ', ',
+        span_code('<table>', lang='html'), ', ',
+        span_code('<input>', lang='html'), ', ',
+        span_code('<textarea>', lang='html'), ', ',
+        span_code('<select>', lang='html'), ', ',
+        span_code('<article>', lang='html'), ', ',
+        span_code('<dialog>', lang='html'), ', ',
+        span_code('<progress>', lang='html'), '.',
     ),
     P(  "CSS variables specific to the color scheme are assigned to every HTML tag. However, we have not enforced specific background and color settings across all HTML tags to maintain transparent backgrounds and ensure colors are inherited from the parent tag."
     ),
     P(  "For some other HTML tags, you might need to explicitly set ",
-    Code('background-color', cls='highlight'),
+    span_code('background-color', lang='css'),
     " and ",
-    Code('color', cls='highlight'),
+    span_code('color', lang='css'),
     "."
     ),
 ),
@@ -386,7 +387,7 @@ def art_1_3_2(dark:bool=False) -> Article:
         theme, title = "light", H2("Light card")
     aria = f"Forced {theme} theme example"
     pico = f"<article data-theme={theme}>\n  …\n</article>"
-    footer = Footer(Pre(Code(pico, cls='highlight language-html'),),cls="code",)
+    footer = Footer(Pre(span_code(pico, lang='html'),),cls="code",)
     form = Form(
         Fieldset(
             Input(type="text",
@@ -440,7 +441,7 @@ sec_1_3_2 = section(
 
 sec_1_3_0 = section(
     P("""The default color scheme is Light. The Dark scheme is automatically enabled if the user has dark mode enabled """, 
-      Code("prefers-color-scheme: dark;", cls="highlight"), '.'),
+      span_code("prefers-color-scheme: dark;"), '.'),
     theme_switch(),
     sec_1_3_1,
     sec_1_3_2,
@@ -456,7 +457,7 @@ sec_1_4_0 = section(
     lv=3, title="Class-less version",
     desc=(
         "Embrace minimalism with Pico’s ",
-        Code(".classless"),
+        span_code(".classless"),
         " version, a semantic option for wild HTML purists who prefer a stripped-down approach.",
     ),
 )
@@ -467,7 +468,7 @@ sec_1_5_0 = section(
     lv=3, title="Conditional styling",
     desc=(
         "Apply Pico CSS styles selectively by wrapping elements in a ",
-        Code(".pico"),
+        span_code(".pico"),
         " container, ideal for mixed-style environments.",
     ),
 )
@@ -560,9 +561,9 @@ table_3_1_1 = Table(
 )
 
 body_3_1_1b = (
-    P(Code(".container"),
+    P(span_code(".container"),
     " and ",
-    Code(".container-fluid"),
+    span_code(".container-fluid"),
     " are not available in the ",
     A("class‑less version", href="https://picocss.com/docs/classless"),
     " (see ",
@@ -578,7 +579,7 @@ sec_3_1_1 = section(
 )
 
 body_3_1_2 = (
-    P(Code(".container"), " provides a centered container with a fixed width."),
+    P(span_code(".container"), " provides a centered container with a fixed width."),
     div_code(
 """<body>
   <main class="container">
@@ -594,7 +595,7 @@ sec_3_1_2 = section(
 )
 
 body_3_1_3 = (
-    P(Code(".container-fluid"), " provides a full-width container."),
+    P(span_code(".container-fluid"), " provides a full-width container."),
     div_code(
 """<body>
   <main class="container-fluid">
@@ -612,11 +613,11 @@ sec_3_1_3 = section(
 body_3_1_4 = (
     P(
         "In the classless version, ",
-        Code("<header>", cls="highlight"), ", ",
-        Code("<main>", cls="highlight"), ", and ",
-        Code("<footer>", cls="highlight"),
+        span_code("<header>", lang='html'), ", ",
+        span_code("<main>", lang='html'), ", and ",
+        span_code("<footer>", lang='html'),
         " inside ",
-        Code("<body>", cls="highlight"),
+        span_code("<body>", lang='html'),
         " act as containers to define a centered or a fluid viewport."),
     P("See ", A("Class-less version", href="https://picocss.com/docs/classless"), "."),
 )
@@ -632,7 +633,7 @@ sec_3_1_0 = section(
     sec_3_1_3,
     sec_3_1_4,
     lv=3, title="Container",
-    desc=("Use ", Code('.container'), "for a centered viewport or ", Code('.container-fluid'), " for a full-width layout.")
+    desc=("Use ", span_code('.container'), "for a centered viewport or ", span_code('.container-fluid'), " for a full-width layout.")
 )
 
 #—————————————————————————————————— 3.2
@@ -644,11 +645,11 @@ sec_3_1_0 = section(
 
 body_3_2_1 = (
     P(
-        Code("<header>", cls="highlight"), ", ",
-        Code("<main>", cls="highlight"), ", and ",
-        Code("<footer>", cls="highlight"),
+        span_code("<header>", lang='html'), ", ",
+        span_code("<main>", lang='html'), ", and ",
+        span_code("<footer>", lang='html'),
         " as direct children of ",
-        Code("<body>", cls="highlight"),
+        span_code("<body>", lang='html'),
         " provide a responsive vertical padding.",
     ),
 )
@@ -671,9 +672,9 @@ sec_3_2_1 = section(
 body_3_2_2a = (
     P(
         "If you need to customize the default root container for ",
-        Code("<header>", cls="highlight"), ", ",
-        Code("<main>", cls="highlight"), ", and ",
-        Code("<footer>", cls="highlight"),
+        span_code("<header>", lang='html'), ", ",
+        span_code("<main>", lang='html'), ", and ",
+        span_code("<footer>", lang='html'),
         ", you can recompile Pico with another CSS selector.",
     ),
     P("Useful for ", A("React", href="https://reactjs.org/"), ", ", A("Gatsby", href="https://www.gatsbyjs.com/"), " or ", A("Next.js", href="https://nextjs.org/"), "."),
@@ -727,7 +728,7 @@ sec_3_2_2 = section(
 
 body_3_2_3 = (
     P(
-        Code("<section>", cls="highlight"), 
+        span_code("<section>", lang='html'), 
         " provides a responsive margin-bottom to separate your sections."),
 )
 
@@ -772,8 +773,8 @@ art_3_3_1 = Article(
 )
 
 body_3_3_1 = (
-    P("Columns intentionally collapse on small devices (", Code("<768px"), ")."),
-    P(Code(".grid"), "is not available in the ", A("class‑less", href="https://picocss.com/docs/classless"), " version."),
+    P("Columns intentionally collapse on small devices (", span_code("<768px"), ")."),
+    P(span_code(".grid"), "is not available in the ", A("class‑less", href="https://picocss.com/docs/classless"), " version."),
 )
 
 sec_3_3_1 = section(
@@ -803,7 +804,7 @@ sec_3_3_0 = section(
     lv=3, title="Grid",
     desc=(
         "Create minimal responsive layouts with ", 
-        Code(".grid"), 
+        span_code(".grid"), 
         " to enable auto-layout columns."),
 )
 
@@ -812,7 +813,7 @@ sec_3_3_0 = section(
 
 
 body_3_4_1 = (
-    P("Useful to have responsive ", Code("<table>", cls="highlight"), "."),
+    P("Useful to have responsive ", span_code("<table>", lang='html'), "."),
 )
 
 table_3_4_1 = (Div(
@@ -847,7 +848,7 @@ sec_3_4_0 = section(
     pico_3_4_1,
     lv=3, title="Overflow auto",
     desc=(
-        Code(".overflow-auto"),
+        span_code(".overflow-auto"),
         " enables automatic scrollbars to an element if its content extends beyond its limits."),
 )
 
@@ -880,18 +881,18 @@ table_4_1_1a = Table(
     ),
     Tbody(
         Tr(Td("Base"),Td("16px"),Td("17px"),Td("18px"),    Td("19px"),   Td("20px"),    Td("21px")),
-        Tr(Td(Code("<h1>")   ),  Td("32px"),Td("34px"),    Td("36px"),   Td("38px"),    Td("40px"),  Td("42px")),
-        Tr(Td(Code("<h2>")   ),  Td("28px"),Td("29.75px"), Td("31.5px"), Td("33.25px"), Td("35px"),  Td("36.75px")),
-        Tr(Td(Code("<h3>")   ),  Td("24px"),Td("25.5px"),  Td("27px"),   Td("28.5px"),  Td("30px"),  Td("31.5px")),
-        Tr(Td(Code("<h4>")   ),  Td("20px"),Td("21.25px"), Td("22.5px"), Td("23.75px"), Td("25px"),  Td("26.25px")),
-        Tr(Td(Code("<h5>")   ),  Td("18px"),Td("19.125px"),Td("20.25px"),Td("21.375px"),Td("22.5px"),Td("23.625px")),
-        Tr(Td(Code("<h6>")   ),  Td("16px"),Td("17px"),    Td("18px"),   Td("19px"),    Td("20px"),  Td("21px")),
-        Tr(Td(Code("<small>")),  Td("14px"),Td("14.875px"),Td("15.75px"),Td("16.625px"),Td("17.5px"),Td("18.375px")),
+        Tr(Td(span_code("<h1>")   ),  Td("32px"),Td("34px"),    Td("36px"),   Td("38px"),    Td("40px"),  Td("42px")),
+        Tr(Td(span_code("<h2>")   ),  Td("28px"),Td("29.75px"), Td("31.5px"), Td("33.25px"), Td("35px"),  Td("36.75px")),
+        Tr(Td(span_code("<h3>")   ),  Td("24px"),Td("25.5px"),  Td("27px"),   Td("28.5px"),  Td("30px"),  Td("31.5px")),
+        Tr(Td(span_code("<h4>")   ),  Td("20px"),Td("21.25px"), Td("22.5px"), Td("23.75px"), Td("25px"),  Td("26.25px")),
+        Tr(Td(span_code("<h5>")   ),  Td("18px"),Td("19.125px"),Td("20.25px"),Td("21.375px"),Td("22.5px"),Td("23.625px")),
+        Tr(Td(span_code("<h6>")   ),  Td("16px"),Td("17px"),    Td("18px"),   Td("19px"),    Td("20px"),  Td("21px")),
+        Tr(Td(span_code("<small>")),  Td("14px"),Td("14.875px"),Td("15.75px"),Td("16.625px"),Td("17.5px"),Td("18.375px")),
     ),
     cls="overflow-auto",
 )
 
-body_4_1_1a = P("In ", Code("rem"), " units:")
+body_4_1_1a = P("In ", span_code("rem"), " units:")
 
 table_4_1_1b = Table(
     Thead(
@@ -899,20 +900,20 @@ table_4_1_1b = Table(
     ),
     Tbody(
         Tr(Td("Base"),Td("100%"),Td("106.25%"),Td("112.5%"),Td("118.75%"),Td("125%"),Td("131.25%")),
-        Tr(Td(Code("<h1>")   ),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem")),
-        Tr(Td(Code("<h2>")   ),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem")),
-        Tr(Td(Code("<h3>")   ),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem")),
-        Tr(Td(Code("<h4>")   ),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem")),
-        Tr(Td(Code("<h5>")   ),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem")),
-        Tr(Td(Code("<h6>")   ),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem")),
-        Tr(Td(Code("<small>")),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em")),
+        Tr(Td(span_code("<h1>")   ),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem"),Td("x 2rem")),
+        Tr(Td(span_code("<h2>")   ),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem"),Td("x 1.75rem")),
+        Tr(Td(span_code("<h3>")   ),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem"),Td("x 1.5rem")),
+        Tr(Td(span_code("<h4>")   ),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem"),Td("x 1.25rem")),
+        Tr(Td(span_code("<h5>")   ),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem"),Td("x 1.125rem")),
+        Tr(Td(span_code("<h6>")   ),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem"),Td("x 1rem")),
+        Tr(Td(span_code("<small>")),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em"),Td("x 0.875em")),
     ),
     cls="overflow-auto",
 )
 
 body_4_1_1b = (
-    P("To ensure that the user’s default font size is followed, the base font size is defined as a percentage that grows with the user’s screen size, while HTML elements are defined in ", Code("rem"), "."), 
-    P("Since ", Code("rem"), " is a multiplier of the HTML document font size, all HTML element’s font sizes grow proportionally with the size of the user’s screen.")
+    P("To ensure that the user’s default font size is followed, the base font size is defined as a percentage that grows with the user’s screen size, while HTML elements are defined in ", span_code("rem"), "."), 
+    P("Since ", span_code("rem"), " is a multiplier of the HTML document font size, all HTML element’s font sizes grow proportionally with the size of the user’s screen.")
     )
 
 sec_4_1_1 = section(
@@ -951,26 +952,26 @@ sec_4_1_2 = section(
 
 sec_4_1_3 = section(
     P("Not implemented in FastHTML (as of 2024.06.24)."),
-    P("I've done a basic rendering (in CSS) of the ", Code("<hgroup>"), " demo on the Pico CSS website to style this page's ", Code("<h3>"), " titles."),
+    P("I've done a basic rendering (in CSS) of the ", span_code("<hgroup>"), " demo on the Pico CSS website to style this page's ", span_code("<h3>"), " titles."),
 
     lv=4, title="Heading group",
 )
 
 #——————————————————
 body_4_1_4 = Div(
-    Div(P("Abbr.", Code("<abbr>", cls="highlight language-html")),
-    P("Bold", Code("<strong>", cls="highlight language-html"), Code("<b>", cls="highlight language-html")),
-    P("Italic", Code("<i>", cls="highlight language-html"), Code("<em>", cls="highlight language-html"), Code("<cite>", cls="highlight language-html")),
-    P("Deleted", Code("<del>", cls="highlight language-html")),
-    P("Inserted", Code("<ins>", cls="highlight language-html")),
-    P("Ctrl + S", Code("<kbd>", cls="highlight language-html")),
+    Div(P("Abbr.", span_code("<abbr>", lang='html')),
+    P("Bold", span_code("<strong>", lang='html'), span_code("<b>", lang='html')),
+    P("Italic", span_code("<i>", lang='html'), span_code("<em>", lang='html'), span_code("<cite>", lang='html')),
+    P("Deleted", span_code("<del>", lang='html')),
+    P("Inserted", span_code("<ins>", lang='html')),
+    P("Ctrl + S", span_code("<kbd>", lang='html')),
     ),
-    Div(P("Highlighted", Code("<mark>", cls="highlight language-html")),
-    P("Strikethrough", Code("<s>", cls="highlight language-html")),
-    P("Small", Code("<small>", cls="highlight language-html")),
-    P("Text Sub", Code("<sub>", cls="highlight language-html")),
-    P("Text Sup", Code("<sup>", cls="highlight language-html")),
-    P("Underline", Code("<u>", cls="highlight language-html")),
+    Div(P("Highlighted", span_code("<mark>", lang='html')),
+    P("Strikethrough", span_code("<s>", lang='html')),
+    P("Small", span_code("<small>", lang='html')),
+    P("Text Sub", span_code("<sub>", lang='html')),
+    P("Text Sup", span_code("<sup>", lang='html')),
+    P("Underline", span_code("<u>", lang='html')),
     ),
     cls="grid",
 )
@@ -1036,13 +1037,13 @@ pico_4_2_0a = div_code(
 
 body_4_2_0a = (
     P(
-        Code(".secondary"), 
+        span_code(".secondary"), 
         " and ", 
-        Code(".contrast"), 
+        span_code(".contrast"), 
         " classes are not available in the class‑less version."
     ), 
     P(
-        Code("aria-current"), 
+        span_code("aria-current"), 
         " send the active state to assistive technologies and is displayed as the hover links."
     ),
 )
@@ -1074,9 +1075,9 @@ sec_4_2_0 = section(
     lv=3, title="Link",
     desc=(
         "Links come with ",
-        Code(".secondary"),
+        span_code(".secondary"),
         " and ",
-        Code(".contrast"),
+        span_code(".contrast"),
         " styles."
     ),
 )
@@ -1107,7 +1108,7 @@ sec_4_3_1 = section(
 )
 
 #——————————————————
-body_4_3_2a = P("Buttons come with ", Code(".secondary"), " and ", Code(".contrast"), "styles (not available in the ", A("class-less version", href="https://picocss.com/docs/classless"), ")."),
+body_4_3_2a = P("Buttons come with ", span_code(".secondary"), " and ", span_code(".contrast"), "styles (not available in the ", A("class-less version", href="https://picocss.com/docs/classless"), ")."),
 
 art_4_3_2a = article(Div(
     Button("Secondary", cls="secondary"),
@@ -1151,11 +1152,11 @@ sec_4_3_2 = section(
 #——————————————————
 
 body_4_3_3a = P(
-    Code('type="submit"'), 
+    span_code('type="submit"'), 
     " and ", 
-    Code('type="button"'), 
+    span_code('type="button"'), 
     " inputs are also displayed as buttons. All form buttons are ", 
-    Code('width: 100%;'), 
+    span_code('width: 100%;'), 
     " by default, to match with the other form elements."
 )
 
@@ -1217,7 +1218,7 @@ sec_4_3_4 = section(
 #——————————————————
 
 body_4_3_5 = P("Clickable elements with ", 
-               Code("role='button'"), 
+               span_code("role='button'"), 
                " are rendered as buttons.")
 
 art_4_3_5 = article(
@@ -1238,7 +1239,7 @@ sec_4_3_5 = section(
 
 #——————————————————
 
-body_4_3_6 = P("You can use ", Code("role='group'"), " with buttons. See Group.")
+body_4_3_6 = P("You can use ", span_code("role='group'"), " with buttons. See Group.")
 
 art_4_3_6 = article(
     Div(
@@ -1276,9 +1277,9 @@ sec_4_3_0 = section(
     lv=3, title="Button",
     desc=(
         "Buttons are using the native ",
-        Code("<button>", cls="highlight"),
+        span_code("<button>", lang='html'),
         " tag, without ",
-        Code(".classes"),
+        span_code(".classes"),
         ". for the default style."),
 )
 
@@ -1386,29 +1387,29 @@ sec_4_4_1 = section(
     lv=3, title="Table",
     desc=(
         "Clean and minimal styles for ",
-        Code("<table>", cls="highlight"),
+        span_code("<table>", lang='html'),
         ", providing consistent spacings and a minimal unbordered look."),
 )
 
 #——————————————————
 body_4_4_2 = P(
-    Code("data-theme='light'", cls="highlight"),
+    span_code("data-theme='light'", lang='html'),
     " or ",
-    Code("data-theme='dark'", cls="highlight"),
+    span_code("data-theme='dark'", lang='html'),
     " can be used at any level: ",
-    Code("<table>", cls="highlight"),
+    span_code("<table>", lang='html'),
     ", ",
-    Code("<thead>", cls="highlight"),
+    span_code("<thead>", lang='html'),
     ", ",
-    Code("<tbody>", cls="highlight"),
+    span_code("<tbody>", lang='html'),
     ", ",
-    Code("<tfoot>", cls="highlight"),
+    span_code("<tfoot>", lang='html'),
     ", ",
-    Code("<tr>", cls="highlight"),
+    span_code("<tr>", lang='html'),
     ", ",
-    Code("<th>", cls="highlight"),
+    span_code("<th>", lang='html'),
     ", ",
-    Code("<td>", cls="highlight"),
+    span_code("<td>", lang='html'),
     ".",
 )
 
@@ -1478,7 +1479,7 @@ sec_4_4_2 = section(
 #——————————————————
 
 body_4_4_3 = P(
-    Code(".striped"),
+    span_code(".striped"),
     " enable striped rows (not available in the class‑less version).",
 )
 
@@ -1579,7 +1580,7 @@ sec_4_0_0 = section(
 
 body_5_1_1a = P(
     "Inputs are ",
-    Code("width: 100%;", cls="highlight"),
+    span_code("width: 100%;", lang='css'),
     " by default and are the same size as the buttons to build consistent forms."
 )
 
@@ -1628,9 +1629,9 @@ pico_5_1_1a = div_code(
 )
 
 body_5_1_1b = P(
-    Code("<input>", cls="highlight"),
+    span_code("<input>", lang='html'),
     " can be inside or outside ",
-    Code("<label>", cls="highlight"),
+    span_code("<label>", lang='html'),
     "."
 )
 
@@ -1679,7 +1680,7 @@ sec_5_1_1 = section(
 )
 #——————————————————
 body_5_1_2 = P(
-    Code("<small>", cls="highlight"),
+    span_code("<small>", lang='html'),
     " below form elements are muted and act as helper texts.",
 )
 
@@ -1712,7 +1713,7 @@ sec_5_1_2 = section(
 #——————————————————
 body_5_1_3 = P(
     "You can use ",
-    Code(".grid"),
+    span_code(".grid"),
     " inside a form. See ",
     A("Grid", href="https://picocss.com/docs/grid"),
     ".",
@@ -1763,7 +1764,7 @@ sec_5_1_3 = section(
 #——————————————————
 body_5_1_4 = P(
     "You can use ",
-    Code('role="group"'),
+    span_code('role="group"'),
     " inside a form. See ",
     A("Group", href="https://picocss.com/docs/group"),
     ".",
@@ -1873,7 +1874,7 @@ sec_5_2_2 = section(
 
 
 body_5_2_3 = P(
-    Code('type="search"'),
+    span_code('type="search"'),
     " comes with a distinctive style.")
 
 art_5_2_3 = article(
@@ -1893,7 +1894,7 @@ sec_5_2_3 = section(
 )
 #——————————————————
 body_5_2_4 = P(
-    Code('type="color"'),
+    span_code('type="color"'),
     " is also consistent with the other input types.",
 )
 
@@ -1917,7 +1918,7 @@ sec_5_2_4 = section(
     lv=3, title="Color",
 )
 #——————————————————
-body_5_2_5 = P("Input type file button has a ", Code("secondary button style"), ".")
+body_5_2_5 = P("Input type file button has a ", span_code("secondary button style"), ".")
 
 art_5_2_5 = article(
     Input(type="file"),
@@ -1981,7 +1982,7 @@ sec_5_2_7 = section(
     lv=3, title="Readonly",
 )
 #——————————————————
-body_5_2_8a = P("Validation states are provided with ", Code("aria-invalid"), ".")
+body_5_2_8a = P("Validation states are provided with ", span_code("aria-invalid"), ".")
 
 art_5_2_8a = article(
     Input(type="text", name="valid", value="Valid", aria_invalid="false"),
@@ -2005,7 +2006,7 @@ pico_5_2_8a = div_code(
     lang="html",
 )
 
-body_5_2_8b = P("Helper texts, defined with ", Code("<small>"), ", below the form element, inherit the validation state color.")
+body_5_2_8b = P("Helper texts, defined with ", span_code("<small>"), ", below the form element, inherit the validation state color.")
 
 art_5_2_8b = article(
     Input(type="text", name="valid", value="Valid", aria_invalid="false", aria_describedby="valid-helper"),
@@ -2125,7 +2126,7 @@ sec_5_3_3 = section(
 )
 #——————————————————
 
-body_5_3_4a = P("Validation states are provided with ", Code("aria-invalid"), ".")
+body_5_3_4a = P("Validation states are provided with ", span_code("aria-invalid"), ".")
 
 art_5_3_4a = article(
     Textarea("Valid", name="valid", aria_invalid="false", aria_describedby="valid-helper"),
@@ -2143,7 +2144,7 @@ pico_5_3_4a = div_code(
     lang="html",
 )
 
-body_5_3_4b = P("Helper texts, defined with ", Code("<small>"), ", below the form element, inherit the validation state color.")
+body_5_3_4b = P("Helper texts, defined with ", span_code("<small>"), ", below the form element, inherit the validation state color.")
 
 art_5_3_4b = article(
     Textarea("Valid", name="valid", aria_invalid="false", aria_describedby="valid-helper"),
@@ -2193,7 +2194,7 @@ sec_5_3_0 = section(
     lv=3, title="Textarea",
     desc=(
         "The native ",
-        Code("<textarea>", cls="highlight"),
+        span_code("<textarea>", lang='html'),
         " is styled like the input for consistency."
     ),
 )
@@ -2299,7 +2300,7 @@ sec_5_4_3 = section(
     lv=3, title="Disabled",
 )
 #——————————————————
-body_5_4_4 = P("Validation states are provided with ", Code("aria-invalid"), ".")
+body_5_4_4 = P("Validation states are provided with ", span_code("aria-invalid"), ".")
 
 art_5_4_4 = article(
     Select(
@@ -2362,7 +2363,7 @@ sec_5_4_0 = section(
     lv=3, title="Select",
     desc=(
         "The native ",
-        Code("<select>", cls="highlight"),
+        span_code("<select>", lang='html'),
         " is styled like the input for consistency."
     ),
 )
@@ -2446,7 +2447,7 @@ sec_5_5_2 = section(
     lv=3, title="Horizontal stacking",
 )
 #———————————————————
-body_5_5_3 = P("You can change a checkbox to an indeterminate state by setting the ", Code("indeterminate"), " property to ", Code("true"), ".")
+body_5_5_3 = P("You can change a checkbox to an indeterminate state by setting the ", span_code("indeterminate"), " property to ", span_code("true"), ".")
 
 art_5_5_3 = article(
     Label(Input(
@@ -2485,7 +2486,7 @@ sec_5_5_3 = section(
 )
 #———————————————————
 
-body_5_5_4 = P("Validation states are provided with ", Code(".aria-invalid."), ".")
+body_5_5_4 = P("Validation states are provided with ", span_code(".aria-invalid."), ".")
 
 art_5_5_4 = article(
     Label(Input("Valid", type="checkbox", name="valid", aria_invalid="false")),
@@ -2520,7 +2521,7 @@ sec_5_5_0 = section(
     lv=3, title="Checkboxes",
     desc=(
         "The native ",
-        Code("<input type='checkbox'>", cls="highlight"),
+        span_code("<input type='checkbox'>", lang='html'),
         " with a custom and responsive style."
     ),
 )
@@ -2602,7 +2603,7 @@ sec_5_6_2 = section(
     lv=3, title="Horizontal stacking",
 )
 #———————————————————
-body_5_6_3 = P("Validation states are provided with ", Code(".aria-invalid."), ".")
+body_5_6_3 = P("Validation states are provided with ", span_code(".aria-invalid."), ".")
 
 art_5_6_3 = article(
     Label(Input(type="radio", name="valid", aria_invalid="false"), "Valid", ),
@@ -2636,7 +2637,7 @@ sec_5_6_0 = section(
     lv=3, title="Radios",
     desc=(
         "The native ",
-        Code("<input type='radio'>", cls="highlight"),
+        span_code("<input type='radio'>", lang='html'),
         " with a custom and responsive style."
     ),
 )
@@ -2765,7 +2766,7 @@ sec_5_8_0 = section(
     lv=3, title="Range",
     desc=(
         "Create a slider control with ",
-        Code("<input type='range'>", cls="highlight"),
+        span_code("<input type='range'>", lang='html'),
         "."
     ),
 )
@@ -2837,9 +2838,9 @@ sec_6_1_1 = section(
 )
 #———————————————————
 body_6_1_2a = P(
-    Code("role='button'"),
+    span_code("role='button'"),
     " can be used to turn ",
-    Code("<summary>", cls="highlight"),
+    span_code("<summary>", lang='html'),
     " into a button.",
 )
 
@@ -2857,10 +2858,10 @@ pico_6_1_2a = div_code(
 
 body_6_1_2b = P(
     "Like regular buttons, they come with ",
-    Code(".secondary"),
-    Code(".contrast"),
+    span_code(".secondary"),
+    span_code(".contrast"),
     ", and ",
-    Code(".outline"),
+    span_code(".outline"),
     " (Not available in the class-less version).",
 )
 
@@ -2952,11 +2953,11 @@ pico_6_2_1 = div_code(
 
 body_6_2_1 = P(
     "You can use ",
-    Code("<header>", cls="highlight"),
+    span_code("<header>", lang='html'),
     " and ",
-    Code("<footer>", cls="highlight"),
+    span_code("<footer>", lang='html'),
     " inside ",
-    Code("<article>", cls="highlight"),
+    span_code("<article>", lang='html'),
     ".",
 )
 
@@ -3009,11 +3010,11 @@ sec_6_2_0 = section(
 body_6_3_1 = (
     P(
         "Dropdowns are built with ",
-        Code("<details class='dropdown'>", cls="highlight"),
+        span_code("<details class='dropdown'>", lang='html'),
         " as a wrapper and ",
-        Code("<summary>", cls="highlight"),
+        span_code("<summary>", lang='html'),
         " and ",
-        Code("<ul>", cls="highlight"),
+        span_code("<ul>", lang='html'),
         " as direct childrens. Unless they are in a Nav, dropdowns are width: 100%; by default.",
     ), 
     P("Dropdowns are not available in the class‑less version."), 
@@ -3074,7 +3075,7 @@ sec_6_3_1 = section(
     lv=4, title="Syntax",
 )
 #———————————————————
-body_6_3_2 = P("Dropdowns can be used as custom selects with ", Code("<input type='radio'>", cls="highlight language-html"), " or ", Code("<input type='checkbox'>", cls="highlight language-html"), ".")
+body_6_3_2 = P("Dropdowns can be used as custom selects with ", span_code("<input type='radio'>", lang='html'), " or ", span_code("<input type='checkbox'>", lang='html'), ".")
 
 art_6_3_2 = article(
     Details(
@@ -3184,7 +3185,7 @@ sec_6_3_2 = section(
 )
 #———————————————————
 body_6_3_3a = P(
-    Code('<summary role="button">', cls="highlight language-html"), 
+    span_code('<summary role="button">', lang='html'), 
     " transforms the dropdown into a button.",
 )
 
@@ -3210,11 +3211,11 @@ pico_6_3_3a = div_code(
 
 body_6_3_3b = P(
     "Like regular buttons, they come with ",
-    Code(".secondary", cls="highlight"),
+    span_code(".secondary", lang='html'),
     ", ",
-    Code(".contrast", cls="highlight"),
+    span_code(".contrast", lang='html'),
     ", and ",
-    Code(".outline", cls="highlight"),
+    span_code(".outline", lang='html'),
     " (not available in the class-less version).",
 )
 
@@ -3329,7 +3330,7 @@ sec_6_3_3 = section(
 #———————————————————
 body_6_3_4 = P(
     "Just like any form elements, validation states are provided with ",
-    Code("aria-invalid", cls="highlight language-html"),
+    span_code("aria-invalid", lang='html'),
     ".",
 )
 
@@ -3377,10 +3378,10 @@ sec_6_3_4 = section(
 #———————————————————
 body_6_3_5 = (P(
     "You can use dropdowns inside ",
-    Code("Nav", cls="highlight"),
+    span_code("Nav", lang='html'),
     "."),
     P("To change the alignment of the submenu, simply use ",
-    Code("<ul dir='rtl'>", cls="highlight language-html"),
+    span_code("<ul dir='rtl'>", lang='html'),
     "."),
 )
 
@@ -3457,16 +3458,16 @@ sec_6_3_0 = section(
 # 6.4.3 Buttons
 
 body_6_4_1a = (
-    P(Code('role="group"'), " is used to stack children horizontally."),
+    P(span_code('role="group"'), " is used to stack children horizontally."),
     P(
         "When used with the ", 
-        Code('<form>', cls="highlight"), 
+        span_code('<form>', lang='html'), 
         " tag, the group is ", 
-        Code('width: 100%;', cls="highlight"), 
+        span_code('width: 100%;', lang='css'), 
         "."),
     P(
         "Unlike ", 
-        Code('.grid', cls="highlight"), 
+        span_code('.grid', lang='css'), 
         " (see ",
         A("Grid", href="https://picocss.com/docs/grid", cls="secondary"),
         ")",
@@ -3494,8 +3495,8 @@ pico_6_4_1 = div_code(
 )
 
 body_6_4_1b = (
-    P("This component is mainly designed for form elements and buttons. It brings a ", Code(':focus', cls="highlight"), " style to the group depending on whether the focused child is an ", Code('<input>', cls="highlight language-html"), " or a ", Code('<button>', cls="highlight language-html"), "."),
-    P("The group ", Code(':focus'), " style relies on the ", Code(':has()', cls="highlight language-css"), " CSS selector and is therefore not (yet) supported by Firefox (see on ", A("caniuse", href="https://caniuse.com/css-has", cls="secondary"), "). When ", Code(':has()', cls="highlight language-css"), " is not supported the children have their regular ", Code(':focus'), " style."),
+    P("This component is mainly designed for form elements and buttons. It brings a ", span_code(':focus', lang='css'), " style to the group depending on whether the focused child is an ", span_code('<input>', lang='html'), " or a ", span_code('<button>', lang='html'), "."),
+    P("The group ", span_code(':focus'), " style relies on the ", span_code(':has()', lang='css'), " CSS selector and is therefore not (yet) supported by Firefox (see on ", A("caniuse", href="https://caniuse.com/css-has", cls="secondary"), "). When ", span_code(':has()', lang='css'), " is not supported the children have their regular ", span_code(':focus'), " style."),
 )
 
 art_6_4_1b = article(
@@ -3531,7 +3532,7 @@ sec_6_4_1 = section(
 )
 #———————————————————
 body_6_4_2 = (
-    P(Code('role="search"'), " role='search' also stacks children horizontally and brings a special style, consistent with ", Code('<input type="search" />', cls="highlight language-html"), " (see ", A("Search input", href="https://picocss.com/docs/input#search", cls="secondary"), ")."),
+    P(span_code('role="search"'), " role='search' also stacks children horizontally and brings a special style, consistent with ", span_code('<input type="search" />', lang='html'), " (see ", A("Search input", href="https://picocss.com/docs/input#search", cls="secondary"), ")."),
 )
 
 art_6_4_2 = article(
@@ -3558,7 +3559,7 @@ sec_6_4_2 = section(
 )
 #———————————————————
 body_6_4_3 = (
-    P(Code('role="group"'), " is also useful for grouping a series of buttons."),
+    P(span_code('role="group"'), " is also useful for grouping a series of buttons."),
 )
 
 art_6_4_3a = article(
@@ -3634,9 +3635,9 @@ sec_6_4_0 = section(
     lv=3, title="Group",
     desc=(
         "Stack forms elements and buttons horizontally with ",
-        Code("role='group'"),
+        span_code("role='group'"),
         " and ",
-        Code("role='search'"),
+        span_code("role='search'"),
         "."
     ),
 )
@@ -3708,7 +3709,7 @@ sec_6_5_0 = section(
     lv=3, title="Loading",
     desc=(
         "Add a loading indicator with ",
-        Code("aria-busy='true'"),
+        span_code("aria-busy='true'"),
         "."
     ),
 )
@@ -3721,8 +3722,8 @@ sec_6_5_0 = section(
 #———————————————————
 
 body_6_6_1a = (
-    P("Modals are built with ", Code('<dialog>', cls="highlight"), " as a wrapper and ", Code('<article>', cls="highlight"), " for the modal content."),
-    P("Inside ", Code('<header>', cls="highlight language-html"), " ", Code('<button rel="prev">', cls="highlight language-html"), " is defined to ", Code('float: right;', cls="highlight language-css"), " allowing a close icon to be top aligned with a title."),
+    P("Modals are built with ", span_code('<dialog>', lang='html'), " as a wrapper and ", span_code('<article>', lang='html'), " for the modal content."),
+    P("Inside ", span_code('<header>', lang='html'), " ", span_code('<button rel="prev">', lang='html'), " is defined to ", span_code('float: right;', lang='css'), " allowing a close icon to be top aligned with a title."),
 )
 
 modal_6_6_1a = Dialog(
@@ -3766,7 +3767,7 @@ pico_6_6_1a = div_code(
 )
 
 body_6_6_1b = (
-    P("Inside ", Code('<footer>', cls="highlight language-html"), ", the content is right aligned by default."),
+    P("Inside ", span_code('<footer>', lang='html'), ", the content is right aligned by default."),
 )
 
 modal_6_6_1b = Dialog(
@@ -3881,7 +3882,7 @@ body_6_6_2b = (
         Li(A("Vanilla JavaScript", href="https://codesandbox.io/embed/4mrnhq?view=Editor+%2B+Preview&module=%2Fjs%2Fmodal.js", target="_blank")),
         Li(A("React", href="https://codesandbox.io/p/devbox/github/picocss/examples/tree/master/v2-react-color-schemes-and-modal?embed=1&file=%2Fsrc%2Fcomponents%2FModal.js", target="_blank")),
     ),
-    P("To open a modal, add the ", Code("open", cls="highlight"), " attribute to the ", Code("<dialog>", cls="highlight language-html"), " container."),
+    P("To open a modal, add the ", span_code("open", lang='html'), " attribute to the ", span_code("<dialog>", lang='html'), " container."),
 )
 
 sec_6_6_2 = section(
@@ -3896,7 +3897,7 @@ body_6_6_3a = (
     P("Modals come with 3 utility classes."),
     P("These classes are not available in the class-less version."),
 
-    P(Code(".modal-is-open", cls="highlight"), " prevents any scrolling and interactions below the modal."),
+    P(span_code(".modal-is-open", lang='html'), " prevents any scrolling and interactions below the modal."),
 )
 
 pico_6_6_3a = div_code(
@@ -3908,7 +3909,7 @@ pico_6_6_3a = div_code(
 )
 
 body_6_6_3b = (
-    P(Code(".modal-is-opening"), " brings an opening animation."),
+    P(span_code(".modal-is-opening"), " brings an opening animation."),
 )
 
 pico_6_6_3b = div_code(
@@ -3920,7 +3921,7 @@ pico_6_6_3b = div_code(
 )
 
 body_6_6_3c = (
-    P(Code(".modal-is-closing"), " brings an closing animation."),
+    P(span_code(".modal-is-closing"), " brings an closing animation."),
 )
 
 pico_6_6_3c = div_code(
@@ -3948,7 +3949,7 @@ sec_6_6_0 = section(
     lv=3, title="Modal",
     desc=(
         "The classic modal component with graceful spacings across devices and viewports, using the semantic HTML tag ",
-        Code("<dialog>", cls="highlight"),
+        span_code("<dialog>", lang='html'),
         "."
     ),
 )
@@ -3992,9 +3993,9 @@ pico_6_7_1 = div_code(
 )
 
 body_6_7_1 = (
-    P(Code("<ul>", cls="highlight"), " are automatically distributed horizontally."),
-    P(Code("<li>", cls="highlight"), " are unstyled and inlined."),
-    P(Code("<a>", cls="highlight"), " are underlined only on :hover."),
+    P(span_code("<ul>", lang='html'), " are automatically distributed horizontally."),
+    P(span_code("<li>", lang='html'), " are unstyled and inlined."),
+    P(span_code("<a>", lang='html'), " are underlined only on :hover."),
 )
 
 sec_6_7_1 = section(
@@ -4005,7 +4006,7 @@ sec_6_7_1 = section(
 )
 #———————————————————
 body_6_7_2a = (
-    P("You can use  ", Code(".secondary", cls="highlight"),  ", ", Code(".contrast", cls="highlight"), " and  ", Code(".outline", cls="highlight"), "  classes (not available in the class-less version)."),
+    P("You can use  ", span_code(".secondary", lang='css'),  ", ", span_code(".contrast", lang='css'), " and  ", span_code(".outline", lang='css'), "  classes (not available in the class-less version)."),
 )
 
 art_6_7_2a = article(
@@ -4075,7 +4076,7 @@ sec_6_7_2 = section(
 #———————————————————
 
 body_6_7_3 = (
-    P("You can use  ", Code("<button>", cls="highlight"), " inside ", Code("<li>", cls="highlight"), "."),
+    P("You can use  ", span_code("<button>", lang='html'), " inside ", span_code("<li>", lang='html'), "."),
     P("Button sizes automatically match link size and margin."),
 )
 
@@ -4176,7 +4177,7 @@ sec_6_7_4 = section(
 )
 #———————————————————
 body_6_7_5 = (
-    P("Inside ", Code("<aside>", cls="highlight"), ", navs items are stacked vertically."),
+    P("Inside ", span_code("<aside>", lang='html'), ", navs items are stacked vertically."),
 )
 
 art_6_7_5 = article(
@@ -4213,7 +4214,7 @@ sec_6_7_5 = section(
 #———————————————————
 
 body_6_7_6a = (
-    P("With ", Code("<nav aria-label='breadcrumb'>", cls="highlight"), ", you can turn a nav into a breadcrumb."),
+    P("With ", span_code("<nav aria-label='breadcrumb'>", lang='html'), ", you can turn a nav into a breadcrumb."),
 )
 
 art_6_7_6a = article(
@@ -4239,7 +4240,7 @@ pico_6_7_6a = div_code(
 )
 
 body_6_7_6b = (
-    P("You can change the divider with a local CSS custom property ", Code("--pico-nav-breadcrumb-divider", cls="highlight"), "."),
+    P("You can change the divider with a local CSS custom property ", span_code("--pico-nav-breadcrumb-divider", lang='css'), "."),
 )
 
 art_6_7_6b = article(
@@ -4279,7 +4280,7 @@ sec_6_7_6 = section(
 )
 #———————————————————
 body_6_7_7 = (
-    P("The ", Code("<nav>"), " component uses ", Code("overflow: visible;"), " on the container and negative margins on childrens to provide a nice ", Code("::focus-visible"), " style for links on keyboard navigation while keeping the content aligned horizontally."),
+    P("The ", span_code("<nav>"), " component uses ", span_code("overflow: visible;"), " on the container and negative margins on childrens to provide a nice ", span_code("::focus-visible"), " style for links on keyboard navigation while keeping the content aligned horizontally."),
 )
 
 art_6_7_7 = article(
@@ -4395,7 +4396,7 @@ sec_6_9_1 = section(
 )
 #———————————————————
 body_6_9_2 = (
-    P("The tooltip is displayed on top by default but you can change it with the ", Code("data-placement", cls="highlight"), " attribute."),
+    P("The tooltip is displayed on top by default but you can change it with the ", span_code("data-placement", lang='html'), " attribute."),
 )
 
 art_6_9_2 = article(
