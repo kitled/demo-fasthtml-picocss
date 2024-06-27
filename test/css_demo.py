@@ -1,6 +1,16 @@
 from fasthtml.common import * # type: ignore
 import json
 
+# NOTE: This was the original project that gave birth to single_page.py
+#       Eventually, it will all be merged as one single app, with user-chosen variations:
+#       CSS theme (color hue & contrast intensity, dark/light read mode…), 
+#       JS features (code highlighter such as PrismJS or HighlightJS),
+#       …
+#       The point is to demonstrate all "easy to implement" capabilities of a lib like FastHTML
+#       combined with various CSS and JS frameworks. This bridges the gap from web to FastHTML.
+#       Being in Python, we will then bridge the gap with that ecosystem,
+#       and see how we can easily do lots of Python things in the browser (with HTMX, Modal, etc.)
+
 html    = Html(lang='en', 
     # data_theme='dark',   # also helps bg color hack in demo.css
     )
