@@ -20,3 +20,6 @@ Official documentation. <!-- and other useful resources. -->
 - Pico CSS: [https://github.com/picocss/pico](https://github.com/picocss/pico)  
 (⚖️ [MIT](https://github.com/picocss/pico/blob/main/LICENSE.md) )
 
+### Additional resources
+
+Examples: <https://picocss.com/examples>
