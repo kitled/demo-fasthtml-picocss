@@ -4,6 +4,10 @@ from fastapi import Request
 
 #—————————————————————————————————————————————————————————————————————————————
 # HTML 5 conventions
+
+# Probably better implementation of a dark/light switch: 
+# https://github.com/picocss/examples/blob/master/v2-react-color-schemes-and-modal/src/components/ColorSchemeSwitcher.js
+
 html = Html(lang='en', 
     # data_theme="light"
     )
