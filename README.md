@@ -22,4 +22,5 @@ Official documentation. <!-- and other useful resources. -->
 
 ### Additional resources
 
-Examples: <https://picocss.com/examples>
+Examples: <https://picocss.com/examples>  
+Code: <https://github.com/picocss/examples>
