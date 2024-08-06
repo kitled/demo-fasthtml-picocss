@@ -30,15 +30,14 @@ In 2024, I try to suck less at AI and that's already a tall order for me.
 
 ## Table of contents
 
-- Motivation & Purpose
-- Discussion
-   - Background story
-   - Current status
-   - Future
-   - Features
-   - AI generation for websites
-      - About Cursor
-   - Other CSS frameworks
+- [Motivation & Purpose](https://github.com/agenkit/demo-fasthtml-picocss#motivation--purpose)
+- [Discussion](https://github.com/agenkit/demo-fasthtml-picocss#discussion)
+   - [Background story](https://github.com/agenkit/demo-fasthtml-picocss#background-story)
+   - [Current status](https://github.com/agenkit/demo-fasthtml-picocss#current-status)
+   - [Features](https://github.com/agenkit/demo-fasthtml-picocss#features)
+   - [AI generation for websites](https://github.com/agenkit/demo-fasthtml-picocss#ai-generation-for-websites)
+      - [About Cursor](https://github.com/agenkit/demo-fasthtml-picocss#about-cursor)
+   - [Other CSS frameworks](https://github.com/agenkit/demo-fasthtml-picocss#other-css-frameworks)
 
 
 
@@ -194,7 +193,11 @@ First of all, *be my guest!* : ) The more, the merrier…
 
 I'm searching for *a* CSS framework that makes sense to me as a 'great default' in all projects. Pico CSS fits that bill. I want something that resembles myself a bit more, though. So I'll probably have to explore that space a bit, settle on a good sane basis, and probably tweak it a bit.
 
-But we've just talked about AI so I guess everyone has the same thing in mind. What if the AI hosted there could alter its own presentation, its own website? To tweak CSS on-the-fly, through HTMX requests? We'd start narrowly, with very specific things we can validate with classic code (like RGB values, or existence of a generated image path). But seeing how Cursor breezes through making this very website… The sky is already high, friends.
+But we've just talked about AI so I guess everyone has the same thing in mind. What if the AI hosted there could alter its own presentation, its own website? To switch or even tweak CSS on-the-fly, and get re-served ad hoc bits and parts of style through HTMX requests? We'd start narrowly, with very specific things we can validate with classic code (like RGB values, or existence of a generated image path). But seeing how Cursor breezes through making this very website… The sky is already high, friends.
+
+I'm thinking of applications like accessibility and just plain comfort, where it could be possible to simply *ask* the website UI to change this or that in such and such manner? A world where you don't need Dark Reader to invert websites that don't conform to your system theme, where zooming can be made intelligent (and fix bad `@media` structure lol).
+
+We shall see.
 
 ----
 

@@ -2,7 +2,7 @@ from fasthtml.common import * # type: ignore
 from fasthtml.js import MarkdownJS, SortableJS, HighlightJS
 #from fastapi import Request
 
-#—————————————————————————————————————————————————————————————————————————————
+#-----------------------------------------------------------------------------
 # HTML 5 conventions
 
 # Probably better implementation of a dark/light switch: 
@@ -43,7 +43,7 @@ onload_theme = Script(
 me("html").attribute('data-theme', prefersDark ? 'dark' : 'light');'''
 )
 
-# theme_switch_test = Script('''me("html").attribute('data-theme', 'dark' ? 'light' : 'dark');''')
+# theme_button_test = Script('''me("html").attribute('data-theme', 'dark' ? 'light' : 'dark');''')
 
 head = (
     Meta(charset="utf-8"),
@@ -57,12 +57,12 @@ line_numbers = (
     Script(src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"),
     Script("hljs.highlightAll(); hljs.initLineNumbersOnLoad({singleLine: false});")
     )
-#—————————————————————————————————————————————————————————————————————————————
+#-----------------------------------------------------------------------------
 # Page-specific
 header_text = 'FastHTML 🧡 Pico CSS'
 title = Title(header_text)
 footer_text = P("Made by kit using FastHTML & Pico CSS, June 2024.")
-#—————————————————————————————————————————————————————————————————————————————
+#-----------------------------------------------------------------------------
 # <head> scripts & css
 pico_css = Link(
     rel="stylesheet",
@@ -74,7 +74,7 @@ page_css = Link(
     href="style/single-page copy.css",
     type="text/css"
     )
-#—————————————————————————————————————————————————————————————————————————————
+#-----------------------------------------------------------------------------
 # FastHTML app
 app = FastHTML(hdrs=(
     head,
@@ -85,7 +85,7 @@ app = FastHTML(hdrs=(
     HighlightJS('.highlight'),
     line_numbers,
     onload_theme,
-    # theme_switch_test,
+    # theme_button_test,
     # title,
     ))
 rt = app.route
@@ -93,40 +93,39 @@ rt = app.route
 @rt("/{fname:path}.{ext:static}") # Serve static files
 async def get(fname:str, ext:str): return FileResponse(f'{fname}.{ext}') # type: ignore
 
-#—————————————————————————————————————————————————————————————————————————————
+#-----------------------------------------------------------------------------
 # Features
 # Dark/Light mode toggle
-# def theme_switch():
-#     return Article(
-#         Button(
-#             Script('''me("html").on("theme-switcher", async event => { me(event).attribute('data-theme', 'light' ? 'dark' : 'light');'''),
-#         "Toggle theme",
-#         cls="theme-switcher",
-#         # type="button",
-#         # hx_post="/toggle_theme",
-#         # hx_swap="outerHTML",
-#         # hx_target="#theme-switcher"
-#         ),
-#     )
-def theme_switch():
+
+def theme_button():
     return Article(
         Button(
         f"Toggle theme",
         cls="contrast dark-mode-switcher",
-        # type="button",
         value="Toggle dark mode",
-        # hx_post="/toggle_theme",
-        # hx_swap="outerHTML",
-        # hx_target="#theme-switcher"
         ),
         id="theme-switcher",
         aria_label="Theme switcher",
     )
 
-#—————————————————————————————————————————————————————————————————————————————
+
+def theme_toggle():
+    return A(
+        f"🌗",
+        cls="contrast dark-mode-switcher",
+        href="/", 
+        data_tooltip="Dark/Light mode", 
+        data_placement="bottom", 
+        value="Toggle dark mode",
+        id="theme-switcher",
+        aria_label="Theme switcher",
+    )
+
+
+#-----------------------------------------------------------------------------
 # Helper functions to build proper HTML structure (nesting, etc.)
 # Must-have to change ALL at once (CSS class, HTML layout, whatever)
-# ⚠️ Absolutely minimalist and specific to this website
+# /!\ Absolutely minimalist and specific to this website
 def span_code(code, lang=None):
     '''Returns an inline <code> block.
     Use within <h4> sections to display code examples.
@@ -184,20 +183,20 @@ def heading(lv:int, title:str, desc=None):
     )
 
 def aside(*aside_tags):
-    '''Returns an <aside> block. TODO: Implementation lol 😹
+    '''Returns an <aside> block. TODO: Implementation
     `aside_tags` needs to be created (ToC) from the list of H2, H3, H4…
     '''
     return Aside(aside_tags)
 
-#   ➕
+#   +
 # def art_c(*c): # c for content
 #     return (*c, )
 
-#   ➕
+#   +
 # def art_footer(html, python):
 #     return Footer(Pre(span_code(html)), Pre(span_code(python)))
 
-#   🡇
+#   =
 def article(*c, hd=None, ft=None, card=False, **kwargs):
     return Card(*c, header=hd, footer=ft, **kwargs) if card else Article(*c, header=hd, footer=ft, **kwargs)
 
@@ -221,7 +220,7 @@ def main(*lv2_s, aside_tags=None, **kwargs):
         )
     )
 
-#—————————————————————————————————————————————————————————————————————————————
+#-----------------------------------------------------------------------------
 # PAGE CONTENTS
 
 # pico_ → HTML/CSS code
@@ -231,7 +230,7 @@ def main(*lv2_s, aside_tags=None, **kwargs):
 # #_#_# → section number
 # lv#_sec → <h#> (h2, h3, h4) section
 
-#——————————————————————————————————————————————————————————————————————————— 1
+#--------------------------------------------------------------------------- 1
 # 1. Getting started
 # 1.1. Quick start
 # 1.2. Version picker
@@ -240,7 +239,7 @@ def main(*lv2_s, aside_tags=None, **kwargs):
 # 1.5. Conditional styling
 # 1.6. RTL
 
-#—————————————————————————————————— 1.1
+#---------------------------------- 1.1
 # 1.1 Quick start
 # 1.1.1 Install manually
 # 1.1.2 Usage from CDN
@@ -252,7 +251,7 @@ pico_1_1_1 = cl_h(
     """<link rel="stylesheet" href="css/pico.min.css" />""",
     lang="html",
     )
-#    🡇🡇🡇
+
 body_1_1_1 = (
     P(
         A(
@@ -269,13 +268,13 @@ body_1_1_1 = (
     ),
     pico_1_1_1,
 )
-#   🡇🡇🡇
+
 sec_1_1_1 = section(
     body_1_1_1,
     lv=4, title="Install manually",
 )
 
-#  ＋
+
 
 pico_1_1_2 = cl_h(
 """<link 
@@ -284,7 +283,7 @@ pico_1_1_2 = cl_h(
 />""",
   lang="html",
 )
-#    🡇🡇🡇
+
 body_1_1_2 = P(
     """Alternatively, you can use """,
     A(
@@ -298,12 +297,12 @@ body_1_1_2 = P(
     '.',
     pico_1_1_2,
 )
-#   🡇🡇🡇
+
 sec_1_1_2 = section(body_1_1_2,
     lv=4, title="Usage from CDN",
 )
 
-#  ＋
+
 
 pico_1_1_5 = cl_h(
 """<!doctype html>
@@ -346,12 +345,12 @@ def get():
 )
 
 
-# 🡇🡇🡇
+
 sec_1_1_5 = section(pico_1_1_5, fh_1_1_5,
     lv=4, title="Starter HTML template",
 )
 
-#   🡇🡇🡇
+
 # this must nest all lv4_s
 sec_1_1_0 = section(
     P("There are 4 ways to get started with pico.css:"),
@@ -367,7 +366,7 @@ sec_1_1_0 = section(
 )
 
 
-#—————————————————————————————————— 1.2
+#---------------------------------- 1.2
 
 
 
@@ -384,7 +383,7 @@ sec_1_2_0 = section(
 
 
 
-#—————————————————————————————————— 1.3
+#---------------------------------- 1.3
 
 
 body_1_3_1 = (
@@ -428,7 +427,7 @@ sec_1_3_1 = section(body_1_3_1, css_1_3_1,
     lv=4, title="Usage",
 )
 
-def art_1_3_2(dark:bool=False) -> Article:
+def art_1_3_2(dark:bool=False):
     if dark:
         theme, title = "dark", H2("Dark card")
     else:
@@ -490,7 +489,7 @@ sec_1_3_2 = section(
 sec_1_3_0 = section(
     P("""The default color scheme is Light. The Dark scheme is automatically enabled if the user has dark mode enabled """, 
       span_code("prefers-color-scheme: dark;"), '.'),
-    theme_switch(),
+    theme_button(),
     sec_1_3_1,
     sec_1_3_2,
     lv=3, title="Color Schemes",
@@ -499,7 +498,7 @@ sec_1_3_0 = section(
     )
 )
 
-#—————————————————————————————————— 1.4
+#---------------------------------- 1.4
 
 sec_1_4_0 = section(
     lv=3, title="Class-less version",
@@ -510,7 +509,7 @@ sec_1_4_0 = section(
     ),
 )
 
-#—————————————————————————————————— 1.5
+#---------------------------------- 1.5
 
 sec_1_5_0 = section(
     lv=3, title="Conditional styling",
@@ -521,14 +520,14 @@ sec_1_5_0 = section(
     ),
 )
 
-#—————————————————————————————————— 1.6
+#---------------------------------- 1.6
 
 sec_1_6_0 = section(
     lv=3, title="RTL",
     desc="Support for Right-To-Left text."
 )
 
-#  🡇
+
 # lv2_s must nest all lv3_s
 sec_1_0_0 = section(
     sec_1_1_0,
@@ -539,20 +538,20 @@ sec_1_0_0 = section(
     sec_1_6_0,
     lv=2, title="Getting started",
 )
-#——————————————————————————————————————————————————————————————————————————— 2
+#--------------------------------------------------------------------------- 2
 # 2. Customization
 # 2.1 CSS Variables
 # 2.2 Sass
 # 2.3 Colors
 
-#—————————————————————————————————— 2.1
+#---------------------------------- 2.1
 
 sec_2_1_0 = section(
     lv=3, title="CSS Variables",
     desc="Customize Pico's design system with over 130 CSS variables to create a unique look and feel."
 )
 
-#—————————————————————————————————— 2.2
+#---------------------------------- 2.2
 
 sec_2_2_0 = section(
     lv=3, title="Sass",
@@ -562,7 +561,7 @@ sec_2_2_0 = section(
         "."),
 )
 
-#—————————————————————————————————— 2.3
+#---------------------------------- 2.3
 
 sec_2_3_0 = section(
     lv=3, title="Colors",
@@ -577,14 +576,14 @@ sec_2_0_0 = section(
     lv=2, title="Customization",
 )
 
-#——————————————————————————————————————————————————————————————————————————— 3
+#--------------------------------------------------------------------------- 3
 # 3.Layout
 # 3.1 Container
 # 3.2 Landmarks & section
 # 3.3 Grid
 # 3.4 Overflow auto NEW
 
-#—————————————————————————————————— 3.1
+#---------------------------------- 3.1
 # 3.1 Container
 # 3.1.1 Breakpoints
 # 3.1.2 Fixed width
@@ -684,7 +683,7 @@ sec_3_1_0 = section(
     desc=("Use ", span_code('.container'), "for a centered viewport or ", span_code('.container-fluid'), " for a full-width layout.")
 )
 
-#—————————————————————————————————— 3.2
+#---------------------------------- 3.2
 # 3.2 Landmarks & section
 # 3.2.1 Landmarks
 # 3.2.2 Custom root container
@@ -793,7 +792,7 @@ sec_3_2_0 = section(
     desc="Structure your pages with semantic landmarks and sections for better accessibility and graceful spacings.",
 )
 
-#—————————————————————————————————— 3.3
+#---------------------------------- 3.3
 # 3.3 Grid
 # 3.3.1 Syntax
 # 3.3.2 About CSS Grids
@@ -834,8 +833,8 @@ sec_3_3_1 = section(
 body_3_3_2 = (
     P("As Pico focuses on native HTML elements, we kept this grid system minimalist."),
     P("A complete grid system in flexbox, with all the ordering, offsetting, and breakpoints utilities, can be heavier than the total size of the Pico library. Not really in the Pico spirit."),
-    P("If you need a quick way to prototype or build a complex layout, you can look at ", Strong("Flexbox grid layouts"), "—for example, ", A("Bootstrap Grid System", href="https://getbootstrap.com/docs/4.2/getting-started/contents/"), " or ", A("Flexbox Grid", href="http://flexboxgrid.com/"), "."),
-    P("If you need a light and custom grid, you can look at CSS Grid Generators—for example, ", A("CSS Grid Generator", href="https://cssgrid-generator.netlify.com/"), ", ", A("Layoutit!", href="http://grid.layoutit.com/"), " or ", A("Griddy", href="https://griddy.io/"), "."),
+    P("If you need a quick way to prototype or build a complex layout, you can look at ", Strong("Flexbox grid layouts"), "-for example, ", A("Bootstrap Grid System", href="https://getbootstrap.com/docs/4.2/getting-started/contents/"), " or ", A("Flexbox Grid", href="http://flexboxgrid.com/"), "."),
+    P("If you need a light and custom grid, you can look at CSS Grid Generators-for example, ", A("CSS Grid Generator", href="https://cssgrid-generator.netlify.com/"), ", ", A("Layoutit!", href="http://grid.layoutit.com/"), " or ", A("Griddy", href="https://griddy.io/"), "."),
     P("Alternatively, you can ", A("learn about CSS Grid", href="https://learncssgrid.com/"), "."),
 )
 
@@ -856,7 +855,7 @@ sec_3_3_0 = section(
         " to enable auto-layout columns."),
 )
 
-#—————————————————————————————————— 3.4
+#---------------------------------- 3.4
 # 3.4 Overflow auto
 
 
@@ -907,14 +906,14 @@ sec_3_0_0 = section(
     sec_3_4_0,
     lv=2, title="Layout",
 )
-#————————————————————————————————————————————————————————————————————————————4
+#----------------------------------------------------------------------------4
 # 4. Content
 # 4.1 Typography
 # 4.2 Link
 # 4.3 Button
 # 4.4 Table
 
-#—————————————————————————————————— 4.1
+#---------------------------------- 4.1
 # 4.1 Typography
 # 4.1.1 Font sizes
 # 4.1.2 Headings
@@ -972,7 +971,7 @@ sec_4_1_1 = section(
     lv=4, title="Font sizes",
 )
 
-#——————————————————
+#------------------
 art_4_1_2 = article(
     H1("Heading 1"),
     H2("Heading 2"),
@@ -996,7 +995,7 @@ sec_4_1_2 = section(
     lv=4, title="Headings",
 )
 
-#——————————————————
+#------------------
 
 sec_4_1_3 = section(
     P("Not implemented in FastHTML (as of 2024.06.24)."),
@@ -1005,7 +1004,7 @@ sec_4_1_3 = section(
     lv=4, title="Heading group",
 )
 
-#——————————————————
+#------------------
 body_4_1_4 = Div(
     Div(P("Abbr.", span_code("<abbr>", lang='html')),
     P("Bold", span_code("<strong>", lang='html'), span_code("<b>", lang='html')),
@@ -1029,12 +1028,12 @@ sec_4_1_4 = section(
     body_4_1_4,
     lv=4, title="Inline text elements",
 )
-#——————————————————
+#------------------
 sec_4_1_5 = section(
     P("Not implemented in FastHTML (as of 2024.06.24)."),
     lv=4, title="Blockquote",
 )
-#——————————————————
+#------------------
 art_4_1_6 = article(
     P("Paragraph above the horizontal line."),
     Hr(),
@@ -1052,7 +1051,7 @@ sec_4_1_6 = section(
     lv=4, title="Horizontal rule",
 )
 
-#——————————————————
+#------------------
 sec_4_1_0 = section(
     sec_4_1_1,
     sec_4_1_2,
@@ -1064,7 +1063,7 @@ sec_4_1_0 = section(
     desc="All typographic elements are responsive and scale gracefully across devices and viewports.",
 )
 
-#—————————————————————————————————— 4.2
+#---------------------------------- 4.2
 # 4.2 Link
 
 
@@ -1130,7 +1129,7 @@ sec_4_2_0 = section(
     ),
 )
 
-#—————————————————————————————————— 4.3
+#---------------------------------- 4.3
 # 4.3 Button
 # 4.3.1 Syntax
 # 4.3.2 Variants
@@ -1139,7 +1138,7 @@ sec_4_2_0 = section(
 # 4.3.5 Role button
 # 4.3.6 Usage with group
 
-#——————————————————
+#------------------
 art_4_3_1 = article(
     Button("Button"),
 )
@@ -1155,7 +1154,7 @@ sec_4_3_1 = section(
     lv=4, title="Syntax",
 )
 
-#——————————————————
+#------------------
 body_4_3_2a = P("Buttons come with ", span_code(".secondary"), " and ", span_code(".contrast"), "styles (not available in the ", A("class-less version", href="https://picocss.com/docs/classless"), ")."),
 
 art_4_3_2a = article(Div(
@@ -1197,7 +1196,7 @@ sec_4_3_2 = section(
     lv=4, title="Variants",
 )
 
-#——————————————————
+#------------------
 
 body_4_3_3a = P(
     span_code('type="submit"'), 
@@ -1240,7 +1239,7 @@ sec_4_3_3 = section(
     lv=4, title="Form buttons",
 )
 
-#——————————————————
+#------------------
 
 body_4_3_4 = (
     P("Not implemented in FastHTML (as of 2024.06.24)."),
@@ -1263,7 +1262,7 @@ sec_4_3_4 = section(
     lv=4, title="Disabled",
 )
 
-#——————————————————
+#------------------
 
 body_4_3_5 = P("Clickable elements with ", 
                span_code("role='button'"), 
@@ -1285,7 +1284,7 @@ sec_4_3_5 = section(
     lv=4, title="Role button",
 )
 
-#——————————————————
+#------------------
 
 body_4_3_6 = P("You can use ", span_code("role='group'"), " with buttons. See Group.")
 
@@ -1314,7 +1313,7 @@ sec_4_3_6 = section(
     lv=4, title="Usage with group",
 )
 
-#——————————————————
+#------------------
 sec_4_3_0 = section(
     sec_4_3_1,
     sec_4_3_2,
@@ -1331,7 +1330,7 @@ sec_4_3_0 = section(
         ". for the default style."),
 )
 
-#—————————————————————————————————— 4.4
+#---------------------------------- 4.4
 # 4.4 Table
 # 4.4.1 Syntax
 # 4.4.2 Color schemes
@@ -1439,7 +1438,7 @@ sec_4_4_1 = section(
         ", providing consistent spacings and a minimal unbordered look."),
 )
 
-#——————————————————
+#------------------
 body_4_4_2 = P(
     span_code("data-theme='light'", lang='html'),
     " or ",
@@ -1524,7 +1523,7 @@ sec_4_4_2 = section(
 )
 
 
-#——————————————————
+#------------------
 
 body_4_4_3 = P(
     span_code(".striped"),
@@ -1592,7 +1591,7 @@ sec_4_4_3 = section(
 )
 
 
-#——————————————————
+#------------------
 sec_4_4_0 = section(
     sec_4_4_1,
     sec_4_4_2,
@@ -1600,7 +1599,7 @@ sec_4_4_0 = section(
     lv=2, title="Table",
 )
 
-#——————————————————
+#------------------
 sec_4_0_0 = section(
     sec_4_1_0,
     sec_4_2_0,
@@ -1608,7 +1607,7 @@ sec_4_0_0 = section(
     sec_4_4_0,
     lv=2, title="Content",
 )
-#————————————————————————————————————————————————————————————————————————————5
+#----------------------------------------------------------------------------5
 # 5. Forms
 # 5.1 Overview
 # 5.2 Input
@@ -1619,7 +1618,7 @@ sec_4_0_0 = section(
 # 5.7 Switch
 # 5.8 Range
 
-#—————————————————————————————————— 5.1
+#---------------------------------- 5.1
 # 5.1 Overview
 # 5.1.1 Introduction
 # 5.1.2 Helper text
@@ -1726,7 +1725,7 @@ sec_5_1_1 = section(
     pico_5_1_1b,
     lv=3, title="Introduction",
 )
-#——————————————————
+#------------------
 body_5_1_2 = P(
     span_code("<small>", lang='html'),
     " below form elements are muted and act as helper texts.",
@@ -1758,7 +1757,7 @@ sec_5_1_2 = section(
     pico_5_1_2,
     lv=3, title="Helper text",
 )
-#——————————————————
+#------------------
 body_5_1_3 = P(
     "You can use ",
     span_code(".grid"),
@@ -1809,7 +1808,7 @@ sec_5_1_3 = section(
     pico_5_1_3,
     lv=3, title="Usage with grid",
 )
-#——————————————————
+#------------------
 body_5_1_4 = P(
     "You can use ",
     span_code('role="group"'),
@@ -1849,7 +1848,7 @@ sec_5_1_4 = section(
     pico_5_1_4,
     lv=3, title="Usage with group",
 )
-#——————————————————
+#------------------
 sec_5_1_0 = section(
     sec_5_1_1,
     sec_5_1_2,
@@ -1859,7 +1858,7 @@ sec_5_1_0 = section(
     desc="All form elements are fully responsive with pure semantic HTML, enabling forms to scale gracefully across devices and viewports."
 )
 
-#—————————————————————————————————— 5.2
+#---------------------------------- 5.2
 # 5.2 Input
 # 5.2.1 Syntax
 # 5.2.2 Datetime
@@ -1895,7 +1894,7 @@ sec_5_2_1 = section(
     lv=3, title="Syntax",
 )
 
-#——————————————————
+#------------------
 body_5_2_2 = P("Datetime inputs come with an icon.")
 
 art_5_2_2 = article(
@@ -1940,7 +1939,7 @@ sec_5_2_3 = section(
     pico_5_2_3,
     lv=3, title="Search",
 )
-#——————————————————
+#------------------
 body_5_2_4 = P(
     span_code('type="color"'),
     " is also consistent with the other input types.",
@@ -1965,7 +1964,7 @@ sec_5_2_4 = section(
     pico_5_2_4,
     lv=3, title="Color",
 )
-#——————————————————
+#------------------
 body_5_2_5 = P("Input type file button has a ", span_code("secondary button style"), ".")
 
 art_5_2_5 = article(
@@ -1983,7 +1982,7 @@ sec_5_2_5 = section(
     pico_5_2_5,
     lv=3, title="File",
 )
-#——————————————————
+#------------------
 art_5_2_6 = article(
     Input(type="text", 
           name="text",
@@ -2008,7 +2007,7 @@ sec_5_2_6 = section(
     pico_5_2_6,
     lv=3, title="Disabled",
 )
-#——————————————————
+#------------------
 art_5_2_7 = article(
     Input(type="text", name="text", value="Read-only", aria_label="Read-only input", readonly=True),
 )
@@ -2029,7 +2028,7 @@ sec_5_2_7 = section(
     pico_5_2_7,
     lv=3, title="Readonly",
 )
-#——————————————————
+#------------------
 body_5_2_8a = P("Validation states are provided with ", span_code("aria-invalid"), ".")
 
 art_5_2_8a = article(
@@ -2095,7 +2094,7 @@ sec_5_2_8 = section(
     pico_5_2_8b,
     lv=3, title="Validation states",
 )
-#——————————————————
+#------------------
 sec_5_2_0 = section(
     sec_5_2_1,
     sec_5_2_2,
@@ -2109,13 +2108,13 @@ sec_5_2_0 = section(
     desc="All input types are consistently styled and come with validation states."
 )
 
-#—————————————————————————————————— 5.3
+#---------------------------------- 5.3
 # 5.3 Textarea
 # 5.3.1 Syntax
 # 5.3.2 Disabled
 # 5.3.3 Readonly
 # 5.3.4 Validation states
-#——————————————————
+#------------------
 
 art_5_3_1 = article(
     Textarea(name="bio", placeholder="Write a professional short bio...", aria_label="Professional short bio"),
@@ -2136,7 +2135,7 @@ sec_5_3_1 = section(
     pico_5_3_1,
     lv=3, title="Syntax",
 )
-#——————————————————
+#------------------
 
 art_5_3_2 = article(
     Textarea("Disabled", name="disabled", disabled=True),
@@ -2154,7 +2153,7 @@ sec_5_3_2 = section(
     pico_5_3_2,
     lv=3, title="Disabled",
 )
-#——————————————————
+#------------------
 
 art_5_3_3 = article(
     Textarea("Read-only", name="readonly", readonly=True),
@@ -2172,7 +2171,7 @@ sec_5_3_3 = section(
     pico_5_3_3,
     lv=3, title="Readonly",
 )
-#——————————————————
+#------------------
 
 body_5_3_4a = P("Validation states are provided with ", span_code("aria-invalid"), ".")
 
@@ -2233,7 +2232,7 @@ sec_5_3_4 = section(
     pico_5_3_4b,
     lv=3, title="Validation states",
 )
-#——————————————————
+#------------------
 sec_5_3_0 = section(
     sec_5_3_1,
     sec_5_3_2,
@@ -2246,14 +2245,14 @@ sec_5_3_0 = section(
         " is styled like the input for consistency."
     ),
 )
-#—————————————————————————————————— 5.4
+#---------------------------------- 5.4
 # 5.4 Select
 # 5.4.1 Syntax
 # 5.4.2 Multiple
 # 5.4.3 Disabled
 # 5.4.4 Validation states
 # 5.4.5 Dropdown
-#———————————————————
+#-------------------
 art_5_4_1 = article(
     Select(
         "Select your favorite cuisine...", 
@@ -2288,7 +2287,7 @@ sec_5_4_1 = section(
     pico_5_4_1,
     lv=3, title="Syntax",
 )
-#——————————————————
+#------------------
 art_5_4_2 = article(
     Select(
         "Select your favorite snacks...", 
@@ -2323,7 +2322,7 @@ sec_5_4_2 = section(
     pico_5_4_2,
     lv=3, title="Multiple",
 )
-#——————————————————
+#------------------
 art_5_4_3 = article(
     Select(
         Option("Select a meal type…"),
@@ -2347,7 +2346,7 @@ sec_5_4_3 = section(
     pico_5_4_3,
     lv=3, title="Disabled",
 )
-#——————————————————
+#------------------
 body_5_4_4 = P("Validation states are provided with ", span_code("aria-invalid"), ".")
 
 art_5_4_4 = article(
@@ -2394,14 +2393,14 @@ sec_5_4_4 = section(
     pico_5_4_4,
     lv=3, title="Validation states",
 )
-#——————————————————
+#------------------
 body_5_4_5 = P("The dropdown component allows you to build a custom select with the same style as the native select. See ", A("dropdown", href="https://picocss.com/docs/dropdown"), ".")
 
 sec_5_4_5 = section(
     body_5_4_5,
     lv=3, title="Dropdown",
 )
-#———————————————————
+#-------------------
 sec_5_4_0 = section(
     sec_5_4_1,
     sec_5_4_2,
@@ -2415,13 +2414,13 @@ sec_5_4_0 = section(
         " is styled like the input for consistency."
     ),
 )
-#—————————————————————————————————— 5.5
+#---------------------------------- 5.5
 # 5.5 Checkboxes
 # 5.5.1 Syntax
 # 5.5.2 Horizontal stacking
 # 5.5.3 Indeterminate
 # 5.5.4 Validation states
-#———————————————————
+#-------------------
 
 art_5_5_1 = article(
     Fieldset(
@@ -2466,7 +2465,7 @@ sec_5_5_1 = section(
     pico_5_5_1,
     lv=3, title="Syntax",
 )
-#———————————————————
+#-------------------
 art_5_5_2 = article(
     Fieldset(
         Legend("Language preferences:"),
@@ -2494,7 +2493,7 @@ sec_5_5_2 = section(
     pico_5_5_2,
     lv=3, title="Horizontal stacking",
 )
-#———————————————————
+#-------------------
 body_5_5_3 = P("You can change a checkbox to an indeterminate state by setting the ", span_code("indeterminate"), " property to ", span_code("true"), ".")
 
 art_5_5_3 = article(
@@ -2532,7 +2531,7 @@ sec_5_5_3 = section(
     script_5_5_3,
     lv=3, title="Indeterminate",
 )
-#———————————————————
+#-------------------
 
 body_5_5_4 = P("Validation states are provided with ", span_code(".aria-invalid."), ".")
 
@@ -2560,7 +2559,7 @@ sec_5_5_4 = section(
     pico_5_5_4,
     lv=3, title="Validation states",
 )
-#———————————————————
+#-------------------
 sec_5_5_0 = section(
     sec_5_5_1,
     sec_5_5_2,
@@ -2573,12 +2572,12 @@ sec_5_5_0 = section(
         " with a custom and responsive style."
     ),
 )
-#—————————————————————————————————— 5.6
+#---------------------------------- 5.6
 # 5.6 Radios
 # 5.6.1 Syntax
 # 5.6.2 Horizontal stacking
 # 5.6.3 Validation states
-#———————————————————
+#-------------------
 art_5_6_1 = article(
     Fieldset(
         Legend("Language preference:"),
@@ -2622,7 +2621,7 @@ sec_5_6_1 = section(
     pico_5_6_1,
     lv=3, title="Syntax",
 )
-#———————————————————
+#-------------------
 art_5_6_2 = article(
     Fieldset(
         Legend("Second language:"),
@@ -2650,7 +2649,7 @@ sec_5_6_2 = section(
     pico_5_6_2,
     lv=3, title="Horizontal stacking",
 )
-#———————————————————
+#-------------------
 body_5_6_3 = P("Validation states are provided with ", span_code(".aria-invalid."), ".")
 
 art_5_6_3 = article(
@@ -2677,7 +2676,7 @@ sec_5_6_3 = section(
     pico_5_6_3,
     lv=3, title="Validation states",
 )
-#———————————————————
+#-------------------
 sec_5_6_0 = section(
     sec_5_6_1,
     sec_5_6_2,
@@ -2689,7 +2688,7 @@ sec_5_6_0 = section(
         " with a custom and responsive style."
     ),
 )
-#—————————————————————————————————— 5.7
+#---------------------------------- 5.7
 # 5.7 Switch
 # 5.7.1 Syntax
 # 5.7.2 Disabled
@@ -2720,7 +2719,7 @@ sec_5_7_1 = section(
     pico_5_7_1,
     lv=3, title="Syntax",
 )
-#———————————————————
+#-------------------
 art_5_7_2 = article(
     Fieldset(
         Label(Input("Publish on my profile", type="checkbox", name="publish", role="switch", disabled=True)),
@@ -2749,7 +2748,7 @@ sec_5_7_2 = section(
 )
 
 
-#———————————————————
+#-------------------
 
 art_5_7_3 = article(
     Fieldset(
@@ -2777,7 +2776,7 @@ sec_5_7_3 = section(
     pico_5_7_3,
     lv=3, title="Validation states",
 )
-#———————————————————
+#-------------------
 sec_5_7_0 = section(
     sec_5_7_1,
     sec_5_7_2,
@@ -2787,9 +2786,9 @@ sec_5_7_0 = section(
         "A switch component in pure CSS, using the checkbox syntax."
     ),
 )
-#—————————————————————————————————— 5.8
+#---------------------------------- 5.8
 # 5.8 Range
-#———————————————————
+#-------------------
 art_5_8_1 = article(
     Label(Input("Brightness", type="range")),
     Label(Input("Contrast", type="range", value="40")),
@@ -2818,7 +2817,7 @@ sec_5_8_0 = section(
         "."
     ),
 )
-#——————————————————————————————————
+#----------------------------------
 sec_5_0_0 = section(
     sec_5_1_0,
     sec_5_2_0,
@@ -2830,7 +2829,7 @@ sec_5_0_0 = section(
     sec_5_8_0,
     lv=2, title="Forms",
 )
-#————————————————————————————————————————————————————————————————————————————6
+#----------------------------------------------------------------------------6
 # 6. Components
 # 6.1 Accordion
 # 6.2 Card
@@ -2842,11 +2841,11 @@ sec_5_0_0 = section(
 # 6.8 Progress
 # 6.9 Tooltip
 
-#—————————————————————————————————— 6.1
+#---------------------------------- 6.1
 # 6.1 Accordions
 # 6.1.1 Overview
 # 6.1.2 Button variants
-#———————————————————
+#-------------------
 art_6_1_1 = article(
     Details(
         Summary("Accordion 1"), 
@@ -2884,7 +2883,7 @@ sec_6_1_1 = section(
     pico_6_1_1,
     lv=4, title="Overview",
 )
-#———————————————————
+#-------------------
 body_6_1_2a = P(
     span_code("role='button'"),
     " can be used to turn ",
@@ -2978,7 +2977,7 @@ sec_6_1_2 = section(
     pico_6_1_2b,
     lv=4, title="Button variants",
 )
-#———————————————————
+#-------------------
 sec_6_1_0 = section(
     sec_6_1_1,
     sec_6_1_2,
@@ -2987,7 +2986,7 @@ sec_6_1_0 = section(
         "Toggle sections of content in pure HTML, without JavaScript, using minimal and semantic markup."
     ),
 )
-#—————————————————————————————————— 6.2
+#---------------------------------- 6.2
 # 6.2 Card
 # 6.2.1 Syntax
 # 6.2.2 Sectioning
@@ -3015,7 +3014,7 @@ sec_6_2_1 = section(
     pico_6_2_1,
     lv=4, title="Syntax",
 )
-#———————————————————
+#-------------------
 
 art_6_2_2 = Article(
     Header("Header"),
@@ -3037,7 +3036,7 @@ sec_6_2_2 = section(
     pico_6_2_2,
     lv=4, title="Sectioning",
 )
-#———————————————————
+#-------------------
 sec_6_2_0 = section(
     sec_6_2_1,
     sec_6_2_2,
@@ -3047,14 +3046,14 @@ sec_6_2_0 = section(
     ),
 )
 
-#—————————————————————————————————— 6.3
+#---------------------------------- 6.3
 # 6.3 Dropdown
 # 6.3.1 Syntax
 # 6.3.2 Checkboxes and radios
 # 6.3.3 Button variants
 # 6.3.4 Validation states
 # 6.3.5 Usage with nav
-#———————————————————
+#-------------------
 body_6_3_1 = (
     P(
         "Dropdowns are built with ",
@@ -3122,7 +3121,7 @@ sec_6_3_1 = section(
     pico_6_3_1,
     lv=4, title="Syntax",
 )
-#———————————————————
+#-------------------
 body_6_3_2 = P("Dropdowns can be used as custom selects with ", span_code("<input type='radio'>", lang='html'), " or ", span_code("<input type='checkbox'>", lang='html'), ".")
 
 art_6_3_2 = article(
@@ -3231,7 +3230,7 @@ sec_6_3_2 = section(
     pico_6_3_2,
     lv=4, title="Checkboxes and radios",
 )
-#———————————————————
+#-------------------
 body_6_3_3a = P(
     span_code('<summary role="button">', lang='html'), 
     " transforms the dropdown into a button.",
@@ -3375,7 +3374,7 @@ sec_6_3_3 = section(
     pico_6_3_3b,
     lv=4, title="Button variants",
 )
-#———————————————————
+#-------------------
 body_6_3_4 = P(
     "Just like any form elements, validation states are provided with ",
     span_code("aria-invalid", lang='html'),
@@ -3423,7 +3422,7 @@ sec_6_3_4 = section(
     pico_6_3_4,
     lv=4, title="Validation states",
 )
-#———————————————————
+#-------------------
 body_6_3_5 = (P(
     "You can use dropdowns inside ",
     span_code("Nav", lang='html'),
@@ -3488,7 +3487,7 @@ sec_6_3_5 = section(
     pico_6_3_5,
     lv=4, title="Usage with nav",
 )
-#———————————————————
+#-------------------
 sec_6_3_0 = section(
     sec_6_3_1,
     sec_6_3_2,
@@ -3499,7 +3498,7 @@ sec_6_3_0 = section(
     desc="Create dropdown menus and custom selects with minimal and semantic HTML, without JavaScript."
 )
 
-#—————————————————————————————————— 6.4
+#---------------------------------- 6.4
 # 6.4 Group
 # 6.4.1 Forms
 # 6.4.2 Search
@@ -3578,7 +3577,7 @@ sec_6_4_1 = section(
     pico_6_4_1b,
     lv=4, title="Forms",
 )
-#———————————————————
+#-------------------
 body_6_4_2 = (
     P(span_code('role="search"'), " role='search' also stacks children horizontally and brings a special style, consistent with ", span_code('<input type="search" />', lang='html'), " (see ", A("Search input", href="https://picocss.com/docs/input#search", cls="secondary"), ")."),
 )
@@ -3605,7 +3604,7 @@ sec_6_4_2 = section(
     pico_6_4_2,
     lv=4, title="Search",
 )
-#———————————————————
+#-------------------
 body_6_4_3 = (
     P(span_code('role="group"'), " is also useful for grouping a series of buttons."),
 )
@@ -3675,7 +3674,7 @@ sec_6_4_3 = section(
     lv=4, title="Buttons",
 )
 
-#———————————————————
+#-------------------
 sec_6_4_0 = section(
     sec_6_4_1,
     sec_6_4_2,
@@ -3690,9 +3689,9 @@ sec_6_4_0 = section(
     ),
 )
 
-#—————————————————————————————————— 6.5
+#---------------------------------- 6.5
 # 6.5 Loading
-#———————————————————
+#-------------------
 body_6_5_1 = (
     P("It can be applied to any block:"),
 )
@@ -3745,7 +3744,7 @@ pico_6_5_1c = cl_h(
     lang="html",
 )
 
-#———————————————————
+#-------------------
 sec_6_5_0 = section(
     body_6_5_1,
     art_6_5_1a,
@@ -3762,12 +3761,12 @@ sec_6_5_0 = section(
     ),
 )
 
-#—————————————————————————————————— 6.6
+#---------------------------------- 6.6
 # 6.6 Modal
 # 6.6.1 Syntax
 # 6.6.2 Demo
 # 6.6.3 Utilities
-#———————————————————
+#-------------------
 
 body_6_6_1a = (
     P("Modals are built with ", span_code('<dialog>', lang='html'), " as a wrapper and ", span_code('<article>', lang='html'), " for the modal content."),
@@ -3869,7 +3868,7 @@ sec_6_6_1 = section(
     pico_6_6_1b,
     lv=4, title="Syntax",
 )
-#———————————————————
+#-------------------
 body_6_6_2a = (
     P("Toggle a modal by clicking the button below."),
 )
@@ -3939,7 +3938,7 @@ sec_6_6_2 = section(
     body_6_6_2b,
     lv=4, title="Demo",
 )
-#———————————————————
+#-------------------
 
 body_6_6_3a = (
     P("Modals come with 3 utility classes."),
@@ -3989,7 +3988,7 @@ sec_6_6_3 = section(
     pico_6_6_3c,
     lv=4, title="Utilities",
 )
-#———————————————————
+#-------------------
 sec_6_6_0 = section(
     sec_6_6_1,
     sec_6_6_2,
@@ -4002,7 +4001,7 @@ sec_6_6_0 = section(
     ),
 )
 
-#—————————————————————————————————— 6.7
+#---------------------------------- 6.7
 # 6.7 Nav
 # 6.7.1 Syntax
 # 6.7.2 Link variants
@@ -4011,7 +4010,7 @@ sec_6_6_0 = section(
 # 6.7.5 Vertical stacking
 # 6.7.6 Breadcrumb
 # 6.7.7 Overflow
-#———————————————————
+#-------------------
 
 art_6_7_1 = article(
     Nav(
@@ -4052,7 +4051,7 @@ sec_6_7_1 = section(
     body_6_7_1,
     lv=4, title="Syntax",
 )
-#———————————————————
+#-------------------
 body_6_7_2a = (
     P("You can use  ", span_code(".secondary", lang='css'),  ", ", span_code(".contrast", lang='css'), " and  ", span_code(".outline", lang='css'), "  classes (not available in the class-less version)."),
 )
@@ -4121,7 +4120,7 @@ sec_6_7_2 = section(
     pico_6_7_2b,
     lv=4, title="Link variants",
 )
-#———————————————————
+#-------------------
 
 body_6_7_3 = (
     P("You can use  ", span_code("<button>", lang='html'), " inside ", span_code("<li>", lang='html'), "."),
@@ -4161,7 +4160,7 @@ sec_6_7_3 = section(
     pico_6_7_3,
     lv=4, title="Buttons",
 )
-#———————————————————
+#-------------------
 
 body_6_7_4 = (
     P("You can use dropdowns inside Nav."),
@@ -4223,7 +4222,7 @@ sec_6_7_4 = section(
     pico_6_7_4,
     lv=4, title="Dropdowns",
 )
-#———————————————————
+#-------------------
 body_6_7_5 = (
     P("Inside ", span_code("<aside>", lang='html'), ", navs items are stacked vertically."),
 )
@@ -4259,7 +4258,7 @@ sec_6_7_5 = section(
     pico_6_7_5,
     lv=4, title="Vertical stacking",
 )
-#———————————————————
+#-------------------
 
 body_6_7_6a = (
     P("With ", span_code("<nav aria-label='breadcrumb'>", lang='html'), ", you can turn a nav into a breadcrumb."),
@@ -4326,7 +4325,7 @@ sec_6_7_6 = section(
     pico_6_7_6b,
     lv=4, title="Breadcrumb",
 )
-#———————————————————
+#-------------------
 body_6_7_7 = (
     P("The ", span_code("<nav>"), " component uses ", span_code("overflow: visible;"), " on the container and negative margins on childrens to provide a nice ", span_code("::focus-visible"), " style for links on keyboard navigation while keeping the content aligned horizontally."),
 )
@@ -4360,7 +4359,7 @@ sec_6_7_7 = section(
     art_6_7_7,
     lv=4, title="Overflow",
 )
-#———————————————————
+#-------------------
 sec_6_7_0 = section(
     sec_6_7_1,
     sec_6_7_2,
@@ -4373,11 +4372,11 @@ sec_6_7_0 = section(
     desc="The essential navbar component in pure semantic HTML."
 )
 
-#—————————————————————————————————— 6.8
+#---------------------------------- 6.8
 # 6.8 Progress
 # 6.8.1 Syntax
 # 6.8.2 Indeterminate
-#———————————————————
+#-------------------
 
 # art_6_8_1 = article(
 #     Progressbar(value="89", max="100"),
@@ -4395,7 +4394,7 @@ sec_6_8_1 = section(
     pico_6_8_1,
     lv=4, title="Syntax",
 )
-#———————————————————
+#-------------------
 
 # art_6_8_2 = article(
 #     Progress(),
@@ -4411,18 +4410,18 @@ sec_6_8_2 = section(
     pico_6_8_2,
     lv=4, title="Indeterminate",
 )
-#———————————————————
+#-------------------
 sec_6_8_0 = section(
     sec_6_8_1,
     sec_6_8_2,
     lv=3, title="Progress",
     desc="The progress bar element in pure HTML, without JavaScript."
 )
-#—————————————————————————————————— 6.9
+#---------------------------------- 6.9
 # 6.9 Tooltip
 # 6.9.1 Syntax
 # 6.9.2 Placement
-#———————————————————
+#-------------------
 
 art_6_9_1 = article(
     P("Tooltip on a ", A("link", href="#", data_tooltip="Tooltip"), "."),
@@ -4442,7 +4441,7 @@ sec_6_9_1 = section(
     pico_6_9_1,
     lv=4, title="Syntax",
 )
-#———————————————————
+#-------------------
 body_6_9_2 = (
     P("The tooltip is displayed on top by default but you can change it with the ", span_code("data-placement", lang='html'), " attribute."),
 )
@@ -4469,7 +4468,7 @@ sec_6_9_2 = section(
     pico_6_9_2,
     lv=4, title="Placement",
 )
-#———————————————————
+#-------------------
 
 
 
@@ -4480,7 +4479,7 @@ sec_6_9_0 = section(
     lv=3, title="Tooltip",
     desc="Enable tooltips everywhere, without JavaScript."
 )
-#———————————————————
+#-------------------
 sec_6_0_0 = section(
     sec_6_1_0,
     sec_6_2_0,
@@ -4493,47 +4492,47 @@ sec_6_0_0 = section(
     sec_6_9_0,
     lv=2, title="Components",
 )
-#————————————————————————————————————————————————————————————————————————————7
+#----------------------------------------------------------------------------7
 # 7. About
 # 7.1 What’s new in v2?
 # 7.2 Mission
 # 7.3 Usage scenarios
 # 7.4 Brand
 # 7.5 Built With
-#———————————————————
+#-------------------
 
 
 
 
-#—————————————————————————————————— 7.1
+#---------------------------------- 7.1
 
 sec_7_1_0 = section(
     lv=3, title="What’s new in v2?",
     desc="Pico v2.0 features better accessibility, easier customization with SASS, a complete color palette, a new group component, and 20 precompiled color themes totaling over 100 combinations accessible via CDN."
 )
 
-#—————————————————————————————————— 7.2
+#---------------------------------- 7.2
 
 sec_7_2_0 = section(
     lv=3, title="Mission",
     desc="Pico CSS is a minimalist and lightweight starter kit that prioritizes semantic syntax, making every HTML element responsive and elegant by default."
 )
 
-#—————————————————————————————————— 7.3
+#---------------------------------- 7.3
 
 sec_7_3_0 = section(
     lv=3, title="Usage scenarios",
     desc="How does Pico fit into your project?"
 )
 
-#—————————————————————————————————— 7.4
+#---------------------------------- 7.4
 
 sec_7_4_0 = section(
     lv=3, title="Brand",
     desc="Pico CSS brand assets and usage guidelines."
 )
 
-#—————————————————————————————————— 7.5
+#---------------------------------- 7.5
 
 sec_7_5_0 = section(
     lv=3, title="Built With",
@@ -4549,7 +4548,7 @@ sec_7_0_0 = section(
     sec_7_5_0,
     lv=2, title="About",
 )
-#—————————————————————————————————————————————————————————————————————————————
+#-----------------------------------------------------------------------------
 sections = (
     sec_1_0_0,
     sec_2_0_0,
@@ -4562,7 +4561,7 @@ sections = (
 
 # Global top header, fixed & translucent
 
-test = Hgroup(H1('Pico'), P('Conditional Styling'))
+# test = Hgroup(H1('Pico'), P('Conditional Styling'))
 
 top_header = Header(
   Div(
@@ -4571,12 +4570,10 @@ top_header = Header(
       Ul(
           Li(A("FastHTML", href="https://answerdotai.github.io/fasthtml/", target="_blank", cls="contrast")),
           Li(A("Pico CSS", href="https://picocss.com/docs/", target="_blank", cls="contrast")),
-        #   Li(A("About",    href="/about", cls="contrast")),
+          Li(A("Code",  href="https://github.com/agenkit/demo-fasthtml-picocss/", target="_blank", cls="contrast")),
       ), 
       Ul(
-          Li(A("Code",  href="https://github.com/agenkit/demo-fasthtml-picocss/", target="_blank", cls="contrast")),
-          Li(A("🌅", href="/", data_tooltip="Light mode", data_placement="bottom")),
-          Li(A("🌃",  href="/", data_tooltip="Dark mode", data_placement="bottom", cls="contrast")),
+          Li(theme_toggle()),
       ),
     ), 
     cls="container",  # use this class to add left-right margins + centering of blocks
@@ -4584,9 +4581,9 @@ top_header = Header(
   cls="top-header",   # specific class → fixed above + translucent
 )
 
-bottom_footer = Footer(footer_text)
+bottom_footer = Footer(Div(footer_text, cls="container"))
 
-page = (title, html, top_header, main(sections), test, bottom_footer)
+page = (title, html, top_header, main(sections), bottom_footer)
 
 # Home page
 @rt("/")
