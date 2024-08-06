@@ -5,35 +5,36 @@ This demo is a rewrite of the "Docs" section of the Pico CSS website as one (lon
 
 View it live at: <https://kit.gdn/fasthtml-picocss-demo/>
 
-## Take-away
+## TL;DR
 
-- unfinished, work in progress, no ETA
-- usage: press <kbd>CTRL</kbd>|<kbd>⌘</kbd> + <kbd>F</kbd> to find things
-- (final form) About a hundred 1:1 pairs of HTML ←→ FasHTML snippets for quick translation
-- demonstrates Pico CSS 
-  - It mostly works classless as well, wherein the naked HTML tag is all you need for style.
-- I'm not a web dev 😅 I try to suck less at AI and that's already a tall order for me.
+- Unfinished, work in progress. No ETA.
+- Usage: press <kbd>CTRL</kbd>|<kbd>⌘</kbd> + <kbd>F</kbd> to find things
+- (final form) About a hundred 1:1 pairs of `HTML` ←→ `FastHTML` snippets for quick translation.
+- Demonstrates Pico CSS,
+  - which mostly works classless as well, wherein naked HTML tags are all you need for style.
 - Comments warmly welcome 🎓🆘🙏 → [GH Issues](https://github.com/agenkit/demo-fasthtml-picocss/issues) or [𝕏](https://x.com/x__kit)
-- built while FastHTML was in beta (June 2024), thus may contain errors and false information (will be correct eventually)
+- I'm *not* a web dev. I just made a few websites since 1999 (literally).  
+In 2024, I try to suck less at AI and that's already a tall order for me.  
+*Especially when geniuses throw FastHTML at me randomly on an otherwise perfectly good AI day.*
+- Built while FastHTML was in beta (June 2024), thus may still contain errors and false information (will be corrected eventually).
 
 
+### Resources
 
-## Resources
-
-### 📚 Docs
+#### 📚 Docs
 Official documentation. <!-- and other useful resources. -->
 
 - FastHTML: <https://answerdotai.github.io/fasthtml>
 - Pico CSS: <https://picocss.com/docs>
 
-### 🧬 Repo
+#### 🧬 Repo
 
 - FastHTML: [https://github.com/AnswerDotAI/fasthtml](https://github.com/AnswerDotAI/fasthtml)  
 (⚖️ [Apache 2](https://github.com/AnswerDotAI/fasthtml/blob/main/LICENSE) )
 - Pico CSS: [https://github.com/picocss/pico](https://github.com/picocss/pico)  
 (⚖️ [MIT](https://github.com/picocss/pico/blob/main/LICENSE.md) )
 
-### Additional resources
+#### Additional resources
 
 Examples: <https://picocss.com/examples>  
 Code: <https://github.com/picocss/examples>
@@ -43,13 +44,18 @@ Code: <https://github.com/picocss/examples>
 
 ## Motivation & Purpose
 
-I did this naive rewrite as a learning exercise, as I haven't done much web stuff for years, wanted to get my hands dirty with FastHTML, while diving deep enough into Pico CSS, and *oh why not* test CursorAI, my new editor (!), all at once. The latter would prove nigh indispensable to 'write'—or should I say <kbd>Tab</kbd>—those 4600-ish lines (never fear: most of them are sub-30 columns).
+A primary goal was to have a whole website in one plain and simple file.
 
-A primary goal was to have a website in one plain and simple file. 
+- Custom JS, CSS isn't embedded in the Python file, but you could.
+- Alternatively, with a SQLite db file, you can trim this massive Python code to a small fraction of its current size.
+- I wanted the least obfuscated, most directly visible *everything—"Show me the f\*\*\*\*ng input!"*—such that reading the python file is all you need, so I opted for inline strings since it's all static.  
+Self-evidently for learning purposes; I don't recommend such heresy.
 
-When completed, you should be able to quickly search (<kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>F</kbd>) any concept, HTML tag, CSS class, variable, etc.
+When completed, you should be able to quickly search for any concept, HTML tag, CSS class, variable, etc.
 
-Each HTML code snippet will be associated 1:1 to a Python FastHTML code snippet that generates it. The canonical lowest-level section goes:
+- Press <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>F</kbd> to find any text string.
+
+Each HTML code snippet will be associated 1:1 to a Python FastHTML code snippet that generates it. The canonical section goes:
 
 - Title
 - Description
@@ -67,9 +73,13 @@ Syntax highlighting is provided by [PrismJS](https://prismjs.com/), whose defaul
 
 ## Discussion
 
+*I did this naive rewrite as a learning exercise. Hadn't done much web for years; wanted to get my hands dirty with FastHTML, while diving deep enough into Pico CSS; and test CursorAI, my new editor… All at once. The latter would prove nigh in-dis-pen-sable to 'write'—or should I say* <kbd>Tab</kbd>*—those 4600-ish lines (never fear: most of them are sub-30 columns).  
+It all took much less time that one would think, although I'll gladly admit I underestimated **greatly** the amount of work. lol. Silly me.* 😅
+
+
 ### Current status
 
-This is a side project, and summer is always busy for me, so no ETA for completion. I intend to use it for myself, and this is just a naive ..1 version, a static PoC for something much larger that has yet to fully take form in my head.
+This is a side project, and summer is always busy for me (right now I'm redeploying my entire home+SOHO infra… good times… *not*). So sadly, no ETA for completion. I intend to use it for myself eventually, and this is just a naive 0..1 version, a static PoC for something much larger that has yet to fully take form in my head.
 
 > [!NOTE]
 > **Pre-release `v0.0.1-alpha` is a test version.**  
@@ -80,7 +90,6 @@ This is a side project, and summer is always busy for me, so no ETA for completi
 > - behaviors, (e.g., switching color templates)
 > - and FastHTML snippets.
 > - Parts of the code may be ugly.
-
 
 
 ### Future
@@ -137,8 +146,13 @@ This doesn't mean I wasn't involved in the loop for minor corrections all. the. 
 
 
 
-##
+#### Other CSS frameworks
 
+First of all, *be my guest!* : ) The more, the merrier… 
+
+I'm searching for *a* CSS framework that makes sense to me as a 'great default' in all projects. Pico CSS fits that bill. I want something that resembles myself a bit more, though. So I'll probably have to explore that space a bit, settle on a good sane basis, and probably tweak it a bit.
+
+But we've just talked about AI so I guess everyone has the same thing in mind. What if the AI hosted there could alter its own presentation, its own website? To tweak CSS on-the-fly, through HTMX requests? We'd start narrowly, with very specific things we can validate with classic code (like RGB values, or existence of a generated image path). But seeing how Cursor breezes through making this very website… The sky is already high, friends.
 
 
 
