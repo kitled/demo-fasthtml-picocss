@@ -1,45 +1,51 @@
 # FastHTML 🧡 Pico CSS
-*Demonstrating Pico CSS in FastHTML.*
+🡆 *Demonstrating Pico CSS in FastHTML.*
 
 This demo is a rewrite of the "Docs" section of the Pico CSS website as one (long) page of FastHTML.
 
-View it live at: <https://kit.gdn/fasthtml-picocss-demo/>
+View it live → <https://kit.gdn/fasthtml-picocss-demo/>
+
+
 
 ## TL;DR
 
 - Unfinished, work in progress. No ETA.
-- Usage: press <kbd>CTRL</kbd>|<kbd>⌘</kbd> + <kbd>F</kbd> to find things
+
+- Usage: classic page search, <kbd>Ctrl</kbd> ( <kbd>⌘</kbd> ) + <kbd>F</kbd>
+
 - (final form) About a hundred 1:1 pairs of `HTML` ←→ `FastHTML` snippets for quick translation.
+
 - Demonstrates Pico CSS,
   - which mostly works classless as well, wherein naked HTML tags are all you need for style.
+
 - Comments warmly welcome 🎓🆘🙏 → [GH Issues](https://github.com/agenkit/demo-fasthtml-picocss/issues) or [𝕏](https://x.com/x__kit)
+
 - I'm *not* a web dev. I just made a few websites since 1999 (literally).  
 In 2024, I try to suck less at AI and that's already a tall order for me.  
 *Especially when geniuses throw FastHTML at me randomly on an otherwise perfectly good AI day.*
-- Built while FastHTML was in beta (June 2024), thus may still contain errors and false information (will be corrected eventually).
+
+- Built while FastHTML was still in beta (June 2024), thus may still contain errors and false information (will be corrected eventually).
 
 
 ### Resources
 
 #### 📚 Docs
-Official documentation. <!-- and other useful resources. -->
 
 - FastHTML: <https://answerdotai.github.io/fasthtml>
 - Pico CSS: <https://picocss.com/docs>
 
-#### 🧬 Repo
+#### 🧬 Code
 
 - FastHTML: [https://github.com/AnswerDotAI/fasthtml](https://github.com/AnswerDotAI/fasthtml)  
 (⚖️ [Apache 2](https://github.com/AnswerDotAI/fasthtml/blob/main/LICENSE) )
 - Pico CSS: [https://github.com/picocss/pico](https://github.com/picocss/pico)  
 (⚖️ [MIT](https://github.com/picocss/pico/blob/main/LICENSE.md) )
 
-#### Additional resources
+#### ℹ️ Misc.
 
-Examples: <https://picocss.com/examples>  
-Code: <https://github.com/picocss/examples>
-
-
+- Examples: <https://picocss.com/examples>  
+  - Code: <https://github.com/picocss/examples>  
+- Cursor (VSCode with *great* AI): <https://www.cursor.com/>
 
 
 ## Motivation & Purpose
@@ -51,14 +57,20 @@ A primary goal was to have a whole website in one plain and simple file.
 - I wanted the least obfuscated, most directly visible *everything—"Show me the f\*\*\*\*ng input!"*—such that reading the python file is all you need, so I opted for inline strings since it's all static.  
 Self-evidently for learning purposes; I don't recommend such heresy.
 
-When completed, you should be able to quickly search for any concept, HTML tag, CSS class, variable, etc.
+When completed, you should be able to quickly page-search for any concept, HTML tag, CSS class, variable, etc.
 
-- Press <kbd>CTRL</kbd> / <kbd>CMD</kbd> + <kbd>F</kbd> to find any text string.
+- Press <kbd>Ctrl</kbd> ( <kbd>⌘</kbd> ) + <kbd>F</kbd> 
+
+- Type `THING` to find `THING`s on the page.
+
+- Hit <kbd>Enter</kbd> to reach the next occurrence.
+
+- <kbd>Shift</kbd> + <kbd>Enter</kbd> for previous.
 
 Each HTML code snippet will be associated 1:1 to a Python FastHTML code snippet that generates it. The canonical section goes:
 
 - Title
-- Description
+- \[Description\]
 - HTML snippet
 - FastHTML snippet
 
@@ -72,6 +84,11 @@ Syntax highlighting is provided by [PrismJS](https://prismjs.com/), whose defaul
 
 
 ## Discussion
+
+Spoiler: I don't have any great reveal about FastHTML, as I've only skimmed the surface.  
+This discussion pertains to the demo itself, and spin-off projects it might help imagine.
+
+### Background story
 
 *I did this naive rewrite as a learning exercise. Hadn't done much web for years; wanted to get my hands dirty with FastHTML, while diving deep enough into Pico CSS; and test CursorAI, my new editor… All at once. The latter would prove nigh in-dis-pen-sable to 'write'—or should I say* <kbd>Tab</kbd>*—those 4600-ish lines (never fear: most of them are sub-30 columns).  
 It all took much less time that one would think, although I'll gladly admit I underestimated **greatly** the amount of work. lol. Silly me.* 😅
@@ -112,7 +129,7 @@ I've yet to make all proper web features.
 
 
 
-#### AI
+#### AI generation for websites
 
 > [!NOTE] 
 > This is highly speculative. I need to run tests to know if my intuition makes sense here, and prove that current SOTA can't already do it well enough.
@@ -134,11 +151,15 @@ Don't get me wrong, many "no code" tools are absolute rubbish (mere prompt injec
 
 The reason why I think FastHTML lends itself impeccably well to reach great results with *less*-code LLM assistants is threefold:
 
-- lean and mean codebase, simple direct mapping of HTML: as narrow a scope as it gets to make web things in Py
-- all batteries included are straightforward as well (HTMX, SQLite, Uvicorn, Starlette…)
-- 
+- Lean and mean codebase, a simple direct mapping of HTML: as narrow a scope as it could ever get to make web things in Python.
+- All batteries included are straightforward as well, with boldly sane *great defaults* ([HTMX](https://htmx.org/), [SQLite](https://www.sqlite.org/), [Uvicorn](https://www.uvicorn.org/), [Starlette](https://www.starlette.io/), mirroring the [FastAPI](https://fastapi.tiangolo.com/) syntax…)
+- Underlying "[Hypermedia](https://hypermedia.systems/)" paradigm is deemed sound and *elegant* by many great programmers.
 
-In testing CursorAI, comments I'd heard about it "solving boilerplate" became so salient… That Cursor thing with Sonnet 3.5 under the hood managed to nearly rewrite the website on its own just going off a few first examples and the title structure in comments. I must have hit 'Tab' 1000 times or more. It took me some time to get going, but it eventually nailed the form perfectly and wrote close to a *hundred* lines by the *minute* (like 3 or 4 every 2 seconds).
+
+
+##### About Cursor
+
+In testing [Cursor](https://www.cursor.com/), comments I'd heard about it "solving boilerplate" became so salient… That thing with Sonnet 3.5 under the hood managed to nearly rewrite the website on its own just going off a few first examples and the title structure in comments. I must have hit 'Tab' 1000 times or more. It took me some time to get going, but it eventually nailed the form perfectly and wrote close to a *hundred* lines by the *minute* (like 3 or 4 every 2 seconds).
 
 It would sometimes guess subsection titles, or the very text of the website. The code snippets seemed obvious to it, nearly perfectly on many occasions. It had effortlessly learned FastHTML and Pico CSS without prior exposition.
 
@@ -154,5 +175,8 @@ I'm searching for *a* CSS framework that makes sense to me as a 'great default' 
 
 But we've just talked about AI so I guess everyone has the same thing in mind. What if the AI hosted there could alter its own presentation, its own website? To tweak CSS on-the-fly, through HTMX requests? We'd start narrowly, with very specific things we can validate with classic code (like RGB values, or existence of a generated image path). But seeing how Cursor breezes through making this very website… The sky is already high, friends.
 
+----
+
+*License: \<words\> …that therefore, you hereby acquire full & irrevocable license to **STEAL THIS CODE!!*** 😁
 
 
