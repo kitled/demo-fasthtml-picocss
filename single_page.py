@@ -1,6 +1,6 @@
 from fasthtml.common import * # type: ignore
 from fasthtml.js import MarkdownJS, SortableJS, HighlightJS
-from fastapi import Request
+#from fastapi import Request
 
 #—————————————————————————————————————————————————————————————————————————————
 # HTML 5 conventions
@@ -193,7 +193,7 @@ def aside(*aside_tags):
 # def art_c(*c): # c for content
 #     return (*c, )
 
-# #   ➕
+#   ➕
 # def art_footer(html, python):
 #     return Footer(Pre(span_code(html)), Pre(span_code(python)))
 
@@ -298,7 +298,7 @@ body_1_1_2 = P(
     '.',
     pico_1_1_2,
 )
-# 🡇🡇🡇
+#   🡇🡇🡇
 sec_1_1_2 = section(body_1_1_2,
     lv=4, title="Usage from CDN",
 )

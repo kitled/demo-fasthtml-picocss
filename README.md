@@ -18,6 +18,29 @@ View it live at: <https://kit.gdn/fasthtml-picocss-demo/>
 
 
 
+## Resources
+
+### 📚 Docs
+Official documentation. <!-- and other useful resources. -->
+
+- FastHTML: <https://answerdotai.github.io/fasthtml>
+- Pico CSS: <https://picocss.com/docs>
+
+### 🧬 Repo
+
+- FastHTML: [https://github.com/AnswerDotAI/fasthtml](https://github.com/AnswerDotAI/fasthtml)  
+(⚖️ [Apache 2](https://github.com/AnswerDotAI/fasthtml/blob/main/LICENSE) )
+- Pico CSS: [https://github.com/picocss/pico](https://github.com/picocss/pico)  
+(⚖️ [MIT](https://github.com/picocss/pico/blob/main/LICENSE.md) )
+
+### Additional resources
+
+Examples: <https://picocss.com/examples>  
+Code: <https://github.com/picocss/examples>
+
+
+
+
 ## Motivation & Purpose
 
 I did this naive rewrite as a learning exercise, as I haven't done much web stuff for years, wanted to get my hands dirty with FastHTML, while diving deep enough into Pico CSS, and *oh why not* test CursorAI, my new editor (!), all at once. The latter would prove nigh indispensable to 'write'—or should I say <kbd>Tab</kbd>—those 4600-ish lines (never fear: most of them are sub-30 columns).
@@ -39,29 +62,6 @@ Only the last part differs from the Pico CSS website.
 > FastHTML snippets are missing in v0.0.1-alpha (current latest). WIP!
 
 Syntax highlighting is provided by [PrismJS](https://prismjs.com/), whose defaults fit better with PicoCSS than HighlightJS for me, on top of allowing inline highlighting.
-
-
-
-## Resources
-
-### 📚 Docs
-Official documentation. <!-- and other useful resources. -->
-
-- FastHTML: <https://answerdotai.github.io/fasthtml>
-- Pico CSS: <https://picocss.com/docs>
-
-### 🧬 Repo
-
-- FastHTML: [https://github.com/AnswerDotAI/fasthtml](https://github.com/AnswerDotAI/fasthtml)  
-(⚖️ [Apache 2](https://github.com/AnswerDotAI/fasthtml/blob/main/LICENSE) )
-- Pico CSS: [https://github.com/picocss/pico](https://github.com/picocss/pico)  
-(⚖️ [MIT](https://github.com/picocss/pico/blob/main/LICENSE.md) )
-
-### Additional resources
-
-Examples: <https://picocss.com/examples>  
-Code: <https://github.com/picocss/examples>
-
 
 
 
