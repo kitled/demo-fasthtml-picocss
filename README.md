@@ -5,7 +5,8 @@ This demo is a rewrite of the "Docs" section of the Pico CSS website as one (lon
 
 View it live → <https://kit.gdn/fasthtml-picocss-demo/>
 
-
+> [!TIP]
+> Code in `main.py` is discussed in [`/docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md) — below the big TODO list.
 
 ## TL;DR
 
@@ -48,6 +49,7 @@ In 2024, I try to suck less at AI and that's already a tall order for me.
 
 - FastHTML: <https://answerdotai.github.io/fasthtml>
 - Pico CSS: <https://picocss.com/docs>
+- This website: https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md
 
 #### 🧬 Code
 
@@ -87,9 +89,9 @@ When completed, you should be able to quickly page-search for any concept, HTML 
 
 - Type `THING` to find `THING`s on the page.
 
-- Hit <kbd>Enter</kbd> to reach the next occurrence.
+- Hit <kbd>Enter</kbd> to reach the next occurrence ( `↓` )
 
-- <kbd>Shift</kbd> + <kbd>Enter</kbd> for previous.
+  - <kbd>Shift</kbd> + <kbd>Enter</kbd> for previous ( `↑` )
 
 Each HTML code snippet will be associated 1:1 to a Python FastHTML code snippet that generates it. The canonical section goes:
 
