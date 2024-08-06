@@ -27,6 +27,22 @@ In 2024, I try to suck less at AI and that's already a tall order for me.
 - Built while FastHTML was still in beta (June 2024), thus may still contain errors and false information (will be corrected eventually).
 
 
+
+## Table of contents
+
+- Motivation & Purpose
+- Discussion
+   - Background story
+   - Current status
+   - Future
+   - Features
+   - AI generation for websites
+      - About Cursor
+   - Other CSS frameworks
+
+
+
+
 ### Resources
 
 #### 📚 Docs
@@ -46,6 +62,15 @@ In 2024, I try to suck less at AI and that's already a tall order for me.
 - Examples: <https://picocss.com/examples>  
   - Code: <https://github.com/picocss/examples>  
 - Cursor (VSCode with *great* AI): <https://www.cursor.com/>
+
+
+
+
+
+
+
+
+
 
 
 ## Motivation & Purpose
@@ -109,11 +134,7 @@ This is a side project, and summer is always busy for me (right now I'm redeploy
 > - Parts of the code may be ugly.
 
 
-### Future
-
-
-
-#### Features
+### Features
 
 The single-page layout was inspired by GameFaqs, whose plain-text UX is by far the most straightforward (no boilerplate) I've ever used. It's a niche use-case: you're busy with a big main thing (game, code editor, whatever) and you just need extensive docs by the side that you can quickly query for anything and get there in seconds. GameFaqs did it in plain text; we can do better with HTML, but the principle stands.
 
@@ -129,7 +150,7 @@ I've yet to make all proper web features.
 
 
 
-#### AI generation for websites
+### AI generation for websites
 
 > [!NOTE] 
 > This is highly speculative. I need to run tests to know if my intuition makes sense here, and prove that current SOTA can't already do it well enough.
@@ -157,7 +178,7 @@ The reason why I think FastHTML lends itself impeccably well to reach great resu
 
 
 
-##### About Cursor
+#### About Cursor
 
 In testing [Cursor](https://www.cursor.com/), comments I'd heard about it "solving boilerplate" became so salient… That thing with Sonnet 3.5 under the hood managed to nearly rewrite the website on its own just going off a few first examples and the title structure in comments. I must have hit 'Tab' 1000 times or more. It took me some time to get going, but it eventually nailed the form perfectly and wrote close to a *hundred* lines by the *minute* (like 3 or 4 every 2 seconds).
 
@@ -167,7 +188,7 @@ This doesn't mean I wasn't involved in the loop for minor corrections all. the. 
 
 
 
-#### Other CSS frameworks
+### Other CSS frameworks
 
 First of all, *be my guest!* : ) The more, the merrier… 
 
