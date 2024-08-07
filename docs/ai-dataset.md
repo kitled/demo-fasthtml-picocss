@@ -20,7 +20,7 @@ Web conversion to FastHTML may work
 - as a CLI tool that captures HTML from the clipboard (after copying from inspect in the browser) and outputs the FastHTML equivalent.
 - or both co-jointly!
 
-Consider using `llm` (and maybe `sqlite-utils`) by Simon Willison, to seamlessly do the implementation with any API (and log/retrieve to/from db).
+Consider using [`llm`](https://github.com/simonw/llm) (and [`sqlite-utils`](https://github.com/simonw/sqlite-utils)) by Simon Willison, to simplify the implementation with any API (and log/retrieve to/from db).
 
 ### FastHTML to HTML
 
