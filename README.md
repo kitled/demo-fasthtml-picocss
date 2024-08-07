@@ -144,14 +144,6 @@ It all took much less time that one would think, although I'll gladly admit I un
 
 This is a side project, and summer is always busy for me (right now I'm redeploying my entire home+SOHO infra… good times… *not*). So sadly, no ETA for completion. I intend to use it for myself eventually, and this is just a naive alpha.
 
-> [!NOTE]
-> It has *most* of the Pico CSS Docs reimplemented, but:
-> 
-> - still misses critical information, (e.g., CSS variables)
-> - behaviors, (e.g., switching color templates)
-> - and FastHTML snippets.
-> - Parts of the code are ugly.
-
 
 ### Features
 
@@ -168,9 +160,7 @@ I've yet to make all proper web features.
 - Search feature with nice-enough UI to quicly glance at the desired part.
 
 
-
-
-### AI generation for websites
+### AI generation for websites (ideas)
 
 > [!NOTE] 
 > This is highly speculative. I need to run tests to know if my intuition makes sense here, and prove that current SOTA can't already do it well enough.
