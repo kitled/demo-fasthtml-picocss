@@ -124,7 +124,7 @@ Syntax highlighting is provided by [PrismJS](https://prismjs.com/), whose defaul
 
 > [!NOTE]
 > Spoiler: I don't have any great reveal about FastHTML, as I've only skimmed the surface.  
-This discussion pertains to the demo itself, and spin-off projects it might help imagine.
+This discussion pertains to the demo itself, and possible spin-off projects.
 
 A primary goal was to have a whole website in one plain and simple file. I like very portable things.
 
