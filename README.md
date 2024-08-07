@@ -13,7 +13,7 @@ uvicorn main:app
 > [!IMPORTANT]  
 > - Currently a **Work-In-Progress**! (WIP)
 > - **Friendly warning: there are garbage files** in that repo, lots of drafts & experiments. 
-> - I haven't been able to deploy this particular app on my Linode VPS server.  
+> - I haven't been able to deploy this particular app on my Linode VPS.  
 > I've had success with other FastHTML apps, not sure what's up here.  
 > **It "works on my machine", so hopefully on yours too.**  
 > I'll redo the core properly if needed eventually.  
