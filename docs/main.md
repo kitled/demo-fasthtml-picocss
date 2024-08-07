@@ -31,7 +31,7 @@ The logic part is necessary for the data section, which is why it comes first in
 
 The data part is entirely composed of string assignments, processed by our functions to generate the correct layout—tags, attributes, nesting.
 
-The routing part comes last by necessity to wire all the things and implement dynamic HTMX features—not many. *I don't know HTMX.*
+The routing part comes last by necessity to wire all the things.
 
 Classes, ids, etc. are kept to a bare minimum for a functional website, to demonstrate Pico CSS greatness and the power of semantic HTML.
 
