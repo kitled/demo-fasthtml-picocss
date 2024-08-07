@@ -48,20 +48,7 @@ I'd like to make three view modes. Only the first one is in the works thus far.
 
 *Normal* is self-explanatory. *Under the hood* "reverses" the side of the website and shows the full Python code, although not as in the file: we display the code that makes each part in place of said part, such that you can switch back and forth to see the code and the result. This involves a bit of redundancy (reminders for definitions notably), but avoids endless scrolling to get context (which is something that happens a lot when working on the file itself, but IDE solve that with splits). Speaking of which, *side-by-side* is exactly what it means, and combines the two views for convenience.
 
-*Later on, when I integrate other CSS themes (like Tokyo Night or Atom One or my own), there will be switches and side-by-sides to compare these.*
-
-
-### Important advice to myself for FastHTML
-
-- create wrappers to ensure you can modify all calls from a single source
-	- you want to hard-wire as little as possible (e.g. classes)
-	- you want to abstract actual attributes etc. (even with a similar name) so these are general variables for you to peruse.
-		- e.g. make a variable `h = 'html'` and `p = 'python'` and use those in `lang=LANGUAGE_NAME` because it allows you to quickly switch them all (e.g. to some custom theme `fasthtml` that forks `python` for instance).
-		- these only become an actual class in the wrapper function → you can filter things there too, testing if `lang` exists or equals whatever.
-- my suggestion of **minimal CSS for code highlighting** proper → gives you back your CSS
-	- WHY? 🡄 code highlighters (hljs, prism, etc.) will add their own classes, messing up with Pico CSS
-	- **removes all `hljs` BS**
-	- same with PrismJS
+*Later on, if/when I make other CSS themes cheat pages (like Tokyo Night or Atom One or my own), I'll definitely put toggles for side-by-sides, to compare all the things.*
 
 
 ### Cursor
