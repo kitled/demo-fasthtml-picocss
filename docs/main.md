@@ -8,7 +8,7 @@ Feel free to ask anything in GH Issues or hit me on 𝕏.
 > I haven't reviewed it extensively.
 > It's a moving target as we speak.
 
-## README`.md`
+## README, cont.
 
 > [!NOTE]
 > This was originally intended as the README, but speaks more of the code itself, so it's become a doc file.
