@@ -71,6 +71,8 @@ Notably, **all HTML tags are now implemented** in FastHTML.
 
 ## How to
 
+### Run
+
 Clone this repo then run `main.py` with `uvicorn`.
 
 ```sh
@@ -78,6 +80,8 @@ git clone https://github.com/agenkit/demo-fasthtml-picocss.git
 cd demo-fasthtml-picocss
 uvicorn main:app
 ```
+
+### Use
 
 To quickly page-search for any concept, HTML tag, CSS class, variable, etc.
 
