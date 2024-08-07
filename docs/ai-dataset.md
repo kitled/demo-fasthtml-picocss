@@ -16,9 +16,17 @@ I think some of these use cases can be solved with a very small model, well-alig
 
 ## HTML to FastHTML (and back)
 
-Web conversion to FastHTML may work as a browser extension perhaps, to inspect & quickly capture any component/layout.
+Web conversion to FastHTML may work 
+- as a browser extension perhaps, if we can visually select any component/layout on the webpage;
+- as a CLI tool that captures HTML from the clipboard (after copying from inspect in the browser) and outputs the FastHTML equivalent.
+- or both co-jointly!
 
-The reverse, FastHTML to HTML, is more about testing whether LLMs can replace the Fast 'core'; i.e., output a usable `.html` file from FastHTML code.
+Consider using `llm` (and maybe `sqlite-utils`) by Simon Willison, to seamlessly do the implementation with any API (and log/retrieve to/from db).
+
+### FastHTML to HTML
+
+The reverse, FastHTML to HTML, is more about testing whether LLMs can replace the Fast 'core'; i.e., output a usable `.html` file from FastHTML code.  
+That's arguably the least interesting use case of all three (redundant with fasthtml itself), but perhaps interesting for validation & generative alignment purposes.
 
 ## User prompt to FastHTML
 
