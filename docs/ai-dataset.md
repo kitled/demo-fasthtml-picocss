@@ -3,7 +3,7 @@
 > [!NOTE] 
 > This is highly speculative. I need to run tests to know if my intuition makes sense here, and prove that current SOTA can't already do it well enough.
 
-This project, eventually containing about 100 HTML−FastHTML pairs, is a small but 'functionally perfect' dataset.
+This project, eventually containing about 100 HTML🡘FastHTML pairs, is a small but 'functionally perfect' dataset.
 
 I'd like to feed it to LLMs (prompt injection, RAG, finetune…), to see if it makes them very capable FastHTML writers and interpreters. I see three angles:
 
