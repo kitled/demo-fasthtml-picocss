@@ -15,7 +15,8 @@ uvicorn main:app
 > - **Friendly warning: there are garbage files** in that repo, lots of drafts & experiments. 
 > - I haven't been able to deploy this particular app on my Linode VPS server.  
 > I've had success with other FastHTML apps, not sure what's up here.  
-> **It "works on my machine", so hopefully on yours too.** I'll redo the core properly if needed eventually.  
+> **It "works on my machine", so hopefully on yours too.**  
+> I'll redo the core properly if needed eventually.  
 > (I should probably look into e.g. Railway I guess, but I'm not sure which template to choose for FastHTML.)
 >
 > If you can help me solve/learn ASGI Python web apps deployment, feel free to reach out.  
