@@ -23,7 +23,7 @@ uvicorn main:app
 > → in [GH Issues](https://github.com/agenkit/demo-fasthtml-picocss/issues) or on [𝕏](https://x.com/x__kit)
 
 > [!TIP]
-> - The code of `main.py` is discussed in [`docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md) (very rough, partly outdated draft)  
+> - The code of [`main.py`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/main.py) is discussed in [`docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md) (very rough, partly outdated draft)  
 > - See further [`docs/discussion.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/discussion.md)
 
 
