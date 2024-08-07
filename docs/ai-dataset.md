@@ -16,7 +16,7 @@ I think some of these use cases can be solved with a very small model, well-alig
 
 ## HTML to FastHTML (and back)
 
-Web conversion to FastHTML may work as a browser extension perhaps, to inspect & quickly capture any component/layout → I've no idea how to do that (yet).
+Web conversion to FastHTML may work as a browser extension perhaps, to inspect & quickly capture any component/layout.
 
 The reverse, FastHTML to HTML, is more about testing whether LLMs can replace the Fast 'core'; i.e., output a usable `.html` file from FastHTML code.
 
