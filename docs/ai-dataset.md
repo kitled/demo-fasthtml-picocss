@@ -11,7 +11,7 @@ I'd like to feed it to LLMs (prompt injection, RAG, finetune…), to see if it m
 - Conversely, output HTML from a FastHTML input.
 - Finally, natural language (user prompt) to FastHTML (less-code AI assistant).
 
-As we build new examples (snippets, components… See e.g. https://fasthtml.gallery/), this FastHTML 'reference' dataset could be make a great basis to quickly augment any model. I think many AI assistant use cases may be solvable with a very small model, well-aligned for the purpose, because FastHTML is very concise (<1000 lines), and its ecosystem should be friendly to local (self-hosted) open source models.
+As we build new examples (snippets, components… see e.g. https://fasthtml.gallery/), this FastHTML 'reference' dataset could be make a great basis to quickly augment any model. I think many AI assistant use cases may be solvable with a very small model, well-aligned for the purpose, because FastHTML is very concise (<1000 lines), and its ecosystem should be friendly to local (self-hosted) open source models.
 
 ## HTML to FastHTML (and back)
 
