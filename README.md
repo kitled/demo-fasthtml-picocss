@@ -156,15 +156,15 @@ I've yet to make all proper web features.
 > [!NOTE] 
 > This is highly speculative. I need to run tests to know if my intuition makes sense here, and prove that current SOTA can't already do it well enough.
 
-There's a total of about 100 HTML:FastHTML pairs. That's a 'functionally perfect' dataset I'd like to feed some LLMs to see if it makes them great FastHTML writers and interpreters.
+There's (*will be*) a total of about 100 HTML:FastHTML pairs. That's a 'functionally perfect' dataset I'd like to feed some LLMs to see if it makes them great FastHTML writers and interpreters.
 
 Two cool goals might be
 
 - "Any webpage to FastHTML" generates FH code from web pages
-  - as a browser extension perhaps, to inspect & quickly capture any component/layout
-- "FastHTML to HTML" ← doing what FastHTML does, output into a usable `.html` file
+  - as a browser extension perhaps, to inspect & quickly capture any component/layout → I've no idea how to do that (yet)
+- "FastHTML to HTML" ← can LLMs replace the Fast 'core', doing what FastHTML does, output into a usable `.html` file?
 
-Possible next step, add a "prompt" column: user input that produces the FastHTML snippet as output.  
+Possible next step: add a "prompt" column → user input that produces the FastHTML snippet as output.  
 This may help us reach yet another goal:
 
 - "Prompt to FastHTML" ← in plain English: make a website
@@ -174,18 +174,8 @@ Don't get me wrong, many "no code" tools are absolute rubbish (mere prompt injec
 The reason why I think FastHTML lends itself impeccably well to reach great results with *less*-code LLM assistants is threefold:
 
 - Lean and mean codebase, a simple direct mapping of HTML: as narrow a scope as it could ever get to make web things in Python.
-- All batteries included are straightforward as well, with boldly sane *great defaults* ([HTMX](https://htmx.org/), [SQLite](https://www.sqlite.org/), [Uvicorn](https://www.uvicorn.org/), [Starlette](https://www.starlette.io/), mirroring the [FastAPI](https://fastapi.tiangolo.com/) syntax…)
-- Underlying "[Hypermedia](https://hypermedia.systems/)" paradigm is deemed sound and *elegant* by many great programmers.
-
-
-
-#### About Cursor
-
-In testing [Cursor](https://www.cursor.com/), comments I'd heard about it "solving boilerplate" became so salient… That thing with Sonnet 3.5 under the hood managed to nearly rewrite the website on its own just going off a few first examples and the title structure in comments. I must have hit 'Tab' 1000 times or more. It took me some time to get going, but it eventually nailed the form perfectly and wrote close to a *hundred* lines by the *minute* (like 3 or 4 every 2 seconds).
-
-It would sometimes guess subsection titles, or the very text of the website. The code snippets seemed obvious to it, nearly perfectly on many occasions. It had effortlessly learned FastHTML and Pico CSS without prior exposition.
-
-This doesn't mean I wasn't involved in the loop for minor corrections all. the. time. It's not the job of Cursor to make websites on its own. But seeing how well it did, I realized we can do crazy-great stuff with natural language interfaces.
+- All batteries included are straightforward as well, with sane *great defaults* ([HTMX](https://htmx.org/), [SQLite](https://www.sqlite.org/), [Uvicorn](https://www.uvicorn.org/), [Starlette](https://www.starlette.io/), mirroring the [FastAPI](https://fastapi.tiangolo.com/) syntax…)
+- Underlying "[Hypermedia](https://hypermedia.systems/)" paradigm is deemed sound and *elegant* by many great programmers. (who am I to know any better)
 
 
 
@@ -193,16 +183,4 @@ This doesn't mean I wasn't involved in the loop for minor corrections all. the. 
 
 First of all, *be my guest!* : ) The more, the merrier… 
 
-I'm searching for *a* CSS framework that makes sense to me as a 'great default' in all projects. Pico CSS fits that bill. I want something that resembles myself a bit more, though. So I'll probably have to explore that space a bit, settle on a good sane basis, and probably tweak it a bit.
-
-But we've just talked about AI so I guess everyone has the same thing in mind. What if the AI hosted there could alter its own presentation, its own website? To switch or even tweak CSS on-the-fly, and get re-served ad hoc bits and parts of style through HTMX requests? We'd start narrowly, with very specific things we can validate with classic code (like RGB values, or existence of a generated image path). But seeing how Cursor breezes through making this very website… The sky is already high, friends.
-
-I'm thinking of applications like accessibility and just plain comfort, where it could be possible to simply *ask* the website UI to change this or that in such and such manner? A world where you don't need Dark Reader to invert websites that don't conform to your system theme, where zooming can be made intelligent (and fix bad `@media` structure lol).
-
-We shall see.
-
-----
-
-*License: \<words\> …that therefore, you hereby acquire full & irrevocable license to **STEAL THIS CODE!!*** 😁
-
-
+There are great candidates — Material etc. Classes won't directly transfer, so maybe we should make a classless skeleton for all HTML tags, or abstract classes generally and then translate for each CSS at hand.
