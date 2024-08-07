@@ -19,6 +19,9 @@ It "works on my machine" but my server isn't happy with it; I need to redeploy *
 > [!TIP]
 > Code in `main.py` is discussed in [`/docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md) — below the big TODO list.
 
+
+
+
 ## TL;DR
 
 - **Unfinished**, work in progress. No ETA.
@@ -42,47 +45,28 @@ In 2024, I try to suck less at AI and that's already a tall order for me.
 So feel free to school me, I know I'm doing a lot of things wrong in my code. I just don't know what—*yet*—and that's where *you* come in!
 
 
-## Table of contents
-
-- [Motivation & Purpose](https://github.com/agenkit/demo-fasthtml-picocss#motivation--purpose)
-- [Discussion](https://github.com/agenkit/demo-fasthtml-picocss#discussion)
-   - [Background story](https://github.com/agenkit/demo-fasthtml-picocss#background-story)
-   - [Current status](https://github.com/agenkit/demo-fasthtml-picocss#current-status)
-   - [Features](https://github.com/agenkit/demo-fasthtml-picocss#features)
-   - [AI generation for websites](https://github.com/agenkit/demo-fasthtml-picocss#ai-generation-for-websites)
-      - [About Cursor](https://github.com/agenkit/demo-fasthtml-picocss#about-cursor)
-   - [Other CSS frameworks](https://github.com/agenkit/demo-fasthtml-picocss#other-css-frameworks)
-
-----
 
 
-### Resources
+## Resources
 
-#### 📚 Docs
+### 📚 Docs
 
 - FastHTML: <https://answerdotai.github.io/fasthtml>
 - Pico CSS: <https://picocss.com/docs>
 - This website: https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md
 
-#### 🧬 Code
+### 🧬 Code
 
 - FastHTML: [https://github.com/AnswerDotAI/fasthtml](https://github.com/AnswerDotAI/fasthtml)  
 (⚖️ [Apache 2](https://github.com/AnswerDotAI/fasthtml/blob/main/LICENSE) )
 - Pico CSS: [https://github.com/picocss/pico](https://github.com/picocss/pico)  
 (⚖️ [MIT](https://github.com/picocss/pico/blob/main/LICENSE.md) )
 
-#### 📑 Misc.
+### 📑 Misc.
 
 - Examples: <https://picocss.com/examples>  
   - Code: <https://github.com/picocss/examples>  
 - Cursor (VSCode with *great* AI): <https://www.cursor.com/>
-
-
-
-
-
-
-
 
 
 
@@ -119,6 +103,7 @@ Only the last part differs from the Pico CSS website.
 > FastHTML snippets are missing in v0.0.1-alpha (current latest). WIP!
 
 Syntax highlighting is provided by [PrismJS](https://prismjs.com/), whose defaults fit better with PicoCSS than HighlightJS for me, on top of allowing inline highlighting.
+
 
 
 
@@ -164,6 +149,7 @@ I've yet to make all proper web features.
 
 
 
+
 ### AI generation for websites
 
 > [!NOTE] 
@@ -189,6 +175,7 @@ The reason why I think FastHTML lends itself impeccably well to reach great resu
 - Lean and mean codebase, a simple direct mapping of HTML: as narrow a scope as it could ever get to make web things in Python.
 - All batteries included are straightforward as well, with sane *great defaults* ([HTMX](https://htmx.org/), [SQLite](https://www.sqlite.org/), [Uvicorn](https://www.uvicorn.org/), [Starlette](https://www.starlette.io/), mirroring the [FastAPI](https://fastapi.tiangolo.com/) syntax…)
 - Underlying "[Hypermedia](https://hypermedia.systems/)" paradigm is deemed sound and *elegant* by many great programmers. (who am I to know any better)
+
 
 
 
