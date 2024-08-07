@@ -101,7 +101,7 @@ Only the last part differs from the Pico CSS website.
 
 > [!IMPORTANT]
 > - FastHTML snippets are missing in v0.0.1-alpha (current latest). WIP!
-> - There is a noticeable gap between sections. This is normal during development. I'll revert to Pico CSS defaults eventually once the folding of sections (`<summary>` tag) will be implemented.
+> - There is a noticeable gap between sections. This is normal during development. I'll revert to Pico CSS defaults after implementing section folding (`<summary>` tag).
 
 Syntax highlighting is provided by [PrismJS](https://prismjs.com/), whose defaults fit better with PicoCSS than HighlightJS for me, on top of allowing inline highlighting.
 
