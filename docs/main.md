@@ -1,21 +1,28 @@
 # `main.py` meta-docs
 
-> [!NOTE]
-> This is a side project, and these are notes taken on-the-fly more than proper documentation.  
+This is a side project, and these are notes taken on-the-fly more than proper documentation.  
 Feel free to ask anything in GH Issues or hit me on 𝕏.
+
+> [!CAUTION]
+> Information in this file may be outdated or plainly wrong due to later choices.
+> I haven't reviewed it extensively.
+> It's a moving target as we speak.
 
 ## README`.md`
 
-This was originally intended as the README, but speaks more of the code itself, so it's become a doc file.
+> [!NOTE]
+> This was originally intended as the README, but speaks more of the code itself, so it's become a doc file.
 
 ### Why this project
 
-Initially, I wanted to make a short summary of Pico CSS features, the exhaustive book of KISS recipes. There is still that, but in browsing their docs I realized there's a lot of interactivity on their website to demonstrate features. Buttons to add/remove divs to play with `grid`, color switches, and so on. I started wondering if and how I could implement those in FastHTML. My primary limitation is that I don't know much about Javascript in general and a at best cursory awareness of HTMX—I've yet to dive deep in this [hypermedia](https://hypermedia.systems/) marvel. While a great occasion, I just don't have much time for that, so learned as I went.
+Initially, I wanted to make a short summary of Pico CSS features, the exhaustive book of KISS recipes. There is still that, but in browsing their docs I realized there's a lot of interactivity on their website to demonstrate features. Buttons to add/remove divs to play with `grid`, color switches, and so on. I started wondering if and how I could implement those in FastHTML. My primary limitation is that I don't know much about Javascript in general and a at best cursory awareness of HTMX—I've yet to dive deep in this hypermedia marvel. While a great occasion, I just don't have much time for that, so learned as I went.
 
 There is no database, because I didn't want to add an abstraction layer between the data and the code—reading it should be self-sufficient to work out exactly how what you put in Python comes out the other side in HTML. This includes custom CSS beyond the Pico framework.
 
 > [!TIP]
-> *A complete website, mostly below 100 columns for readability, makes for very long files: search* ( <kbd>Ctrl</kbd>+<kbd>F</kbd> ) *is your friend; use your IDE features.*
+> 4600 lines (and counting) is a _long_ file.
+> - Search ( <kbd>Ctrl</kbd>+<kbd>F</kbd> ) is your friend.
+> - Use your IDE features to quickly search symbols def & occurences.
 
 ### How to use
 
@@ -31,7 +38,7 @@ The logic part is necessary for the data section, which is why it comes first in
 
 The data part is entirely composed of string assignments, processed by our functions to generate the correct layout—tags, attributes, nesting.
 
-The routing part comes last by necessity to wire all the things.
+The routing part comes last by necessity to wire all the things and implement dynamic HTMX features—not many. *I don't know HTMX.*
 
 Classes, ids, etc. are kept to a bare minimum for a functional website, to demonstrate Pico CSS greatness and the power of semantic HTML.
 
@@ -40,7 +47,7 @@ Classes, ids, etc. are kept to a bare minimum for a functional website, to demon
 
 #### Website
 
-I'd like to make three view modes. Only the first one is in the works thus far.
+There are three view modes.
 
 1. Normal single-page website (HTML, CSS, Js)
 2. Under the hood / look behind the curtains (Python)
@@ -48,7 +55,20 @@ I'd like to make three view modes. Only the first one is in the works thus far.
 
 *Normal* is self-explanatory. *Under the hood* "reverses" the side of the website and shows the full Python code, although not as in the file: we display the code that makes each part in place of said part, such that you can switch back and forth to see the code and the result. This involves a bit of redundancy (reminders for definitions notably), but avoids endless scrolling to get context (which is something that happens a lot when working on the file itself, but IDE solve that with splits). Speaking of which, *side-by-side* is exactly what it means, and combines the two views for convenience.
 
-*Later on, if/when I make other CSS themes cheat pages (like Tokyo Night or Atom One or my own), I'll definitely put toggles for side-by-sides, to compare all the things.*
+*Later on, when I integrate other CSS themes (like Tokyo Night or Atom One or my own), there will be switches and side-by-sides to compare these.*
+
+
+### Important advice to myself for FastHTML
+
+- create wrappers to ensure you can modify all calls from a single source
+	- you want to hard-wire as little as possible (e.g. classes)
+	- you want to abstract actual attributes etc. (even with a similar name) so these are general variables for you to peruse.
+		- e.g. make a variable `h = 'html'` and `p = 'python'` and use those in `lang=LANGUAGE_NAME` because it allows you to quickly switch them all (e.g. to some custom theme `fasthtml` that forks `python` for instance).
+		- these only become an actual class in the wrapper function → you can filter things there too, testing if `lang` exists or equals whatever.
+- my suggestion of **minimal CSS for code highlighting** proper → gives you back your CSS
+	- WHY? 🡄 code highlighters (hljs, prism, etc.) will add their own classes, messing up with Pico CSS
+	- **removes all `hljs` BS**
+	- same with PrismJS
 
 
 ### Cursor
@@ -116,6 +136,7 @@ Great open code should be *stupidly easy* to steal.
 
 > [!CAUTION]
 > Some info may be outdated.
+
 
 ### HTML structure
 
@@ -257,8 +278,6 @@ div id="content" role="document"
   section
   section
 ```
-
-### FastHTML structure
 
 (this might be outdated, see actual `main.py` file)
 
@@ -449,10 +468,10 @@ All H$n$ titles have an anchor link attached to them, and optionally a descripti
 </header>
 ```
 
-We sanitize the section title first in FastHTML. The `secondary` class has no effect on emojis (you may use `#` or any other char instead).
-
 > [!WARNING]
 > Some ARTICLEs (H4) share the same name (duh… silly me), so the solutions below do not work properly (they should concatenate the full breadcrumb, not just the H4 content). 
+
+We sanitize the section title first in FastHTML. The `secondary` class has no effect on emojis (you may use `#` or any other char instead).
 
 ```python
 anchor = title.lower().replace(' ', '-')
@@ -544,29 +563,6 @@ Link `pico.css` manually or via CDN for a dependency-free setup, or use NPM or
 #     return _Code(*args, cls=cls, **kwargs)
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---
 
 ```html
@@ -635,29 +631,3 @@ Link `pico.css` manually or via CDN for a dependency-free setup, or use NPM or
 </table>
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
