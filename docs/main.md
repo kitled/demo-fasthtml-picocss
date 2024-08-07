@@ -1,6 +1,7 @@
 # `main.py` meta-docs
 
-This is a side project, and these are notes taken on-the-fly more than proper documentation.  
+> [!NOTE]
+> This is a side project, and these are notes taken on-the-fly more than proper documentation.  
 Feel free to ask anything in GH Issues or hit me on 𝕏.
 
 ## README`.md`
