@@ -17,7 +17,7 @@ As we build new examples (snippets, components… see e.g. https://fasthtml.gall
 
 Web conversion to FastHTML may work 
 - as a browser extension perhaps, if we can visually select any component/layout on the webpage;
-- as a CLI tool that captures HTML from the clipboard (after copying from inspect in the browser, or piped through some `curl > sed`…) and outputs the FastHTML equivalent.
+- as a CLI tool that captures HTML from the clipboard or some (`curl … | sed …`) and outputs the FastHTML equivalent.
 - or both co-jointly!
 
 Consider using [`llm`](https://github.com/simonw/llm) (and [`sqlite-utils`](https://github.com/simonw/sqlite-utils)) by Simon Willison, to simplify the implementation with any API (and log/retrieve to/from db).
