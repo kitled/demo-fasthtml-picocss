@@ -34,35 +34,6 @@ I've yet to make all proper web features.
 - Search feature with nice-enough UI to quicly glance at the desired part.
 
 
-## AI generation for websites (ideas)
-
-> [!NOTE] 
-> This is highly speculative. I need to run tests to know if my intuition makes sense here, and prove that current SOTA can't already do it well enough.
-
-There's (*will be*) a total of about 100 HTML:FastHTML pairs. That's a 'functionally perfect' dataset I'd like to feed some LLMs to see if it makes them great FastHTML writers and interpreters.
-
-Two cool goals might be
-
-- "Any webpage to FastHTML" generates FH code from web pages
-  - as a browser extension perhaps, to inspect & quickly capture any component/layout → I've no idea how to do that (yet)
-- "FastHTML to HTML" ← can LLMs replace the Fast 'core', doing what FastHTML does, output into a usable `.html` file?
-
-Possible next step: add a "prompt" column → user input that produces the FastHTML snippet as output.  
-This may help us reach yet another goal:
-
-- "Prompt to FastHTML" ← in plain English: make a website
-
-Don't get me wrong, many "no code" tools are absolute rubbish (mere prompt injection wrapping some LLM), and the few that work are incredibly narrow in actual scope, beyond the fancy GUIs. However, we can indeed narrow the problem down—e.g., aim to generate custom components, from a known set of prototypes, and simply organize them properly on the page. Even just that could reduce friction immensely from backend work to live web prototype, as informing existing components requires virtually no skill (unlike setting up all the boilerplate and wiring, however minimalist the library).
-
-The reason why I think FastHTML lends itself impeccably well to reach great results with *less*-code LLM assistants is threefold:
-
-- Lean and mean codebase, a simple direct mapping of HTML: as narrow a scope as it could ever get to make web things in Python.
-- All batteries included are straightforward as well, with sane *great defaults* ([HTMX](https://htmx.org/), [SQLite](https://www.sqlite.org/), [Uvicorn](https://www.uvicorn.org/), [Starlette](https://www.starlette.io/), mirroring the [FastAPI](https://fastapi.tiangolo.com/) syntax…)
-- Underlying "[Hypermedia](https://hypermedia.systems/)" paradigm is deemed sound and *elegant* by many great programmers. (who am I to know any better)
-
-
-
-
 ## Replicate with other CSS frameworks?
 
 First of all, *be my guest!* : ) The more, the merrier… 
