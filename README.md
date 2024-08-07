@@ -71,7 +71,7 @@ So feel free to school me, I know I'm doing a lot of things wrong in my code. I 
 
 
 
-## Motivation & Purpose
+## How to
 
 A primary goal was to have a whole website in one plain and simple file.
 
