@@ -21,23 +21,25 @@ It "works on my machine" but my server isn't happy with it; I need to redeploy *
 
 ## TL;DR
 
-- Unfinished, work in progress. No ETA.
+- **Unfinished**, work in progress. No ETA.
 
-- Usage: classic page search, <kbd>Ctrl</kbd> ( <kbd>⌘</kbd> ) + <kbd>F</kbd>
+- Usage: classic **page search**, <kbd>Ctrl</kbd> ( <kbd>⌘</kbd> ) + <kbd>F</kbd>
 
-- (final form) About a hundred 1:1 pairs of `HTML` ←→ `FastHTML` snippets for quick translation.
+- (final form) About a hundred **1:1 pairs** of `HTML` ←→ `FastHTML` snippets for quick translation.
 
-- Demonstrates Pico CSS,
-  - which mostly works classless as well, wherein naked HTML tags are all you need for style.
+- Demonstrates **Pico CSS**,
+  - which can work "classless" as well, wherein naked HTML tags are all you need for style.
 
 - Comments warmly welcome 🎓🆘🙏 → [GH Issues](https://github.com/agenkit/demo-fasthtml-picocss/issues) or [𝕏](https://x.com/x__kit)
 
-- I'm *not* a web dev. I just made a few websites since 1999 (literally).  
+- Built while FastHTML was still in **beta** (June 2024), thus **may still contain errors and false information** (will be corrected eventually).  
+Notably, **all HTML tags are now implemented** in FastHTML.
+
+About me: I'm *not* a web dev. I just made a few websites since 1999 (literally).  
 In 2024, I try to suck less at AI and that's already a tall order for me.  
-*Especially when geniuses throw FastHTML at me randomly on an otherwise perfectly good AI day.*
+*Especially when geniuses throw FastHTML at me randomly on an otherwise perfectly good AI day.* 😅
 
-- Built while FastHTML was still in beta (June 2024), thus may still contain errors and false information (will be corrected eventually).
-
+So feel free to school me, I know I'm doing a lot of things wrong in my code. I just don't know what—*yet*—and that's where *you* come in!
 
 
 ## Table of contents
