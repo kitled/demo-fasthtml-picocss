@@ -1,5 +1,8 @@
 ## TODO
 
+This isn't meant for public use, I'm just leaving it here because why not let you see what's in my head'.
+
+
 - demonstrate easy changes with simple CSS or FastHTML tags
   - e.g. change `background` color taking `prefers-color-scheme: dark|light` into account (so two colors, two selectors)
 
@@ -12,6 +15,9 @@
 ### 24F25
 
 2024.06.25 — this is a WIP, a list of ideas, thinking out loud much of the time. **Not everything** can (or should) be done!
+
+- some is required (usually prefixed with 🧡)
+- some are ideas for extension (not all realistic, I don't filter things at this level)
 
 ---
 
