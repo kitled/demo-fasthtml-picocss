@@ -3,7 +3,18 @@
 
 This demo is a rewrite of the "Docs" section of the Pico CSS website as one (long) page of FastHTML.
 
-View it live → <https://kit.gdn/fasthtml-picocss-demo/>
+You can clone this repo and run `main.py` locally through `uvicorn` :
+
+```bash
+uvicorn main:app
+```
+
+> [!IMPORTANT]  
+> I haven't been able to deploy this particular app. (I've had success with other FastHTML apps, not sure what's up).  
+It "works on my machine" but my server isn't happy with it; I need to redeploy *blablabla* (and I don't know Python deployment as HTTP apps, I've mostly used Py as scripts on servers in IT/devops, or locally as CLI or PyQt apps for instance). I should also look into e.g. Railway I guess (but I'm not sure which template to choose for FastHTML).
+>
+> If you can help me solve/learn ASGI Python web apps deployment, feel free to reach out.  
+> → in [GH Issues](https://github.com/agenkit/demo-fasthtml-picocss/issues) or on [𝕏](https://x.com/x__kit)
 
 > [!TIP]
 > Code in `main.py` is discussed in [`/docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md) — below the big TODO list.
