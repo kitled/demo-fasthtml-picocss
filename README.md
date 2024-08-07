@@ -11,7 +11,8 @@ uvicorn main:app
 ```
 
 > [!IMPORTANT]  
-> - **Friendly warning: there are garbage files** in that repo, lots of drafts & experiments. It's a Work-In-Progress! (WIP)
+> - Currently a **Work-In-Progress**! (WIP)
+> - **Friendly warning: there are garbage files** in that repo, lots of drafts & experiments. 
 > - I haven't been able to deploy this particular app on my Linode VPS server.  
 > I've had success with other FastHTML apps, not sure what's up here.  
 > **It "works on my machine", so hopefully on yours too.** I'll redo the core properly if needed eventually.  
@@ -21,7 +22,8 @@ uvicorn main:app
 > → in [GH Issues](https://github.com/agenkit/demo-fasthtml-picocss/issues) or on [𝕏](https://x.com/x__kit)
 
 > [!TIP]
-> The code of `main.py` is discussed in [`/docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md)
+> - The code of `main.py` is discussed in [`docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md) (very rough, partly outdated draft)  
+> - See further [`docs/discussion.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/discussion.md)
 
 
 ## TL;DR
@@ -53,7 +55,6 @@ Notably, **all HTML tags are now implemented** in FastHTML.
 - FastHTML: <https://answerdotai.github.io/fasthtml>
 - Pico CSS: <https://picocss.com/docs>
 - `main.py`: https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md
-- More in [docs/discussion.md](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/discussion.md)
 
 ### 🧬 Code
 
