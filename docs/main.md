@@ -1,6 +1,7 @@
-# main.py documentation
+# `main.py` meta-docs
 
-
+This is a side project, and these are notes taken on-the-fly more than proper documentation.  
+Feel free to ask anything in GH Issues or hit me on 𝕏.
 
 ## README`.md`
 
@@ -12,13 +13,14 @@ Initially, I wanted to make a short summary of Pico CSS features, the exhaustive
 
 There is no database, because I didn't want to add an abstraction layer between the data and the code—reading it should be self-sufficient to work out exactly how what you put in Python comes out the other side in HTML. This includes custom CSS beyond the Pico framework.
 
->⚠️ *A complete website, mostly below 100 columns for readability, makes for very long files: search* (<kbd>Ctrl</kbd>+<kbd>F</kbd>) *is your friend; use your IDE features.*
+> [!TIP]
+> *A complete website, mostly below 100 columns for readability, makes for very long files: search* ( <kbd>Ctrl</kbd>+<kbd>F</kbd> ) *is your friend; use your IDE features.*
 
 ### How to use
 
 #### Code
 
-There are three parts in the file, besides the idiomatic top imports, and bottom routing.
+There are three parts in the file, besides the idiomatic top imports.
 
 1. Logic
 2. Data
@@ -31,6 +33,9 @@ The data part is entirely composed of string assignments, processed by our funct
 The routing part comes last by necessity to wire all the things and implement dynamic HTMX features—not many. *I don't know HTMX.*
 
 Classes, ids, etc. are kept to a bare minimum for a functional website, to demonstrate Pico CSS greatness and the power of semantic HTML.
+
+> [!NOTE]
+> There is a classless version of Pico CSS, which though less featureful yields minimal HTML.
 
 #### Website
 
@@ -45,7 +50,7 @@ There are three view modes.
 *Later on, when I integrate other CSS themes (like Tokyo Night or Atom One or my own), there will be switches and side-by-sides to compare these.*
 
 
-### Important advice for FastHTML
+### Important advice to myself for FastHTML
 
 - create wrappers to ensure you can modify all calls from a single source
 	- you want to hard-wire as little as possible (e.g. classes)
@@ -60,7 +65,7 @@ There are three view modes.
 
 ### Cursor
 
-You must use Cursor. Here's a self-obvious example why.
+Consider using Cursor. Here's a self-obvious example why.
 
 It took me three <kbd>Tab</kbd> hits—all of 3 seconds—to get from this
 
@@ -100,16 +105,19 @@ body_4_1_1 = Table( # ↓ perfectly formatted contents
 )
 ```
 
-Sorry for the bill. It's well worth it. It understands a lot of things, including Markdown, or FastHTML functions.
+Sorry for the new bill! But it's well worth it. It understands a lot of things, including Markdown, or FastHTML functions.
 
 
 ### Contribute
 
-Do other CSS themes and various Javascript frameworks like code syntax highlighters or whatever cool, and let's add all the things to make many versions of it. 
+Do other CSS themes and various Javascript frameworks like code syntax highlighters or whatever cool thing you want.
 
-The MO is simple: **reimplement the integrated tool's demo and/or docs in FastHTML**, to demonstrate both at once in proper HTML.
+The M.O (how we roll) is simple: **reimplement the integrated tool's demo and/or docs in FastHTML**, to demonstrate both at once in proper HTML.
 
-It doesn't have to be a single file as I did for the data, but **make sure the types and exact characters being processed are easy to see**, just by reading the code, optionally helped by some handy REPL. If you use a database, provide helper functions to inspect the data and feed that base. The name of the game is **frictionless reproducibility**, that's our North.
+It doesn't have to be a single file as I did for the data, but **make sure the types and exact characters being processed are easy to see**, just by reading the code, optionally helped by some handy REPL. If you use a database, provide helper functions to inspect the data and feed that base. 
+
+The name of the game is **frictionless reproducibility**, that's our North.  
+Great open code should be *stupidly easy* to steal.
 
 
 
@@ -120,7 +128,7 @@ It doesn't have to be a single file as I did for the data, but **make sure the t
 
 ### HTML structure
 
-🡇 We're going for something like this. Pay attention to nesting, as it's essential to properly structure your FastHTML function calls nesting.
+🡇 We're going for something like this. Pay attention to nesting, as it's essential to properly structure your FastHTML function calls nesting. This intends to reproduce the exact Pico CSS website's HTML (the whole "Docs" section, flattened as one page).
 
 ```html
 <main>
@@ -339,6 +347,7 @@ Load after page:
 
 
 ### `fh` function nesting 
+
 
 #### MAIN (H2) Section
 
