@@ -106,7 +106,7 @@ Each HTML code snippet is (WIP: will be…) associated 1:1 to a Python FastHTML 
 Only the last part self-evidently differs from the Pico CSS website. Everything else should be identical.
 
 > [!IMPORTANT]
-> - FastHTML snippets are missing in v0.0.1-alpha (current latest). WIP!
+> - FastHTML snippets are missing. WIP!
 > - There is a noticeable gap between sections. This is normal during development. I'll revert to Pico CSS defaults after implementing section folding (`<summary>` tag).
 
 Syntax highlighting is provided by [PrismJS](https://prismjs.com/), whose defaults fit better with PicoCSS than HighlightJS for me, on top of allowing inline highlighting.
