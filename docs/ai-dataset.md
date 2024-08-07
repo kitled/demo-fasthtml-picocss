@@ -3,7 +3,7 @@
 > [!NOTE] 
 > This is highly speculative. I need to run tests to know if my intuition makes sense here, and prove that current SOTA can't already do it well enough.
 
-This project, eventually containing about 100 HTML🡘FastHTML pairs, is a small but 'functionally perfect' dataset.
+This project, eventually containing about 100 HTML🡘FastHTML pairs, is a small but 'functionally perfect' dataset. 
 
 I'd like to feed it to LLMs (prompt injection, RAG, finetune…), to see if it makes them very capable FastHTML writers and interpreters. I see three angles:
 
@@ -11,8 +11,7 @@ I'd like to feed it to LLMs (prompt injection, RAG, finetune…), to see if it m
 - Conversely, output HTML from a FastHTML input.
 - Finally, natural language (user prompt) to FastHTML (less-code AI assistant).
 
-I think some of these use cases can be solved with a very small model, well-aligned for the purpose, because FastHTML is very concise (<1000 lines).
-
+As we build new examples (snippets, components… See e.g. https://fasthtml.gallery/), this FastHTML 'reference' dataset could be make a great basis to quickly augment any model. I think many AI assistant use cases may be solvable with a very small model, well-aligned for the purpose, because FastHTML is very concise (<1000 lines), and its ecosystem should be friendly to local (self-hosted) open source models.
 
 ## HTML to FastHTML (and back)
 
