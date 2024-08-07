@@ -112,7 +112,10 @@ Great open code should be *stupidly easy* to steal.
 
 
 
-## arch
+## Spec
+
+> [!CAUTION]
+> Some info may be outdated.
 
 ### HTML structure
 
@@ -255,6 +258,8 @@ div id="content" role="document"
   section
 ```
 
+### FastHTML structure
+
 (this might be outdated, see actual `main.py` file)
 
 ```python
@@ -326,7 +331,7 @@ section_7 = {
 
 
 
-Load after page:
+### Load after page
 
 ```html
 <img loading="lazy" />
@@ -445,6 +450,9 @@ All H$n$ titles have an anchor link attached to them, and optionally a descripti
 ```
 
 We sanitize the section title first in FastHTML. The `secondary` class has no effect on emojis (you may use `#` or any other char instead).
+
+> [!WARNING]
+> Some ARTICLEs (H4) share the same name (duh… silly me), so the solutions below do not work properly (they should concatenate the full breadcrumb, not just the H4 content). 
 
 ```python
 anchor = title.lower().replace(' ', '-')
