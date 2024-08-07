@@ -40,7 +40,7 @@ Classes, ids, etc. are kept to a bare minimum for a functional website, to demon
 
 #### Website
 
-There are three view modes.
+I'd like to make three view modes. Only the first one is in the works thus far.
 
 1. Normal single-page website (HTML, CSS, Js)
 2. Under the hood / look behind the curtains (Python)
