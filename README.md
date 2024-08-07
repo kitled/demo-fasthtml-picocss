@@ -71,7 +71,7 @@ So feel free to school me, I know I'm doing a lot of things wrong in my code. I 
 - Pico CSS: [https://github.com/picocss/pico](https://github.com/picocss/pico)  
 (⚖️ [MIT](https://github.com/picocss/pico/blob/main/LICENSE.md) )
 
-#### ℹ️ Misc.
+#### 📑 Misc.
 
 - Examples: <https://picocss.com/examples>  
   - Code: <https://github.com/picocss/examples>  
