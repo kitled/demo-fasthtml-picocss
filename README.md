@@ -1,5 +1,6 @@
 # FastHTML 🧡 Pico CSS
-🡆 *Demonstrating Pico CSS in FastHTML.*
+
+> 🡆 *Demonstrating Pico CSS in FastHTML.*
 
 This demo is a rewrite of the "Docs" section of the Pico CSS website as one (long) page of FastHTML.
 
@@ -10,21 +11,24 @@ uvicorn main:app
 ```
 
 > [!IMPORTANT]  
-> I haven't been able to deploy this particular app. (I've had success with other FastHTML apps, not sure what's up).  
-It "works on my machine" but my server isn't happy with it; I need to redeploy *blablabla* (and I don't know Python deployment as HTTP apps, I've mostly used Py as scripts on servers in IT/devops, or locally as CLI or PyQt apps for instance). I should also look into e.g. Railway I guess (but I'm not sure which template to choose for FastHTML).
+> - **Friendly warning: there are garbage files** in that repo, lots of drafts & experiments. It's a Work-In-Progress! (WIP)
+> - I haven't been able to deploy this particular app on my Linode VPS server.  
+> I've had success with other FastHTML apps, not sure what's up here.  
+> **It "works on my machine", so hopefully on yours too.** I'll redo the core properly if needed eventually.  
+> (I should probably look into e.g. Railway I guess, but I'm not sure which template to choose for FastHTML.)
 >
 > If you can help me solve/learn ASGI Python web apps deployment, feel free to reach out.  
 > → in [GH Issues](https://github.com/agenkit/demo-fasthtml-picocss/issues) or on [𝕏](https://x.com/x__kit)
 
 > [!TIP]
-> Code in `main.py` is discussed in [`/docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md) — below the big TODO list.
+> The code of `main.py` is discussed in [`/docs/main.md`](https://github.com/agenkit/demo-fasthtml-picocss/blob/main/docs/main.md)
 
 
 
 
 ## TL;DR
 
-- **Unfinished**, work in progress. No ETA.
+- **Unfinished** WIP. No ETA.
 
 - Usage: classic **page search**, <kbd>Ctrl</kbd> ( <kbd>⌘</kbd> ) + <kbd>F</kbd>
 
@@ -45,6 +49,9 @@ In 2024, I try to suck less at AI and that's already a tall order for me.
 >
 > So feel free to school me, I know I'm doing a lot of things wrong in my code.  
 I just don't know what—*yet*—and that's where *you* come in!
+> 
+> Besides, life happened in July, and I've yet to really recommit to this project. It's high on my list, but I need more spare time.
+
 
 
 
