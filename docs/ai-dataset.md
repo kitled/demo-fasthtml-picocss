@@ -22,9 +22,9 @@ The reverse, FastHTML to HTML, is more about testing whether LLMs can replace th
 
 ## User prompt to FastHTML
 
-Possible next step: add a "prompt" column, containing the user input that produces the FastHTML snippet as output. This may help us reach yet another goal:
+Possible next step: add a "prompt" column, containing the user input that produces the FastHTML snippet as output, enabling:
 
-- "Prompt to FastHTML" ← in plain English: make a website
+- "Prompt to FastHTML" ← in plain English, make a website.
 
 Don't get me wrong, many "no code" tools are absolute rubbish (mere prompt injection wrapping some LLM), and the few that work are incredibly narrow in actual scope, beyond the fancy GUIs. However, we can indeed narrow the problem down—e.g., aim to generate custom components, from a known set of prototypes, and simply organize them properly on the page. Even just that could reduce friction immensely from backend work to live web prototype, as informing existing components requires virtually no skill (unlike setting up all the boilerplate and wiring, however minimalist the library).
 
