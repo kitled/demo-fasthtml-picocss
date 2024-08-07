@@ -53,7 +53,7 @@ So feel free to school me, I know I'm doing a lot of things wrong in my code. I 
       - [About Cursor](https://github.com/agenkit/demo-fasthtml-picocss#about-cursor)
    - [Other CSS frameworks](https://github.com/agenkit/demo-fasthtml-picocss#other-css-frameworks)
 
-
+----
 
 
 ### Resources
