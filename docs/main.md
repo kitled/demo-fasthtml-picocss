@@ -10,7 +10,7 @@ This was originally intended as the README, but speaks more of the code itself, 
 
 ### Why this project
 
-Initially, I wanted to make a short summary of Pico CSS features, the exhaustive book of KISS recipes. There is still that, but in browsing their docs I realized there's a lot of interactivity on their website to demonstrate features. Buttons to add/remove divs to play with `grid`, color switches, and so on. I started wondering if and how I could implement those in FastHTML. My primary limitation is that I don't know much about Javascript in general and a at best cursory awareness of HTMX—I've yet to dive deep in this hypermedia marvel. While a great occasion, I just don't have much time for that, so learned as I went.
+Initially, I wanted to make a short summary of Pico CSS features, the exhaustive book of KISS recipes. There is still that, but in browsing their docs I realized there's a lot of interactivity on their website to demonstrate features. Buttons to add/remove divs to play with `grid`, color switches, and so on. I started wondering if and how I could implement those in FastHTML. My primary limitation is that I don't know much about Javascript in general and a at best cursory awareness of HTMX—I've yet to dive deep in this [hypermedia](https://hypermedia.systems/) marvel. While a great occasion, I just don't have much time for that, so learned as I went.
 
 There is no database, because I didn't want to add an abstraction layer between the data and the code—reading it should be self-sufficient to work out exactly how what you put in Python comes out the other side in HTML. This includes custom CSS beyond the Pico framework.
 
